@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-12T07:55:39.405Z</updated>
+    <updated>2020-03-12T07:58:29.393Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -25,17 +25,13 @@
         <link href="https://ydPro-G.github.io/post/linux_-wen-jian-quan-xian/">
         </link>
         <updated>2020-03-12T06:33:03.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="linux_系统初认识">Linux_系统初认识</h1>
-<h2 id="linux_文件权限">Linux_文件权限</h2>
-<p>命令：<br>
+        <summary type="html"><![CDATA[<p>命令：<br>
 <code>ls</code>显示目标列表<br>
 <a href="https://man.linuxde.net/ls">ls具体命令</a><br>
 <code>ls -l</code>所有输出信息单列格式输出，不输出为多列<br>
 <code>ls -AsSh</code>显示所有文件大小 小s显示文件大小，大S显示按文件大小排序</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h1 id="linux_系统初认识">Linux_系统初认识</h1>
-<h2 id="linux_文件权限">Linux_文件权限</h2>
-<p>命令：<br>
+        <content type="html"><![CDATA[<p>命令：<br>
 <code>ls</code>显示目标列表<br>
 <a href="https://man.linuxde.net/ls">ls具体命令</a><br>
 <code>ls -l</code>所有输出信息单列格式输出，不输出为多列<br>
