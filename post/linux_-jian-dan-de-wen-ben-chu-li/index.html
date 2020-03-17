@@ -34,13 +34,15 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BE%8B%E8%A1%8C%E6%80%A7%E5%B7%A5%E4%BD%9C%E6%8E%92%E7%A8%8B">什么是例行性工作排程？</a></li>
-<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
+<li><a href="#%E7%9B%AE%E7%9A%84">目的</a><br>
+*
 <ul>
-<li><a href="#%E8%AF%AD%E6%B3%95">语法</a></li>
-<li><a href="#%E9%80%89%E9%A1%B9">选项</a></li>
-<li><a href="#%E5%91%BD%E4%BB%A4">命令</a></li>
-<li><a href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">系统级别的定时任务</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a></li>
+<li><a href="#1tr%E5%91%BD%E4%BB%A4">1.tr命令</a></li>
+<li><a href="#2col%E5%91%BD%E4%BB%A4">2.col命令</a></li>
+<li><a href="#3join%E5%91%BD%E4%BB%A4">3.join命令</a></li>
+<li><a href="#4paste%E5%91%BD%E4%BB%A4">4.paste命令</a></li>
+<li><a href="#%E5%A4%8D%E4%B9%A0">复习</a></li>
 </ul>
 </li>
 </ul>
@@ -83,56 +85,97 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">Linux_例行性工作排程</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_简单的文本处理</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-17 / 1 min read
+          2020-03-17 / 4 min read
         </div>
         
         <div class="post-content yue">
-          <h1 id="什么是例行性工作排程">什么是例行性工作排程？</h1>
-<p>1.有的工作是例行性的，比如吃饭<br>
-2.有的工作是临时发生的，比如请别人吃饭<br>
-<code>at</code>：at是个可以处理仅执行一次就结束排程的指令，不过要执行at时，必须要有atd这个服务的支援才行。<br>
-<code>crontab</code>：crontab这个指令所设定的工作将会循环的一直进行下去！可循环的时间为分钟、小时、每周、每月或每年等。crontab除了可以使用指令执行外，亦可编辑/etc/crontab来支援。</p>
-<h1 id="学习目录">学习目录</h1>
-<p><code>crontab</code>的使用</p>
-<h2 id="语法">语法</h2>
-<p><code>corntab</code>(选项)（参数）<br>
-<img src="https://ydPro-G.github.io//post-images/1584416805307.png" alt="" loading="lazy"></p>
-<h2 id="选项">选项</h2>
-<pre><code>-e：编辑该用户的计时器设置；
--l：列出该用户的计时器设置；
--r：删除该用户的计时器设置；
--u&lt;用户名称&gt;：指定要设定计时器的用户名称。
+          <h1 id="目的">目的</h1>
+<p>1.常见文本处理命令<br>
+2.如何简单处理文本</p>
+<h3 id="学习目录">学习目录</h3>
+<ol>
+<li>tr</li>
+<li>col</li>
+<li>join</li>
+<li>paste</li>
+</ol>
+<hr>
+<h3 id="1tr命令">1.tr命令</h3>
+<p>将字符进行替换压缩和删除<br>
+tr命令 可以对来自标准输入的字符进行替换、压缩和删除。它可以将一组字符变成另一组字符，经常用来编写优美的单行命令，作用很强大。</p>
+<p>实例：<code>echo 'hello world' | tr -d 'ol'</code><br>
+意义：删除<strong>hello world</strong>中所有的<strong>ol</strong></p>
+<p>实例：<code>echo 'hello world' | tr -s &quot;l&quot;</code><br>
+将<strong>hello world</strong>中的<strong>l</strong>去重为一个<strong>l</strong></p>
+<p>实例：<code>echo 'hello' | tr '[a-z]' '[A-Z]'</code><br>
+：<code>echo 'HELLO | tr '[A-Z] '[a-z]'</code><br>
+意义：将hello转换成HELLO<br>
+将HELLO转换成hello<br>
+<strong>大小写转换</strong><br>
+<a href="https://wangchujiang.com/linux-command/c/tr.html">参考网址</a></p>
+<hr>
+<h3 id="2col命令">2.col命令</h3>
+<p>过滤控制字符，<strong>col 命令可以将Tab换成对等数量的空格键，或反转这个操作。</strong><br>
+col命令 是一个标准输入文本过滤器，它从标注输入设备读取文本内容，并把内容显示到标注输出设备。在许多UNIX说明文件里，都有RLF控制字符。当我们运用shell特殊字符&gt;和&gt;&gt;，把说明文件的内容输出成纯文本文件时，控制字符会变成乱码，col命令则能有效滤除这些控制字符。</p>
+<p>实例：<code>cat [目录/文件] | col -x | cat -A</code>:<br>
+意义：使用<code>col -x</code>将相应目录的相关文件中的<code>tab</code>字符转换成<code>空格</code>，然后使用<code>cat -A</code>查看<br>
+<code>cat -A</code>查看不可见字符<br>
+<a href="https://wangchujiang.com/linux-command/c/col.html">参考网址</a></p>
+<hr>
+<h3 id="3join命令">3.join命令</h3>
+<p>两个文件中<strong>指定栏位内容相同的行连接</strong>起来<br>
+join命令 用来将<strong>两个文件</strong>中，<strong>指定栏位内容相同的行连接起来</strong>。找出两个文件中，指定栏位内容相同的行，并加以合并，再<strong>输出到标准输出设备</strong>。</p>
+<p>实例：<br>
+<code>&gt;</code>:覆盖文件内容并写入<br>
+<code>&gt;&gt;</code>:在文件后面追加，不覆盖<br>
+<code>echo '1 hello' &gt; file1</code>:输入1 hello并覆盖文件内容写入file1文件中<br>
+<code>echo '1 world' &gt; file2</code>:输入1 world并覆盖文件内容写入到file2文件中<br>
+<code>join file1 file2</code>:输出<code>1 hello world</code>将<code>file1</code>和<code>file2</code>文件中包含相同内容（<code>1</code>）的那一行合并在一起。</p>
+<p>实例：<code>sudo join -t':' /etc/passwd[目录/文件] /etc/shadow[目录/文件]</code>:<br>
+意义：将两个文件合并，并指定以<code>':'</code>为分隔符<br>
+<code>-t</code>：指定分隔符，默认为空格</p>
+<p>实例：<code>sudo join -t':' -1 1 [目录/文件] -2 1 [目录/文件]</code><br>
+意义：将2个文件合并，指定以<code>':'</code>作为分隔符，并对比第一字段和第二字段<br>
+<code>-1</code>:指明第一个文件要用哪个字段来对比，默认是第一个字段<br>
+<code>-2</code>:指明第二个文件要用哪个字段来对比，默认是第一个字段<br>
+<a href="https://wangchujiang.com/linux-command/c/join.html">参考网址</a></p>
+<h3 id="4paste命令">4.paste命令</h3>
+<p>将多个文件按列队列合并<br>
+paste命令 用于将多个文件按照列队列进行合并。</p>
+<p>实例：<code>paste -d ':' [文件] [文件] [文件]</code><br>
+意义：将三个文件合并在一起，<code>-d</code>指定分隔符为<code>':'</code>,默认为TAB</p>
+<p>实例<code>paste -s [文件] [文件] [文件]</code><br>
+意义：将三个文件合并在一起，<code>-s</code>不合并到一行，每个文件为一行。<br>
+<a href="https://wangchujiang.com/linux-command/c/paste.html">参考网址</a></p>
+<h2 id="复习">复习</h2>
+<p>手动完成 dos 文本格式到 UNIX 文本格式的转换。</p>
+<pre><code class="language-bash">echo hello &gt; file1
+cat -A file1 |  tr '$' '\r\n' &gt; file2; cat -A file2
 </code></pre>
-<h2 id="命令">命令</h2>
-<p><code>crontab -e</code>:编辑用户的计时器设置</p>
-<h2 id="系统级别的定时任务">系统级别的定时任务</h2>
-<p>用<code>sudo</code>的权限编辑<code>/etc/crontab</code></p>
-<p>参考：<a href="http://linux.vbird.org/linux_basic/0430cron.php">Linux例行性工作排程——Linux鸟哥的私房菜</a></p>
+<p>将unix文本转换成dos文本</p>
+<pre><code class="language-bash">cat -A file2 | tr -d '^M$' &gt; file3; cat -A file3
+</code></pre>
+<p>将dos文本转换成unix文本</p>
 
         </div>
 
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
+            <span class="flex-auto">Linux</span>
+          </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://ydPro-G.github.io/post/linux_-bei-fen-ri-zhi/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  Linux_备份日志
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://ydPro-G.github.io/post/linux_-ci-pan-guan-li/">
+              <a href="https://ydPro-G.github.io/post/linux_-chang-yong-ming-ling/">
                 <h3 class="post-title">
-                  Linux_磁盘管理
+                  Linux_常用命令
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>

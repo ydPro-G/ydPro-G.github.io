@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T04:14:05.719Z</updated>
+    <updated>2020-03-17T04:15:35.418Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,81 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_简单的文本处理]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-jian-dan-de-wen-ben-chu-li/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-jian-dan-de-wen-ben-chu-li/">
+        </link>
+        <updated>2020-03-17T04:14:23.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="目的">目的</h1>
+<p>1.常见文本处理命令<br>
+2.如何简单处理文本</p>
+<h3 id="学习目录">学习目录</h3>
+<ol>
+<li>tr</li>
+<li>col</li>
+<li>join</li>
+<li>paste</li>
+</ol>
+<hr>
+<h3 id="1tr命令">1.tr命令</h3>
+<p>将字符进行替换压缩和删除<br>
+tr命令 可以对来自标准输入的字符进行替换、压缩和删除。它可以将一组字符变成另一组字符，经常用来编写优美的单行命令，作用很强大。</p>
+<p>实例：<code>echo 'hello world' | tr -d 'ol'</code><br>
+意义：删除<strong>hello world</strong>中所有的<strong>ol</strong></p>
+<p>实例：<code>echo 'hello world' | tr -s &quot;l&quot;</code><br>
+将<strong>hello world</strong>中的<strong>l</strong>去重为一个<strong>l</strong></p>
+<p>实例：<code>echo 'hello' | tr '[a-z]' '[A-Z]'</code><br>
+：<code>echo 'HELLO | tr '[A-Z] '[a-z]'</code><br>
+意义：将hello转换成HELLO<br>
+将HELLO转换成hello<br>
+<strong>大小写转换</strong><br>
+<a href="https://wangchujiang.com/linux-command/c/tr.html">参考网址</a></p>
+<hr>
+<h3 id="2col命令">2.col命令</h3>
+<p>过滤控制字符，<strong>col 命令可以将Tab换成对等数量的空格键，或反转这个操作。</strong><br>
+col命令 是一个标准输入文本过滤器，它从标注输入设备读取文本内容，并把内容显示到标注输出设备。在许多UNIX说明文件里，都有RLF控制字符。当我们运用shell特殊字符&gt;和&gt;&gt;，把说明文件的内容输出成纯文本文件时，控制字符会变成乱码，col命令则能有效滤除这些控制字符。</p>
+<p>实例：<code>cat [目录/文件] | col -x | cat -A</code>:<br>
+意义：使用<code>col -x</code>将相应目录的相关文件中的<code>tab</code>字符转换成<code>空格</code>，然后使用<code>cat -A</code>查看<br>
+<code>cat -A</code>查看不可见字符<br>
+<a href="https://wangchujiang.com/linux-command/c/col.html">参考网址</a></p>
+<hr>
+<h3 id="3join命令">3.join命令</h3>
+<p>两个文件中<strong>指定栏位内容相同的行连接</strong>起来<br>
+join命令 用来将<strong>两个文件</strong>中，<strong>指定栏位内容相同的行连接起来</strong>。找出两个文件中，指定栏位内容相同的行，并加以合并，再<strong>输出到标准输出设备</strong>。</p>
+<p>实例：<br>
+<code>&gt;</code>:覆盖文件内容并写入<br>
+<code>&gt;&gt;</code>:在文件后面追加，不覆盖<br>
+<code>echo '1 hello' &gt; file1</code>:输入1 hello并覆盖文件内容写入file1文件中<br>
+<code>echo '1 world' &gt; file2</code>:输入1 world并覆盖文件内容写入到file2文件中<br>
+<code>join file1 file2</code>:输出<code>1 hello world</code>将<code>file1</code>和<code>file2</code>文件中包含相同内容（<code>1</code>）的那一行合并在一起。</p>
+<p>实例：<code>sudo join -t':' /etc/passwd[目录/文件] /etc/shadow[目录/文件]</code>:<br>
+意义：将两个文件合并，并指定以<code>':'</code>为分隔符<br>
+<code>-t</code>：指定分隔符，默认为空格</p>
+<p>实例：<code>sudo join -t':' -1 1 [目录/文件] -2 1 [目录/文件]</code><br>
+意义：将2个文件合并，指定以<code>':'</code>作为分隔符，并对比第一字段和第二字段<br>
+<code>-1</code>:指明第一个文件要用哪个字段来对比，默认是第一个字段<br>
+<code>-2</code>:指明第二个文件要用哪个字段来对比，默认是第一个字段<br>
+<a href="https://wangchujiang.com/linux-command/c/join.html">参考网址</a></p>
+<h3 id="4paste命令">4.paste命令</h3>
+<p>将多个文件按列队列合并<br>
+paste命令 用于将多个文件按照列队列进行合并。</p>
+<p>实例：<code>paste -d ':' [文件] [文件] [文件]</code><br>
+意义：将三个文件合并在一起，<code>-d</code>指定分隔符为<code>':'</code>,默认为TAB</p>
+<p>实例<code>paste -s [文件] [文件] [文件]</code><br>
+意义：将三个文件合并在一起，<code>-s</code>不合并到一行，每个文件为一行。<br>
+<a href="https://wangchujiang.com/linux-command/c/paste.html">参考网址</a></p>
+<h2 id="复习">复习</h2>
+<p>手动完成 dos 文本格式到 UNIX 文本格式的转换。</p>
+<pre><code class="language-bash">echo hello &gt; file1
+cat -A file1 |  tr '$' '\r\n' &gt; file2; cat -A file2
+</code></pre>
+<p>将unix文本转换成dos文本</p>
+<pre><code class="language-bash">cat -A file2 | tr -d '^M$' &gt; file3; cat -A file3
+</code></pre>
+<p>将dos文本转换成unix文本</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_常用命令]]></title>
         <id>https://ydPro-G.github.io/post/linux_-chang-yong-ming-ling/</id>
@@ -480,110 +555,6 @@ Bash的配置命令是<code>.bashrc</code><br>
 <p>列出用户home目录下比 Code 文件夹新的文件<br>
 <code>find ~ -newer /home/shiyanlou/Code</code><br>
 <code>-newer file</code>：file 为一个已存在的文件，列出比 file 还要新的文件名</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[TCP/IP协议]]></title>
-        <id>https://ydPro-G.github.io/post/tcpip-xie-yi/</id>
-        <link href="https://ydPro-G.github.io/post/tcpip-xie-yi/">
-        </link>
-        <updated>2020-03-17T03:11:04.000Z</updated>
-        <content type="html"><![CDATA[<p>1.互联网分成若干层<br>
-2.为了实现功能，大家需要遵循相关的规则，这就是协议。</p>
-<h2 id="1物理层">1.物理层</h2>
-<p>定义：用光缆，电缆，双绞线，无线电波等方式将电脑连起来。<br>
-作用：用来传输1,0的电信号。</p>
-<h2 id="2链路层">2.链路层</h2>
-<p>定义：为了规定解读方式，多少电信号算一组？每个信号位有何意义？<br>
-作用：在物理层上面确定0和1的分组方式</p>
-<h3 id="21以太网协议">2.1以太网协议</h3>
-<p>早期，电信号分组方式每个公司都有，群雄逐鹿，<strong>发展到后来一种叫做“以太网”（Ethernet）的协议占据了主导地位，成为电信号分组方式的规则。</strong></p>
-<p><strong>以太网规定</strong>一组电信号组成一个数据包，叫做“帧”（Frame）。每一个帧分为2个部分，标头（Head）和数据（Data）。<br>
-<img src="https://ydPro-G.github.io//post-images/1584414725429.png" alt="" loading="lazy"><br>
-<strong>标头</strong>包含数据包的一些说明项，比如说发送者，接收者，数据类型之类的等等。<br>
-<strong>数据</strong>则是数据包的具体内容。<br>
-<strong>标头</strong>的长度固定为18个字节。<br>
-<strong>数据</strong>的长度最短为46字节，最长为1500字节。<br>
-整个帧最短为64字节，最长为1518字节。</p>
-<h3 id="22mac地址">2.2MAC地址</h3>
-<p>上面提到，以太网数据包里包含“标头”，里面包含了发送者和接收者的信息。那么发送者和接收者如何标识呢？<br>
-以太网协议规定，连入网络的所有设备，都必须具有“网卡”接口。数据包是从一块网卡传送到另一块网卡。网卡的地址就是数据包发送地址和接收地址，这就叫做MAC地址。<br>
-<img src="https://ydPro-G.github.io//post-images/1584414800261.png" alt="" loading="lazy"><br>
-每块网卡出厂时都有一块独一无二的MAC地址，长度是48个2进制位，通常用12个16进制位来表示。<br>
-<img src="https://img-blog.csdnimg.cn/20191120172752148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lkUHJvXw==,size_16,color_FFFFFF,t_70" alt="网卡地址" loading="lazy"><br>
-前6个16进制是厂商编号，后6个是该厂商的网卡流水号。有了MAC地址就能定位网卡和数据包路径。</p>
-<h3 id="23广播">2.3广播</h3>
-<p>定义地址只是第一位<br>
-第一个问题是如何确保一块网卡知道另一块网卡的MAC地址呢？<br>
-回答是有一个ARP协议，能够解决这个问题。<br>
-第二个问题是即使知道了MAC地址那么如何确保能够把数据包完整准确的发送过去呢？<br>
-回答是以太网用了一种很“原始”的方式，它并不是将数据包准确送到接收方，而是将数据包群发出去，由接收者判断是否自己接收。<br>
-<img src="https://img-blog.csdnimg.cn/20191120180302381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lkUHJvXw==,size_16,color_FFFFFF,t_70" alt="示意图" loading="lazy"><br>
-上图中①号计算机向②台计算机发送了一个数据包，同一个子网络中的③④⑤也会收到这个包，他们读取这个包的“标头”，找到接收方的MAC地址与自己的MAC地址相比较，如果两者相同就接受这个包，如果不是就丢弃这个包，这种方式就是“广播”（broadcasting）.<br>
-有了数据包的定义，网卡的MAC地址，广播的发送方式，“链路层”就可以在多台计算机之间传送数据了。</p>
-<h2 id="3网络层">3.网络层</h2>
-<p>以太网协议，依靠MAC地址发送数据。理论上，单单依靠MAC地址，上海的网卡就能找到洛杉矶的网卡，技术上是可以实现的。<br>
-但是，这样做有一个重大缺点，以太网采用广播的方式发送数据包，所有成员人手一“包”，不仅效率低，而且局限在发送者所在的子网络里。<br>
-<img src="https://img-blog.csdnimg.cn/20191121151052175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lkUHJvXw==,size_16,color_FFFFFF,t_70" alt="子网络示意图" loading="lazy"><br>
-因此，必须找到一种方法，区分哪些MAC地址属于一个子网络，哪些不是，如果是同一个子网络就采用广播方式发送，如果不是一个子网络就采用路由的方式发送，MAC地址无法做到这一点，它只与厂商有关，与所处网络无关。<br>
-这个就是网络层的诞生，它的作用是引进一套新的地址，使我们能够区分不同网络能够属于一个子网络，这套地址就叫做网络地址，简称网址。<br>
-于是，在网络层出现后，每台计算机都有2个地址，一个是网络地址，一个是MAC地址，两个地址之间没有任何联系，MAC地址是绑定在网卡上的，网络地址是管理员随机组合在一起的。<br>
-网络地址帮我们确定计算机所在的子网络，MAC地址则将数据包送到该子网络的中的目标网卡，因此，从逻辑上推荐，必须先处理网络地址，再处理MAC地址。</p>
-<h3 id="31-ip协议">3.1 IP协议</h3>
-<p>规定网络地址的协议叫做IP协议，它所定义的地址就叫做IP地址。<br>
-目前，广泛采用的是IP协议第四版，也就是IPv4.<br>
-<strong>IPv4这个协议规定，网络地址由32个二进制位组成：</strong><br>
-<img src="https://img-blog.csdnimg.cn/20191121163702341.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lkUHJvXw==,size_16,color_FFFFFF,t_70" alt="IP地址" loading="lazy"><br>
-习惯上，我们<strong>用分成4段的十进制数表示IP地址</strong>，从0.0.0.0到255.255.255.255.<br>
-互联网上每一个计算机都会分配到一个IP地址。<strong>这个地址分为2部分，前一部分代表网络，后一部分代表主机</strong>。比如IP地址为172.16.254.1，这是一个32位的地址，假定它的网络部分是前24位（172.16.254），那么主机部分就是后8位（1），<strong>处在同一个子网络的计算机，它的IP地址的网络部分必然相同</strong>，也就是说172.16.254.2与172.16.254.2是处在同一个子网络里。<br>
-但是问题是<strong>单单从IP地址我们无法判断究竟哪些部分是网络地址。</strong><br>
-那么，<strong>怎么从IP地址才能判断出两台计算机属于同一个子网络</strong>那？这就<strong>需要用到另一个参数“子网掩码”(subnet mask).</strong><br>
-所谓“子网掩码”，就是表示子网络的一个参数。它在形式上等同于IP地址，也是一个32位二进制数字，他的网络部分全部为1，主机部分全部为0。比如IP地址为172.16.254.1，它的前24位为网络地址，后八位为主机地址，那么子网掩码就是<br>
-11111111.11111111.11111111.00000000，写成十进制就是255.255.255.0.<br>
-知道子网掩码，我们就能判断两个IP地址是否属于同一个子网络。方法是将2个IP地址与子网掩码进行AND计算（两个数位都为1，是1，否则为0）然后比较结果是否相同，如果是，就说明他们是在同一个子网络，否则就不是。<br>
-<strong>总结一下，IP地址作用主要有2个，一个是为每一台计算机分配IP地址，另一个是确定哪些IP地址属于同一个子网络。</strong></p>
-<h3 id="32-ip数据包">3.2 IP数据包</h3>
-<p>根据IP地址发送的数据叫做IP数据包，其中包含的数据必然包含IP地址等数据，但是之前说过，以太网数据包只包含MAC地址，并没有IP地址栏位，那么是否修改规则重新添加一个栏位呢？<br>
-回答是不需要，我们可以将IP地址放在以太网数据包中的“数据“部分，，这是互联网分层结构的好处：上层的变动完全不涉及下层的结构。<br>
-具体来说，IP数据包也分为”标头“”数据“两个部分。<br>
-<img src="https://img-blog.csdnimg.cn/20191122152511364.png" alt="ip数据包" loading="lazy"><br>
-标头部分主要包含版本，长度，IP地址等信息。“数据”部分则是IP数据包的具体内容。它放进以太网数据包后，数据包变成了这个样。<br>
-<img src="https://img-blog.csdnimg.cn/20191122152812496.png" alt="IP地址放进以太网数据包" loading="lazy"><br>
-IP数据包的“标头“部分长度为20到60字节，整个数据包的总长度最大为65535字节。因此，理论上，一个IP数据包的&quot;数据”部分最长为65515字节。前面说过，以太网数据包的“数据“部分最长只有1500字节。因此，如果IP数据包超过了1500字节，它就需要分割成几个以太网数据包，分开发送。</p>
-<h3 id="33-arp协议">3.3 ARP协议</h3>
-<p>因为IP数据包是放在以太网数据包里发送的，所以我们必须同时知道2个地址，一个是对方的IP地址，一个是对方的MAC地址。通常情况下，对方的IP地址是已知的（？），<strong>但是如何知道对方的MAC地址呢？</strong><br>
-所以，我们需要一种机制，能通过IP地址知道MAC地址。<br>
-这里又可以分成2种情况：<br>
-1）第一种情况，<strong>如果两台计算机没有在一个子网络</strong>，那么事实上没有办法得到对方的MAC地址，<strong>只能把数据传输到两个子网络链接处”网关“（gateway），让网关去处理：</strong><br>
-2)第二种情况：<strong>如果2台计算机在同一个子网络</strong>，那么，我们可以用ARP协议，得到对方的MAC地址。<br>
-ARP协议<strong>发送数据包</strong>（包含在以太网数据包中）→<strong>包含它所要查询的主机的IP地址，同时在MAC地址填的是FF:FF:FF:FF:FF:FF,表示这是一个“广播”地址</strong>→他所在子网的每一台主机都会收到这个数据包，从中<strong>取出IP地址与自身的IP地址进行比较</strong>→如果两者<strong>相同</strong>，那么就作出<strong>回复</strong>，向对方<strong>报告MAC地址</strong>，否则就丢弃这个包。<br>
-总之，有了ARP协议后我们就可以得到同一个子网络的MAC地址了，可以把数据包传送到每一台主机上。</p>
-<h2 id="4传输层">4.传输层</h2>
-<h3 id="41传输层的由来">4.1传输层的由来</h3>
-<p>有了MAC地址和IP地址，我们已经可以在互联网上任意两台主机上建立通信。<br>
-接下来的问题是，同<strong>一台主机上有许多程序都需要用到网络，比如，一边浏览网页，一边在线聊天，当一个数据包从互联网上发过来的时候，你怎么知道，他是表示网页还是表示在线聊天的内容？</strong><br>
-也就是说，我们还<strong><strong>需要一个参数，表示这个数据包到底供那个程序（进程）使用，这个参数就叫做”端口“（port）</strong></strong>，它其实是<strong>每一个使用网卡的程序的编号→数据包发送到主机特定端口→不同程序都能取得自己所需要的数据。</strong><br>
-<strong>端口</strong>是0到65535之间的一个整数，正好16个二进制位。0—1023端口被系统占用，用户只能选用大于1023的端口使用。不管是浏览网页还是在线聊天，应用程序会随机选用一个端口，然后与服务器的相应端口所联系。<br>
-”传输层“的功能就是建立”端口“到”端口“的通信。相比之下，网络层的功能主要是”主机“到”主机“之间的通信，只要确定了主机和端口，我们就能实现程序之间的交流。因此，Unix系统就把主机和端口叫做”套接字“（socket）。有了它，就可以进行网络应用程序开发了。</p>
-<h3 id="42udp协议">4.2UDP协议</h3>
-<p>现在我们必须在数据包中添加端口信息，这就需要新的协议，也就是UDP协议。他的格式就是在数据包前面加上端口号。<br>
-UDP数据包也包含“标头”和“数据”。<br>
-<img src="https://img-blog.csdnimg.cn/20191123174939472.png" alt="UDP" loading="lazy"><br>
-标头部分定义：发出端口和接收端口。<br>
-数据：包含数据。<br>
-然后，把整个UDP协议添加到IP数据包数据部分中，而之前，我们就知道，IP数据包包含在以太网数据包中，所以整个以太网数据包就变成了下面的样子。<br>
-<img src="https://img-blog.csdnimg.cn/20191123180818912.png" alt="在这里插入图片描述" loading="lazy"><br>
-UDP数据包非常简单，“标头”部分一共8个字节，总长度不超过65，535字节，正好放进一个IP数据包中。</p>
-<h3 id="43tcp协议">4.3TCP协议</h3>
-<p>UDP协议的优点就是简单，容易实现，缺点是可靠性比较差，一旦数据包发出，无法知道对方是否接收到。为了提高网络可靠性，TCP协议就诞生了。这个协议非常复杂，它是有确认制度的UDP协议，每发出一个数据包都需要确认。<br>
-三次握手。<br>
-TCP数据包的长度和UDP数据包一样，都是内嵌在IP数据包的“数据”部分，TCP数据包没有长度限制，但是最好还是和IP数据包一样长。</p>
-<h2 id="5应用层">5.应用层</h2>
-<p>应用程序收到&quot;传输层&quot;的数据，接下来就要进行解读。由于互联网是开放架构，数据来源五花八门，必须事先规定好格式，否则根本无法解读。&quot;应用层&quot;的作用，就是规定应用程序的数据格式。</p>
-<p>举例来说，TCP协议可以为各种各样的程序传递数据，比如Email、WWW、FTP等等。那么，必须有不同协议规定电子邮件、网页、FTP数据的格式，这些应用程序协议就构成了&quot;应用层&quot;。这是最高的一层，直接面对用户。它的数据就放在TCP数据包的&quot;数据&quot;部分。</p>
-<p>因此，现在的以太网的数据包就变成下面这样：<br>
-<img src="https://img-blog.csdnimg.cn/20191123183823808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lkUHJvXw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
-OVER。</p>
 ]]></content>
     </entry>
 </feed>
