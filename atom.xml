@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T04:10:27.277Z</updated>
+    <updated>2020-03-17T04:11:15.469Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,25 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_管道]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-guan-dao/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-guan-dao/">
+        </link>
+        <updated>2020-03-17T04:10:45.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="学习目录">学习目录</h1>
+<p>管道以文件形式存在<br>
+<code>|</code></p>
+<h2 id="命令">命令</h2>
+<h3 id="1匿名管道">1.匿名管道：<code>|</code></h3>
+<p>特点：只能在父子进程中使用，父进程在产生子进程前必须打开一个管道文件，然后fork产生子进程，这样，子进程通过通过拷贝父进程的进程地址空间获得同一个管道文件的描述符，以达到使用同一个管道通信的目的。<br>
+<strong>优点</strong>：保证了传输数据的安全性。<br>
+<strong>缺点</strong>：降低了管道通用性。</p>
+<h3 id="2命名管道mkfifomknod">2.命名管道：<code>mkfifo</code>，<code>mknod</code></h3>
+<p>实例：<code>mkfifo [管道名]</code>：有了这个管道文件，系统就有了对一个管道的全局名称，于是任何两个不相关的进程都可以通过这个管道文件通信了。<br>
+<a href="https://zhuanlan.zhihu.com/p/58489873">参考文章</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_命令执行顺序]]></title>
         <id>https://ydPro-G.github.io/post/linux_-ming-ling-zhi-xing-shun-xu/</id>
@@ -567,36 +586,6 @@ sudo chmod 600 ××× （只有所有者有读和写的权限）</p>
 <h2 id="图示">图示：</h2>
 <p><img src="https://ydPro-G.github.io//post-images/1583994819019.jpg" alt="" loading="lazy"><br>
 <img src="https://ydPro-G.github.io//post-images/1583994825917.jpg" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_目录路径]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-mu-lu-lu-jing/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-mu-lu-lu-jing/">
-        </link>
-        <updated>2020-03-17T02:53:53.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="学习目录">学习目录</h2>
-<ol>
-<li>路径</li>
-<li>绝对路径</li>
-<li>相对路径</li>
-</ol>
-<h3 id="1路径进入目录的路径">1.路径：进入目录的路径</h3>
-<p>命令：<br>
-<code>cd ..</code>：进入上一级目录<br>
-<code>cd ~</code>：进入你的home目录<br>
-<code>cd /home/你的用户名</code>：进入你的home目录<br>
-<code>pwd</code>：获取当前路径</p>
-<h3 id="2绝对路径">2.绝对路径</h3>
-<p>命令：<br>
-<code>cd 用户/用户名/系统文件</code>：绝对路径是指文件在硬盘上真正存在的路径。<br>
-事实上，在网页编程时，很少会使用绝对路径，如果使用“E:\book\网页布\代码\第2章\bg.jpg”来指定背景图片的位置，在自己的计算机上 浏览可能会一切正常，但是上传到Web服务器上浏览就很有可能不会显示图片了。<br>
-因为上传到Web服务器上时，可能整个网站并没有放在Web服务器的E盘， 有可能是D盘或H盘。即使放在Web服务器的E盘里，Web服务器的E盘里也不一定会存在“E:\book\网页布局\代码\第2章”这个目录，因此在浏 览网页时是不会显示图片的。</p>
-<h3 id="3相对路径">3.相对路径</h3>
-<p>命令：<br>
-<code>cd ../../用户/用户名/系统文件</code>：为了避免这种隋况发生，通常在网页里指定文件时，都会选择使用相对路径。<br>
-所谓相对路径，就是相对于自己的目标文件位置。<br>
-例如上面的例子，“s1.htm” 文件里引用了“bg.jpg”图片，由于“bg.jpg”图片相对于“s1.htm”来说，是在同一个目录的，那么要在“s1.htm”文件里使用以下代 码后，只要这两个文件的相对位置没有变(也就是说还是在同一个目录内)，那么无论上传到Web服务器的哪个位置，在浏览器里都能正确地显示图片。</p>
 ]]></content>
     </entry>
 </feed>
