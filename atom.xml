@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T02:58:45.605Z</updated>
+    <updated>2020-03-17T03:06:45.507Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,79 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_文件系统]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-wen-jian-xi-tong/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-wen-jian-xi-tong/">
+        </link>
+        <updated>2020-03-17T03:01:03.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="学习目录">学习目录</h1>
+<ol>
+<li>新建文件</li>
+<li>复制</li>
+<li>删除</li>
+<li>移动文件与文件重命名</li>
+<li>查看文件</li>
+<li>查看文件类型</li>
+<li>编辑文件</li>
+</ol>
+<h3 id="1新建文件目录">1.新建文件/目录</h3>
+<p>命令：<br>
+<code>touch</code>创建空白文件，主要作用更改已有文件时间戳<br>
+<code>mkdir</code>新建空目录<br>
+<code>mkdir -p</code>新建多级目录，例：<code>mkdir -p father/son/grandson</code></p>
+<h3 id="2复制文件目录">2.复制文件/目录</h3>
+<p>命令：<br>
+<code>cp</code>复制一个文件到指定目录<br>
+<code>cp -r</code>复制目录到指定目录，表示递归复制</p>
+<h3 id="3删除文件目录">3.删除文件/目录</h3>
+<p>命令：<br>
+<code>rm</code>删除一个文件<br>
+<code>rm -f</code>强制删除<br>
+<code>rm -r</code>删除目录 例：<code>rm -r father</code></p>
+<h3 id="4移动文件与文件重命名">4.移动文件与文件重命名</h3>
+<p>命令：<br>
+<code>mv</code>移动文件 例：<code>mv 源目录文件 目的目录</code><br>
+<code>mv</code>重命名文件 例：<code>mv 旧的文件名 新的文件名</code><br>
+<code>rename</code>批量重命名<br>
+例”<code>touch flie{1..5}.txt</code>使用通配符批量创建5个文件<br>
+<code>rename 's/\.txt/\.c/ *.txt</code>批量将这5个后缀为.txt的文件重命名为.c为后缀的文件<br>
+<code>rename 'y /a-z/A-Z/' *.c</code>批量将这5个文件，文件名和后缀名改为大写</p>
+<h3 id="5查看文件">5.查看文件</h3>
+<p>命令：<br>
+<code>cat</code>查看文件<br>
+<code>cat -n</code>查看文件显示行数<br>
+<code>nl</code>添加行号并打印<br>
+<code>nl -b a</code>表示无论是否为空行，同样列出行数<br>
+<code>nl -b t</code>只列出非空行的编号并列出<br>
+<code>nl -n ln</code>在行号字段最左端显示<br>
+<code>nl -n rn</code>在行号字段最右端显示，切不加0<br>
+<code>nl -n rz</code>在行号字段最右端显示，加0<br>
+<code>nl -w</code>：行号字段占用的位数（默认6位）<br>
+<code>more</code>分页查看文件<br>
+<code>head/tail</code>只差看文件头几行（默认10行）<br>
+<code>rail -n 1</code>只显示第1行</p>
+<h3 id="6查看文件类型">6.查看文件类型</h3>
+<p>命令：<br>
+<code>file</code>查看文件类型<br>
+<code>sudo chown 【用户名]】【文件名】</code>变更文件所有者</p>
+<h2 id="补充关于chmod的用法">补充：关于chmod的用法</h2>
+<p>chmod命令用于改变linux系统文件或目录的访问权限。用它控制文件或目录的访问权限。该命令有两种用法。一种是包含字母和操作符表达式的文字设定法；另一种是包含数字的数字设定法。<br>
+<strong>1 [001] 执行权限 x<br>
+2 [010] 只写权限 w<br>
+4 [100] 只读权限 r<br>
+若要rwx属性则4+2+1=7；<br>
+若要rw-属性则4+2=6；<br>
+若要r-x属性则4+1=5。</strong></p>
+<p><strong>sudo chmod -（代表类型）×××（所有者）×××（组用户）×××（其他用户）</strong></p>
+<p><strong>例子：</strong><br>
+sudo chmod 600 ××× （只有所有者有读和写的权限）</p>
+<p>sudo chmod 644 ××× （所有者有读和写的权限，组用户只有读的权限）</p>
+<p>sudo chmod 700 ××× （只有所有者有读和写以及执行的权限）</p>
+<p>sudo chmod 666 ××× （每个人都有读和写的权限）</p>
+<p>sudo chmod 777 ××× （每个人都有读和写以及执行的权限）</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_目录路径]]></title>
         <id>https://ydPro-G.github.io/post/linux_-mu-lu-lu-jing/</id>
