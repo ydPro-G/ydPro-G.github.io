@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T04:19:47.285Z</updated>
+    <updated>2020-03-17T04:20:54.614Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,116 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_进程概念]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-jin-cheng-gai-nian/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-jin-cheng-gai-nian/">
+        </link>
+        <updated>2020-03-17T04:20:24.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="目标">目标</h1>
+<p>对于linux进程有初步的概念（进程与程序，进程的衍生，工作管理）</p>
+<hr>
+<h2 id="学习目录">学习目录</h2>
+<p>1.进程概念理解<br>
+2.进程的属性<br>
+2.1进程的分类<br>
+2.2进程的衍生<br>
+2.3进程组与sessions<br>
+2.4工作管理</p>
+<hr>
+<h3 id="1进程概念理解">1.进程概念理解</h3>
+<p>什么是程序，什么是进程？什么是线程？</p>
+<h4 id="程序">程序：</h4>
+<p>程序是一个<strong>静态的概念</strong>，一般对应一个操作系统中的一个可执行文件（待执行），由一系列<strong>有逻辑，有顺序结构的指令组成</strong>。</p>
+<h4 id="进程">进程：</h4>
+<p><strong>1.执行中的程序叫做进程，是一个动态的概念</strong>。</p>
+<p>2.进程是包含<strong>上下文切换的程序执行时间总和</strong>，是<strong>对应的CPU时间段的描述</strong>，是描述这一CPU时间段的名词。<a href="https://www.zhihu.com/question/25532384/answer/81152571">参考网址</a></p>
+<p>3.进程，是计算机中的程序关于某数据集合上的一次运动活动，是<strong>系统进行资源分配和调度的基本单位。<strong>是</strong>操作系统结构的基础</strong>。它的执行<strong>需要系统分配资源创建实体</strong>后才能进行。</p>
+<p>4.在<strong>Linux2.6</strong>更新后，进程本身不是基本运行单位，而是<strong>线程的容器</strong>（只在Linux中）。</p>
+<p>5 进程是<strong>程序的一次动态执行过程，占用特定的地址空间</strong>。</p>
+<p>6.每个进程由三部分组成：<strong>代码段，数据段，进程控制块</strong>。<strong>每个进程都是独立的</strong>，拥有自己的cpu时间，代码和数据，即使一个程序产生了好几份进程，他们之间还是独立拥有自己的这三件东西，这样的<strong>缺点</strong>是：<strong>浪费内存，cpu负担较重</strong>。<a href="https://zhuanlan.zhihu.com/p/64884223">参考网址</a></p>
+<h4 id="线程">线程：</h4>
+<p>1.随着技术的发展，在执行一些细小任务时，本身无需分配单独资源，进程依然会繁琐的将资源分割，即浪费时间还浪费资源，然后专门运用于这个场景的<strong>多任务技术</strong>被创造——线程。<strong>进程可以产生多个线程</strong>，而这些线程可以<strong>共享</strong>此<strong>进程</strong>的某些<strong>资源</strong>，所以<strong>进程不需要独立的资源就可以运行</strong>，可以节省资源与时间。</p>
+<p>2.进程是操作系统能够进行<strong>运算调度的最小单位</strong>。它被<strong>包含在进程内</strong>，是进程中<strong>实际运作单位</strong>。</p>
+<p>3.<strong>线程</strong>是一个进程内部的一个执行单元，它是<strong>程序中的单一的顺序控制进程</strong>。</p>
+<p>4.<strong>一个进程</strong>可<strong>拥有多个并行</strong>的<strong>线程</strong>（需多个cpu）。</p>
+<p>5.<strong>一个进程</strong>内的<strong>多个线程共享相同的内存地址空间</strong>，可以<strong>访问相同的变量和对象</strong>，它们从同一堆中<strong>分配对象并进行通信，数据交换和同步操作</strong>。</p>
+<p>6.它是<strong>比进程更为细小</strong>的<strong>cpu时间段</strong>。<br>
+<a href="https://my.oschina.net/cnyinlinux/blog/422207">进程与线程区别参考网址</a></p>
+<hr>
+<h3 id="2进程的属性">2.进程的属性</h3>
+<p>进程的属性分为（进程的分类）（进程的衍生）（进程组与sessions）（工作管理）。</p>
+<hr>
+<h3 id="21进程的分类">2.1进程的分类</h3>
+<p>两个角度：<br>
+一（进程的功能与服务的对象来分）<br>
+二（应用程序的服务类型）</p>
+<h4 id="进程的功能与服务对象">进程的功能与服务对象</h4>
+<ul>
+<li>用户进程：通过执行用户程序，应用程序或称之为内核之外的系统程序而产生的进程，此类进程可以在用户的控制下运行或关闭。</li>
+<li>系统进程：通过执行系统内核程序而产生的进程，而且该进程的运行不受用户干预。即使root用户也不能干预系统进程的运行。</li>
+</ul>
+<h4 id="应用程序的服务类型">应用程序的服务类型</h4>
+<ul>
+<li>交互进程：由shell终端启动的进程，在执行过程中，需要与用户进行交互操作。可以运行前台，也可以运行于后台。</li>
+<li>守护进程：一种一直运行的进程。例如httpd进程。</li>
+</ul>
+<hr>
+<h3 id="22进程的衍生">2.2进程的衍生</h3>
+<ol>
+<li>
+<p>父进程与子进程：我们启动终端就是启动了一个bash进程，当我们在bash中再输入bash则会再启动一个bash进程。我们叫<strong>第一个bash进程为父进程</strong>，<strong>第二个bash进程为其子进程</strong>。</p>
+</li>
+<li>
+<p><code>fork()</code>与<code>exec()</code>：<br>
+<code>fork()</code>：是一个system call，主要作用是为当前进程创建一个新的进程，这个新进程就是它的子进程，这个子进程除了父进程的返回值和PID以外其他的信息都一模一样。<br>
+<code>exec()</code>：也是系统调用，作用是切换子进程中的执行程序，替换其从父进程复制过来的代码段和数据段。</p>
+</li>
+<li>
+<p>子进程退出与资源回收：当一个子进程要正常的终止运行时或该进程结束时它的主函数<code>main()</code>会执行<code>exit(n);</code>或<code>return n</code>，这里的<code>n</code>是一个信号，系统会将这个SIGCHLD信号返回给父进程。</p>
+</li>
+</ol>
+<p>4.僵尸进程：当子进程代码执行部分已经结束执行，系统资源也基本归还给系统了，但若是其进程的进程控制块仍驻留在内存中，而它的PCB还在，代表这个进程还存在，并没有消亡<code>Z(Zombie)</code>表示僵尸进程。 缺点：子进程会占用PID，而系统会因为没有可用的PID从而导致不能产生新的进程。</p>
+<p>5.孤儿进程：当父进程非正常结束，未能及时回收子进程，子进程仍在运行，这样的进程被称为孤儿进程。这样的进程会被init进程收养。</p>
+<h4 id="6进程结构">6.进程结构</h4>
+<p>进程0：是系统引导时创建的一个特殊进程，称为内核初始化，其最后一个动作就是调用<code>fork()</code>创建出一个子进程运行<code>/sbin/init</code>可执行文件，该进程的PID=1，进程0转化为空闲进程。<br>
+<code>init进程</code>：第一个用户态的进程，由它不断调用<code>fork()</code>来创建系统里的其他进程，是所有程序的父进程，同时它也是一个守护进程。<br>
+<img src="https://img-blog.csdnimg.cn/20191227162745913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lkUHJvXw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
+通过<code>ps -fxo user,ppid,pid,pgid,command</code>可以看到<img src="https://img-blog.csdnimg.cn/20191227162954967.png" alt="在这里插入图片描述" loading="lazy"><br>
+（pid是该进程的唯一编号）（ppid是该进程的父进程的pid）（command表示该进程通过执行什么样的命令或脚本产生的）<a href="https://blog.csdn.net/nan_lei/article/details/81636473">参考网址</a></p>
+<hr>
+<h3 id="23进程组与sessions">2.3进程组与sessions</h3>
+<ol>
+<li>进程组：每一个进程都是一个进程组的成员，每一个进程组都是唯一存在的，它们依靠PGID来区别，每当一个进程被创建的时候，它便会成为其父进程所在组的一员。<br>
+一般来说，该进程组的PGID等同于进程组的第一个成员的PID，该进程是这个进程组的主进程。主进程可以先终结，此时进程组仍然存在，并持有相同的PID，知道进程组中的最后一个进程结束。<br>
+每一个进程组sessions中，并且这个sessions是唯一存在的。</li>
+</ol>
+<p>2.sessions:sessions是针对一个tty建立。sessions中的每一个进程都称为job，每一个会话可以连接一个终端。<br>
+sessions 的主要作用是：将多个jobs囊括在一个终端，并取其中一个job作为前台，直接接收该终端的输入输出以及终端信号，其他job在后台运行。</p>
+<hr>
+<h3 id="24工作管理">2.4工作管理</h3>
+<p>每个bash（终端）只能管理当前终端的job。</p>
+<pre><code class="language-cpp">[job] &amp;    #&amp;让命令在后台运行
+
+ctrl+z    #当前工作停止并转到后台
+
+jobs     #查看停止并被放置在后台的工作
+
+fg [%jobnumber]    #将在后台的工作拿到前台来 
+#例：fg %1    #将后台job编号为1的job拿到前台来 
+
+bg [%jobnumber]    #将job在后台运作
+#例： bg %1    #将后台job编号为1的job在后台运行
+
+kill [-信号值] [%jobnumber]     #删除或重启job
+kill信号值补充：
+-1： 重新读取参数运行
+-2：如同ctrl+c的操作退出
+-9：强制终止该任务
+-15：正常的方式终止该任务
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_软件安装]]></title>
         <id>https://ydPro-G.github.io/post/linux_-ruan-jian-an-zhuang/</id>
@@ -699,35 +809,6 @@ cat -A file1 |  tr '$' '\r\n' &gt; file2; cat -A file2
 输出<code>not exist</code> <code>exist</code>两个都输出<br>
 为什么？<br>
 <code>which cowsay&gt;/dev/null</code>的结果不是0,所以<code>||</code>后面的语句会被执行,而且,<code>||</code>之后的语句成功执行之后,<code>#?</code>的值因为成功执行了<code>||</code>后面的语句变成了0,所以<code>&amp;&amp;</code>后面的语句执行了。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_备份日志]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-bei-fen-ri-zhi/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-bei-fen-ri-zhi/">
-        </link>
-        <updated>2020-03-17T04:07:55.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="备份日志">备份日志</h1>
-<p>要求:<br>
-他需要每天备份论坛数据（这里我们用 alternatives.log 日志），备份当天的日志并删除之前的日志。而且备份之后文件名是 年-月-日 的格式。alternatives.log 在 /var/log/ 下面。<br>
-1.为 shiyanlou 用户添加计划任务<br>
-2.每天凌晨 3 点的时候定时备份 alternatives.log 到 /home/world/tmp/ 目录<br>
-3.命名格式为 年-月-日，比如今天是2017年4月1日，那么文件名为 2017-04-01</p>
-<p>解答：<br>
-1.进入crontab -e 添加<br>
-2.在3点将/home/world/tmp/所有文件清零<br>
-3.在3点将在/var/log目录下的alternatives.log文件<code>CP</code>到 /home/world/tmp文件中,然后以年-月-日命名文件</p>
-<pre><code>1.
-crontab -e
-choose vim
-# 添加例行性工作排程
-2.
-0 3 * * * sudo rm /home/world/tmp/*
-#清零
-3.
-0 3 * * * sudo cp /var/log/alternatives.log /home/wrold/tmp/$(date +$/%Y-/%m-/%d)
-cp文件并重命名
-</code></pre>
 ]]></content>
     </entry>
 </feed>
