@@ -30,30 +30,21 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            Life & Work
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%9B%AE%E6%A0%87">目标</a>
+<ul>
+<li><a href="#%E7%9B%AE%E6%A0%87%E5%88%86%E6%9E%90">目标分析</a>
+<ul>
+<li><a href="#%E5%91%BD%E4%BB%A4">命令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -91,28 +82,60 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="ri-bookmark-line"></i> 关于我
-        </h2>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_查看历史数据/命令</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-17 / 1 min read
+        </div>
         
-  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-    
-    <div class="content">
-      <a href="https://ydPro-G.github.io/post/friends/">
-        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">My Blogs</h2>
-      </a>
-      <div class="post-abstract text-gray-700 font-light my-4">
-        
-      </div>
-      <div class="text-gray-400 text-sm font-light">2019-01-25 / 1 min read</div>
-    </div>
-  </section>
+        <div class="post-content yue">
+          <p>在linux中，对于文本的处理和分析是极为重要的，现在有一个文件（file1）里面记载了一些数据，现在请你找出这个文件（file1）中出现频率前三的数据并保存在<code>/home/directory</code>中。</p>
+<h1 id="目标">目标</h1>
+<ol>
+<li>处理文本文件<code>file1</code></li>
+<li>结果包含三行内容，每行的内容都包含命令出现的次数和命令名称</li>
+<li>将结果输入到<code>/home/directory</code>中</li>
+</ol>
+<h2 id="目标分析">目标分析</h2>
+<p>注意使用管道<code>|</code></p>
+<ol start="4">
+<li>首先要查看文件内容<code>cat</code></li>
+<li>将不相关的数据剔除掉<code>cut</code></li>
+<li>将命令排序<code>sort</code></li>
+<li>去掉重复命令并显示行数<code>uniq</code></li>
+<li>将命令重新排序，<code>sort</code>让它用数字排序（<code>n</code>），大的数字显示在上面<code>r</code>,然后指定按照第一列的数字排序(<code>-k1</code>)</li>
+<li>只显示文件开头前三行部分（<code>head</code>）</li>
+<li>将命令重定向到<code>directory</code>中</li>
+</ol>
+<h3 id="命令">命令</h3>
+<pre><code class="language-cpp">cat file1 | cut -c 8- | sort | uniq -dc | sort -nr -k1 | head -3 &gt; /home/directory
+</code></pre>
 
-        <div class="pagination-container animated fadeIn">
-  
-  
-</div>
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://ydPro-G.github.io/post/linux_-shu-ju-liu-chong-ding-xiang/">
+                <h3 class="post-title">
+                  Linux_数据流重定向
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
 
       </div>
     </div>
