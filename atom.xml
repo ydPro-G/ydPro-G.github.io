@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T04:19:09.630Z</updated>
+    <updated>2020-03-17T04:19:47.285Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,98 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_软件安装]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-ruan-jian-an-zhuang/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-ruan-jian-an-zhuang/">
+        </link>
+        <updated>2020-03-17T04:19:20.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="目标">目标</h1>
+<p>学习Ubuntu下软件安装的几种方式，及apt，dpkg工具的使用。</p>
+<hr>
+<h2 id="学习目录">学习目录</h2>
+<h3 id="1apt">1.apt</h3>
+<pre><code>     1.2.软件升级
+     1.3.卸载软件
+     1.4.软件搜索
+</code></pre>
+<h3 id="2dpkg">2.dpkg</h3>
+<pre><code>   2.1使用dpkg安装deb软件包
+   2.2查看已安装软件包的安装目录
+   2.3从二进制包安装
+</code></pre>
+<hr>
+<h3 id="1apt-2">1.apt</h3>
+<p>APT是advance packaging tool （高级包装工具）的缩写，可以自动下载，配置，安装二进制或者源代码格式的软件包。<br>
+<strong>安装过程</strong>：在本地数据库中搜索关于软件的相关信息→根据这些信息在相关服务器上下载软件安装。<br>
+Q:为什么要在本地服务器搜索？<br>
+A：我们需要定期从服务器下载一个软件包列表（<code>sudo apt-get update</code>）来保持本地的软件包列表是最新的。而这个表里会有<strong>软件依赖信息</strong>的记录。</p>
+<h4 id="apt-get工具">apt-get工具</h4>
+<p>1.<code>apt-get install</code>：在后面加上软件包名，<strong>用来安装一个软件包</strong>。<br>
+2.<code>apt-get update</code>：从软件源镜像服务器上<strong>下载/更新</strong>用于<strong>更新本地的软件源的软件包列表</strong>。<br>
+3.<code>apt-get upgrade</code>：<strong>升级本地可升级的全部安装包</strong>，但<strong>存在依赖问题</strong>时将<strong>不会升级</strong>，通常会在更新前执行一次<code>update</code>。<br>
+4.<code>apt-get dist-upgrade</code>：<strong>解决依赖关系并升级</strong>（存在不确定性）。<br>
+5.<code>apt-get remove</code>：<strong>移除已安装的安装包</strong>，<strong>包括与被移除软件包存在依赖关系的软件包</strong>，但<strong>不包含软件包的配置文件</strong>。<br>
+6.<code>apt-get autoremove</code>：<strong>移除之前被其他安装包依赖</strong>，但<strong>现在不再使用的软件包</strong>。<br>
+7.<code>apt-get purge</code>：与<code>remove</code>相同，但会<strong>完全移除软件包，包含其配置文件</strong>。<br>
+8.<code>apt-get clean</code>：<strong>移除已经被下载到本地并安装的软件包</strong>。<br>
+9.<code>apt-get autoclean</code>：<strong>移除已安装的软件的旧版本软件包</strong>。</p>
+<h4 id="apt-get参数">apt-get参数</h4>
+<p>1.<code>-f</code>：<strong>修复损坏的依赖关系</strong><br>
+2.<code>-d</code>：<strong>只下载</strong>不安装<br>
+3.<code>-y</code>：<strong>自动回应</strong>是否安装软件包的选项<br>
+4.<code>--reinstall</code>：<strong>重新安装</strong>已安装的但可能存在问题的软件包</p>
+<hr>
+<h3 id="12-软件升级">1.2 软件升级</h3>
+<p>实例：</p>
+<pre><code class="language-cpp">sudo apt-get update    #更新软件源   
+sudo apt-get upgrade    #升级没有依赖问题的软件包
+sudo apt-get dist-upgrade    #升级并解决依赖关系
+</code></pre>
+<hr>
+<h3 id="13卸载软件">1.3卸载软件</h3>
+<p>实例：</p>
+<pre><code class="language-cpp">sudo apt-get remove    #保留配置文件的删除
+sudo apt-get purge    #不保留配置文件的删除
+sudo apt-get autoremove    #移除不再需要的被以来的软件包
+</code></pre>
+<hr>
+<h3 id="14软件搜索">1.4软件搜索</h3>
+<p>实例：</p>
+<pre><code class="language-cpp">sudo apt-cache search [软件名]    
+#apt-cache针对本地数据进行相关操作的工具
+#search [软件名] 在本地数据库中搜索软件
+</code></pre>
+<p><a href="https://www.debian.org/doc/manuals/apt-howto/index.zh-cn.html#contents">APT参考网址</a></p>
+<hr>
+<h2 id="2dpkg-2">2.dpkg</h2>
+<p>使用<code>dpkg</code>从本地磁盘安装deb安装包。<br>
+它可以对软件包执行打包和解包操作以及提供软件包信息。<br>
+并不会自动解决依赖关系。<br>
+<strong>常用参数：</strong><br>
+1.<code>-i</code>：安装指定deb包。<br>
+2.<code>-I</code>：显示deb包的文件的信息。<br>
+3.<code>-r</code>：remove，移除已安装的软件包。<br>
+4.<code>-R</code>：后面加上目录名，用于安装该目录下的所有deb安装包。<br>
+5.<code>-s</code>：显示已安装软件的信息。<br>
+6.<code>-S</code>：搜索已安装的软件包<br>
+7.<code>-L</code>：显示已安装软件包的目录信息。</p>
+<hr>
+<h3 id="21使用dpkg安装deb软件包">2.1使用dpkg安装deb软件包</h3>
+<p>实例：</p>
+<pre><code class="language-cpp">sudo apt-get -d install -y emacs    #使用-d只下载不安装emacs编辑器
+sudo dpkg -i emacs.deb[软件包名]    #这里会报错，因为dpkg不能为你解决依赖关系
+sudo apt-get update    #更新源
+sudo apt-get -f install -y    #使用apt-get的-f参数修复依赖关系的安装
+</code></pre>
+<h3 id="22查看已安装软件包的安装目录">2.2查看已安装软件包的安装目录</h3>
+<p>实例：</p>
+<pre><code class="language-cpp">sudo dpkg -L [软件包名]
+</code></pre>
+<h3 id="23从二进制包安装">2.3从二进制包安装</h3>
+<p>将二进制包解压后放到合适的目录，然后将包含可执行的主程序文件的目录添加到PATH环境变量中即可。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_数据提取]]></title>
         <id>https://ydPro-G.github.io/post/linux_-shu-ju-ti-qu/</id>
@@ -636,35 +728,6 @@ choose vim
 0 3 * * * sudo cp /var/log/alternatives.log /home/wrold/tmp/$(date +$/%Y-/%m-/%d)
 cp文件并重命名
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_例行性工作排程]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-li-xing-xing-gong-zuo-pai-cheng/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-li-xing-xing-gong-zuo-pai-cheng/">
-        </link>
-        <updated>2020-03-17T03:43:57.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="什么是例行性工作排程">什么是例行性工作排程？</h1>
-<p>1.有的工作是例行性的，比如吃饭<br>
-2.有的工作是临时发生的，比如请别人吃饭<br>
-<code>at</code>：at是个可以处理仅执行一次就结束排程的指令，不过要执行at时，必须要有atd这个服务的支援才行。<br>
-<code>crontab</code>：crontab这个指令所设定的工作将会循环的一直进行下去！可循环的时间为分钟、小时、每周、每月或每年等。crontab除了可以使用指令执行外，亦可编辑/etc/crontab来支援。</p>
-<h1 id="学习目录">学习目录</h1>
-<p><code>crontab</code>的使用</p>
-<h2 id="语法">语法</h2>
-<p><code>corntab</code>(选项)（参数）<br>
-<img src="https://ydPro-G.github.io//post-images/1584416805307.png" alt="" loading="lazy"></p>
-<h2 id="选项">选项</h2>
-<pre><code>-e：编辑该用户的计时器设置；
--l：列出该用户的计时器设置；
--r：删除该用户的计时器设置；
--u&lt;用户名称&gt;：指定要设定计时器的用户名称。
-</code></pre>
-<h2 id="命令">命令</h2>
-<p><code>crontab -e</code>:编辑用户的计时器设置</p>
-<h2 id="系统级别的定时任务">系统级别的定时任务</h2>
-<p>用<code>sudo</code>的权限编辑<code>/etc/crontab</code></p>
-<p>参考：<a href="http://linux.vbird.org/linux_basic/0430cron.php">Linux例行性工作排程——Linux鸟哥的私房菜</a></p>
 ]]></content>
     </entry>
 </feed>
