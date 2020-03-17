@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T03:39:24.341Z</updated>
+    <updated>2020-03-17T03:43:02.570Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,84 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_磁盘管理]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-ci-pan-guan-li/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-ci-pan-guan-li/">
+        </link>
+        <updated>2020-03-17T03:40:03.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="学习目录">学习目录</h1>
+<ol>
+<li>基本操作</li>
+<li>简单的磁盘管理</li>
+</ol>
+<h2 id="基本操作">基本操作</h2>
+<p><code>df -h</code>:查看主机磁盘的使用情况。<br>
+<img src="https://ydPro-G.github.io//post-images/1584416473896.png" alt="" loading="lazy"><br>
+物理主机上的 /dev/sda2 是对应着主机硬盘的分区，后面的数字表示分区号，数字前面的字母 a 表示第几块硬盘（也可能是可移动磁盘），如果主机上有多块硬盘则可能还会出现 /dev/sdb，/dev/sdc 这些磁盘设备都会在 /dev 目录下以文件的存在形式。<br>
+<code>du -h</code>查看目录的容量<br>
+<code>du -h -d 0 ~</code>只查看一级目录信息<br>
+<code>du -h -d 1 ~</code>只查看二级目录信息<br>
+<code>-d</code>:指定查看目录的深度<br>
+<code>-a</code>：显示目录中所有文件的大小<br>
+<code>-s</code>;仅显示总计</p>
+<h2 id="简单磁盘操作">简单磁盘操作</h2>
+<p>dd也可以用在<strong>备份硬件的引导扇区</strong>、获取<strong>一定数量的随机数据或者空数据</strong>等任务中。dd程序也可以在<strong>复制时处理数据</strong>，例如<strong>转换字节序</strong>、或在 <strong>ASCII 与 EBCDIC 编码间互换</strong>。</p>
+<p>dd的命令行语句与其他的 Linux 程序不同，因为它的命令行选项格式为<strong>选项=值</strong>，而不是更标准的**--选项 值<strong>或-<strong>选项=值</strong>。dd默认从</strong>标准输入中读取**，并<strong>写入到标准输出中</strong>，但可以<strong>用选项if（input file</strong>，<strong>输入文件</strong>）和<strong>of（output file</strong>，<strong>输出文件</strong>）改变。</p>
+<h3 id="1从标准输入读取用户输入输入到标准输出或文件中">1.从标准输入读取用户输入，输入到标准输出或文件中</h3>
+<p><code>dd of=test bs=10 count=1</code>:从标准输入中读取用户的输入，然后输入到标准输出中或一个文件中。<br>
+<code>of=test</code>:<code>of</code>定义输出，<code>test</code>为输出到的文件名。<br>
+<code>bs=10</code>:<code>bs(block size)</code>指定块大小（单位默认为Byte，也可指定K，M，G单位<code>bs=1M</code>）,<code>10</code>只读取10字节的数据。<br>
+<code>count=1</code>:指定块数量,<code>1</code>只有1块<br>
+<strong>注意：</strong><br>
+<strong>空格回车</strong>也算一字节。</p>
+<h3 id="2dd命令在拷贝的同时实现数据转换例大小写转换">2.dd命令在拷贝的同时实现数据转换（例：大小写转换）</h3>
+<p><code>dd if=/dev/stdin of=test bs=10 count=1 conv=ucase</code>:将标准输入中的小写字母转换成大写字母<br>
+<code>/dev/stdin</code>:dev/stdin      fd/0            symbolic        stdin(标准输入)文件描述<br>
+参考链接：<a href="https://blog.csdn.net/sinat_36184075/article/details/71598834">设备文件dev详解</a><br>
+<code>conv=ucare</code>:将小写字母转换成大写字母</p>
+<h3 id="3使用dd命令创建虚拟镜像文件">3.使用dd命令创建虚拟镜像文件</h3>
+<p><code>dd if=/dev/zero of=virtual.img bs=1M count=256</code>:从/dev/zero设备创建一个容量为256M的空文件。<br>
+<code>sudo mkfs.ext4 virtual.img</code>：将虚拟磁盘镜像格式化为ext4文件系统。<br>
+<code>mount -o loop -t ext4 virtual.img /mnt</code>:将创建额虚拟磁盘镜像挂在在/mnt目录<br>
+<code>mount -o loop --ro virtual.img /mnt</code>:以只读的方式挂载<br>
+<code>sudo umount /mnt</code>:使用umount命令卸载已挂载磁盘</p>
+<h3 id="4磁盘分区">4.磁盘分区</h3>
+<p><code>sudo fdisk -l</code>查看硬盘分区表信息<br>
+<code>sudo fdisk virtual.img</code>；进入磁盘分区模式<br>
+<code>sudo losetuo /dev/loopO virtual.img</code>:使用losetup命令建立镜像与回环设备的关联<br>
+<code>sudo losetup -d /dev/loopO</code>:解除设备关联</p>
+<p>之后是使用<code>mkfs</code>格式化各分区，不过格式化前，我们还要为各分区建立虚拟设备的映射，用到kpartx工具，需要先安装<br>
+<code>sudo apt-get install kpartx</code><br>
+<code>sudp kpartx -av /dev/loopO</code><br>
+取消映射：<br>
+<code>sudo kpartx -dv /dev/loopO</code><br>
+全部格式化为ext4：<br>
+<code>sudo mkfs.ext4 -q /dev/mapper/loopOp1</code><br>
+<code>sudo mkfs.ext4 -q /dev/mapper/loopOp5</code><br>
+<code>sudo mkfs.ext4 -q /dev/mapper/loopOp6</code><br>
+格式化完成后在<code>/media</code>目录下新建四个空目录用于挂载虚拟磁盘：<br>
+<code>mkdir -p /media/virtualdisk_{1..3}</code><br>
+挂载磁盘分区：<br>
+<code>sudo mount /dev/mapper/loopOp1 /media/virtualdisk_1</code><br>
+<code>sudo mount /dev/mapper/loopOp5 /media/virtualdisk_2</code><br>
+<code>sudo mount /dev/mapper/loopOp6 /media/virtualdisk_3</code><br>
+卸载磁盘分区：<br>
+<code>sudo umount /dev/mapper/loopOp1</code><br>
+<code>sudo umount /dev/mapper/loopOp5</code><br>
+<code>sudo umount /dev/mapper/loopOp6</code></p>
+<p>如何找到当前目录下占用最大的前十个文件：<br>
+<code>du -hsx * | sort -rh | head -10</code><br>
+<code>du -hsx</code>:显示每个文件和目录的磁盘使用空间<br>
+<code>-h</code>或--human-readable 以K，M，G为单位，提高信息的可读性。<br>
+<code>-s</code>或--summarize 仅显示总计，只列出最后加总的值。<br>
+<code>-x</code>或--one-file-xystem 以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。</p>
+<p><code>sort -rh</code>:将文件进行排序并输出<br>
+<code>-r</code>：以相反的顺序来排序；</p>
+<p><code>head -10</code>:显示文件的开头部分。<br>
+<code>-10</code>:显示前十个</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_压缩&打包&解压缩]]></title>
         <id>https://ydPro-G.github.io/post/linux_-ya-suo-andda-bao-andjie-ya-suo/</id>
