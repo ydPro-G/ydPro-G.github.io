@@ -30,30 +30,23 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            Life & Work
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
+<ul>
+<li><a href="#1%E8%B7%AF%E5%BE%84%E8%BF%9B%E5%85%A5%E7%9B%AE%E5%BD%95%E7%9A%84%E8%B7%AF%E5%BE%84">1.路径：进入目录的路径</a></li>
+<li><a href="#2%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84">2.绝对路径</a></li>
+<li><a href="#3%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84">3.相对路径</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
           </div>
         </div>
       
@@ -91,18 +84,64 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="ri-bookmark-2-line"></i> 标签云
-        </h2>
-        <div class="tags-container">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_目录路径</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-17 / 2 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://ydPro-G.github.io//post-images/linux_-mu-lu-lu-jing.png" alt="">
+        
+        <div class="post-content yue">
+          <h2 id="学习目录">学习目录</h2>
+<ol>
+<li>路径</li>
+<li>绝对路径</li>
+<li>相对路径</li>
+</ol>
+<h3 id="1路径进入目录的路径">1.路径：进入目录的路径</h3>
+<p>命令：<br>
+<code>cd ..</code>：进入上一级目录<br>
+<code>cd ~</code>：进入你的home目录<br>
+<code>cd /home/你的用户名</code>：进入你的home目录<br>
+<code>pwd</code>：获取当前路径</p>
+<h3 id="2绝对路径">2.绝对路径</h3>
+<p>命令：<br>
+<code>cd 用户/用户名/系统文件</code>：绝对路径是指文件在硬盘上真正存在的路径。<br>
+事实上，在网页编程时，很少会使用绝对路径，如果使用“E:\book\网页布\代码\第2章\bg.jpg”来指定背景图片的位置，在自己的计算机上 浏览可能会一切正常，但是上传到Web服务器上浏览就很有可能不会显示图片了。<br>
+因为上传到Web服务器上时，可能整个网站并没有放在Web服务器的E盘， 有可能是D盘或H盘。即使放在Web服务器的E盘里，Web服务器的E盘里也不一定会存在“E:\book\网页布局\代码\第2章”这个目录，因此在浏 览网页时是不会显示图片的。</p>
+<h3 id="3相对路径">3.相对路径</h3>
+<p>命令：<br>
+<code>cd ../../用户/用户名/系统文件</code>：为了避免这种隋况发生，通常在网页里指定文件时，都会选择使用相对路径。<br>
+所谓相对路径，就是相对于自己的目标文件位置。<br>
+例如上面的例子，“s1.htm” 文件里引用了“bg.jpg”图片，由于“bg.jpg”图片相对于“s1.htm”来说，是在同一个目录的，那么要在“s1.htm”文件里使用以下代 码后，只要这两个文件的相对位置没有变(也就是说还是在同一个目录内)，那么无论上传到Web服务器的哪个位置，在浏览器里都能正确地显示图片。</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-              <span class="flex-auto">Linux</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">2</span>
-            </a>
+
+          
+            <div class="next-post">
+              <a href="https://ydPro-G.github.io/post/linux_-wen-jian-quan-xian/">
+                <h3 class="post-title">
+                  Linux_文件权限
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
           
         </div>
+
+        
+
       </div>
     </div>
 
