@@ -1,0 +1,365 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ydPro Blog</title>
+<meta name="description" content="Life & Work" />
+<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1584418593977">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://ydPro-G.github.io//styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://ydPro-G.github.io/">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1584418593977" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">ydPro Blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%9B%AE%E7%9A%84">目的</a>
+<ul>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
+<ul>
+<li><a href="#1%E6%95%B0%E6%8D%AE%E6%B5%81%E9%87%8D%E5%AE%9A%E5%90%91">1.数据流重定向</a>
+<ul>
+<li><a href="#%E5%91%BD%E4%BB%A4">命令</a></li>
+</ul>
+</li>
+<li><a href="#2%E7%AE%80%E5%8D%95%E7%9A%84%E9%87%8D%E5%AE%9A%E5%90%91">2.简单的重定向</a>
+<ul>
+<li><a href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6">前置知识：文件描述符</a></li>
+</ul>
+</li>
+<li><a href="#3%E6%A0%87%E5%87%86%E9%94%99%E8%AF%AF%E7%9A%84%E9%87%8D%E5%AE%9A%E5%90%91">3.标准错误的重定向</a></li>
+<li><a href="#4%E4%BD%BF%E7%94%A8tee%E5%91%BD%E4%BB%A4%E5%90%8C%E6%97%B6%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6">4.使用tee命令同时重定向到多个文件</a></li>
+<li><a href="#5exec%E5%91%BD%E4%BB%A4">5.exec命令</a></li>
+<li><a href="#6%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6">6.创建文件描述符</a></li>
+<li><a href="#7%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6">7.关闭文件描述符</a></li>
+<li><a href="#8%E5%AE%8C%E5%85%A8%E5%B1%8F%E8%94%BD%E5%91%BD%E4%BB%A4%E7%9A%84%E8%BE%93%E5%87%BA">8.完全屏蔽命令的输出</a>
+<ul>
+<li><a href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86">前置知识</a></li>
+</ul>
+</li>
+<li><a href="#9%E4%BD%BF%E7%94%A8xargs%E5%88%86%E5%89%B2%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8">9.使用xargs分割参数列表</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.2s">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://ydPro-G.github.io/post/friends" class="menu" style="animation-delay: 0.4s">
+          关于我
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://ydPro-G.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_数据流重定向</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-17 / 6 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h1 id="目的">目的</h1>
+<p>1.重定向怎么用<br>
+2.文件描述符(0,1,2)</p>
+<h2 id="学习目录">学习目录</h2>
+<ol>
+<li>数据流重定向</li>
+<li>简单的重定向</li>
+<li>标准错误的重定向</li>
+<li>使用<code>tee</code>命令重定向到多个文件</li>
+<li>exec命令</li>
+<li>创建文件描述符</li>
+<li>关闭文件描述符</li>
+<li>完全屏蔽命令的输出</li>
+<li>使用xargs分割参数列表</li>
+</ol>
+<hr>
+<h3 id="1数据流重定向">1.数据流重定向</h3>
+<h4 id="命令">命令</h4>
+<p><code>&gt;</code> : 覆盖文件内容并写入<br>
+<code>&gt;&gt;</code>：在文件后面追加，不覆盖文件内容<br>
+<code>&lt;</code>：和<code>&gt;</code>作用一样，表示从右到左<br>
+<code>&lt;&lt;</code>:和<code>&gt;&gt;</code>作用一样，表示从右到左</p>
+<hr>
+<h3 id="2简单的重定向">2.简单的重定向</h3>
+<h4 id="前置知识文件描述符">前置知识：文件描述符</h4>
+<pre><code class="language-bash"> 1.  文件描述符：0   设备文件：/dev/stdin    缩写：stdin    说明：标准输入
+ 2.  文件描述符：1   设备文件：/dev/stdout   缩写：stdout   说明：标准输出
+ 3.  文件描述符：2   设备文件：/dev/stderr   缩写：stderr   说明：标准错误
+</code></pre>
+<p><a href="https://blog.csdn.net/xlinsist/article/details/51147212">参考网址</a></p>
+<p>实例（1：</p>
+<pre><code class="language-bash">mkdir Documents #创建目录
+cat &gt; Documents/test.c &lt;&lt; EOF   #将cat的连续输出重定向到一个文件中
+#include &lt;stdio.h&gt;
+int main()
+{
+    printf(&quot;hello world/n&quot;);
+    return 0;
+}
+EOF
+</code></pre>
+<p>补充<code>EOF</code>：<br>
+是END Of File的缩写,表示自定义终止符.既然自定义,那么EOF就不是固定的,可以随意设置别名,在linux按ctrl-d就代表EOF.<br>
+EOF一般会配合cat能够多行文本输出.<br>
+其用法如下:<br>
+&lt;&lt;EOF        //开始<br>
+....<br>
+EOF            //结束<br>
+<a href="https://www.cnblogs.com/xiaojianblogs/p/6486902.html">参考网址</a></p>
+<p><code>cat Documents/test.c</code></p>
+<p>意义：将一个文件作为命令的输入（cat），标准输出作为命令的输出</p>
+<p>实例（2：</p>
+<pre><code class="language-cpp"> #将echo命令的输出从默认的标准输出重定向到一个普通文件
+echo 'hello world' &gt; file 
+#查看文件
+cat file  
+</code></pre>
+<hr>
+<h3 id="3标准错误的重定向">3.标准错误的重定向</h3>
+<p>实例（1：</p>
+<pre><code class="language-cpp"> #用bash提供的特殊的重定向符号“&amp;”将标准错误和标准输出同时重定向到文件
+ cat [目录]/[标准输出文件] [标准错误文件] &amp;&gt; [文件] 
+</code></pre>
+<p>实例（2：</p>
+<pre><code class="language-cpp">#将标准错误重定向到标准输出，将标准输出重定向到文件中，注意要将标准输出重定向到文件写在前面
+cat [目录]/[标准输出文件] [标准错误文件] &gt; [文件] 2&gt;&amp;1 
+</code></pre>
+<p>补充：在输出重定向文件描述符前加上<code>&amp;</code>，否则shell会当作重定向到一个文件名为1的文件中</p>
+<hr>
+<h3 id="4使用tee命令同时重定向到多个文件">4.使用tee命令同时重定向到多个文件</h3>
+<p>实例（1：</p>
+<pre><code class="language-cpp">#将echo命令输出通过tee命令同时重定向到file1 file2 file3
+echo 'git is good' | tee file1 file2 file3  
+</code></pre>
+<hr>
+<h3 id="5exec命令">5.exec命令</h3>
+<p>调用并执行指定的命令。<br>
+exec命令 用于调用并执行指令的命令。exec命令通常用在shell脚本程序中，可以调用其他的命令。如果在当前终端中使用命令，则当指定的命令执行完毕后会立即退出终端。</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">zsh #进入子shell
+exec 1 &gt; somefile   #使用exec替换当前进程的重定向，将标准输出（1）重定向到文件中
+#后面执行的命令都将重定向到文件中，知道使用exit退出当前子shell
+ls            #ls命令重定向到文件（somefile）中
+ll            #ll命令重定向到文件（somefile）中
+pwd           #pwd命令重定向到文件（somefile）中
+exit          #退出
+cat somefile    #主进程查看文件（somefile）  ls ll  pwd命令会同时执行
+</code></pre>
+<p><a href="https://blog.csdn.net/yanggd1987/article/details/38926901">参考网址</a></p>
+<h3 id="6创建文件描述符">6.创建文件描述符</h3>
+<p>Linux系统将所有设备都当作文件来处理，而Linux用文件描述符来标识每个文件对象。其实我们可以想象我们电脑的显示器和键盘在Linux系统中都被看作是文件，而它们都有相应的文件描述符与之对应。<br>
+shell中有9个文件描述符，上面是用了它提供的默认的0,1,2文件描述符，另外我们还可以使用3—8文件描述符。</p>
+<p><code>cat /dev/fd;ls -Al</code>:查看当前shell进程中打开的文件描述符。<br>
+<code>;</code>:路径的分隔符</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">zsh #进入子shell
+exec 3 &gt; somefile           #将文件描述符3重定向到文件中（somefile）
+cat /dev/fd;ls -Al;cd -     #查看当前shell中打开的文件描述符
+echo &quot;this is test&quot; &gt;&amp;3           #将echo命令的输出重定向到文件描述符3种
+cat somefile           #查看文件（somefile）
+exit           #退出
+</code></pre>
+<p><a href="https://blog.csdn.net/xlinsist/article/details/51147212">参考网址</a></p>
+<hr>
+<h3 id="7关闭文件描述符">7.关闭文件描述符</h3>
+<p><code>exec 3&gt;&amp;-</code>:关闭文件描述符3</p>
+<hr>
+<h3 id="8完全屏蔽命令的输出">8.完全屏蔽命令的输出</h3>
+<h4 id="前置知识">前置知识</h4>
+<p><code>/dev/null</code>空设备，一般用来丢弃不需要的输出流</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">cat directory/file 1&gt;/dev/null 2&gt;&amp;1    
+#将文件标准输出（1）重定向到/dev/null中，将标准错误（2）重定向到标准输出（1）中
+</code></pre>
+<p>补充：<br>
+<code>cat</code>：连接多个文件并打印到标准输出</p>
+<hr>
+<h3 id="9使用xargs分割参数列表">9.使用xargs分割参数列表</h3>
+<p>将列表参数转换成小块分段传递给其他命令，以避免参数列表过长问题。</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">cut -d: -f1 &lt; /etc/passwd | sort |xargs echo
+ #将/etc/passwd文件按：分割，取第一个字段排序后，使用echo命令生成一个列表。
+</code></pre>
+<p><a href="https://wangchujiang.com/linux-command/c/xargs.html">参考网址</a></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://ydPro-G.github.io/post/linux_-jian-dan-de-wen-ben-chu-li/">
+                <h3 class="post-title">
+                  Linux_简单的文本处理
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <script src="https://ydPro-G.github.io//media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

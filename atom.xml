@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T04:15:35.418Z</updated>
+    <updated>2020-03-17T04:16:36.317Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,138 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_数据流重定向]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-shu-ju-liu-chong-ding-xiang/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-shu-ju-liu-chong-ding-xiang/">
+        </link>
+        <updated>2020-03-17T04:15:48.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="目的">目的</h1>
+<p>1.重定向怎么用<br>
+2.文件描述符(0,1,2)</p>
+<h2 id="学习目录">学习目录</h2>
+<ol>
+<li>数据流重定向</li>
+<li>简单的重定向</li>
+<li>标准错误的重定向</li>
+<li>使用<code>tee</code>命令重定向到多个文件</li>
+<li>exec命令</li>
+<li>创建文件描述符</li>
+<li>关闭文件描述符</li>
+<li>完全屏蔽命令的输出</li>
+<li>使用xargs分割参数列表</li>
+</ol>
+<hr>
+<h3 id="1数据流重定向">1.数据流重定向</h3>
+<h4 id="命令">命令</h4>
+<p><code>&gt;</code> : 覆盖文件内容并写入<br>
+<code>&gt;&gt;</code>：在文件后面追加，不覆盖文件内容<br>
+<code>&lt;</code>：和<code>&gt;</code>作用一样，表示从右到左<br>
+<code>&lt;&lt;</code>:和<code>&gt;&gt;</code>作用一样，表示从右到左</p>
+<hr>
+<h3 id="2简单的重定向">2.简单的重定向</h3>
+<h4 id="前置知识文件描述符">前置知识：文件描述符</h4>
+<pre><code class="language-bash"> 1.  文件描述符：0   设备文件：/dev/stdin    缩写：stdin    说明：标准输入
+ 2.  文件描述符：1   设备文件：/dev/stdout   缩写：stdout   说明：标准输出
+ 3.  文件描述符：2   设备文件：/dev/stderr   缩写：stderr   说明：标准错误
+</code></pre>
+<p><a href="https://blog.csdn.net/xlinsist/article/details/51147212">参考网址</a></p>
+<p>实例（1：</p>
+<pre><code class="language-bash">mkdir Documents #创建目录
+cat &gt; Documents/test.c &lt;&lt; EOF   #将cat的连续输出重定向到一个文件中
+#include &lt;stdio.h&gt;
+int main()
+{
+    printf(&quot;hello world/n&quot;);
+    return 0;
+}
+EOF
+</code></pre>
+<p>补充<code>EOF</code>：<br>
+是END Of File的缩写,表示自定义终止符.既然自定义,那么EOF就不是固定的,可以随意设置别名,在linux按ctrl-d就代表EOF.<br>
+EOF一般会配合cat能够多行文本输出.<br>
+其用法如下:<br>
+&lt;&lt;EOF        //开始<br>
+....<br>
+EOF            //结束<br>
+<a href="https://www.cnblogs.com/xiaojianblogs/p/6486902.html">参考网址</a></p>
+<p><code>cat Documents/test.c</code></p>
+<p>意义：将一个文件作为命令的输入（cat），标准输出作为命令的输出</p>
+<p>实例（2：</p>
+<pre><code class="language-cpp"> #将echo命令的输出从默认的标准输出重定向到一个普通文件
+echo 'hello world' &gt; file 
+#查看文件
+cat file  
+</code></pre>
+<hr>
+<h3 id="3标准错误的重定向">3.标准错误的重定向</h3>
+<p>实例（1：</p>
+<pre><code class="language-cpp"> #用bash提供的特殊的重定向符号“&amp;”将标准错误和标准输出同时重定向到文件
+ cat [目录]/[标准输出文件] [标准错误文件] &amp;&gt; [文件] 
+</code></pre>
+<p>实例（2：</p>
+<pre><code class="language-cpp">#将标准错误重定向到标准输出，将标准输出重定向到文件中，注意要将标准输出重定向到文件写在前面
+cat [目录]/[标准输出文件] [标准错误文件] &gt; [文件] 2&gt;&amp;1 
+</code></pre>
+<p>补充：在输出重定向文件描述符前加上<code>&amp;</code>，否则shell会当作重定向到一个文件名为1的文件中</p>
+<hr>
+<h3 id="4使用tee命令同时重定向到多个文件">4.使用tee命令同时重定向到多个文件</h3>
+<p>实例（1：</p>
+<pre><code class="language-cpp">#将echo命令输出通过tee命令同时重定向到file1 file2 file3
+echo 'git is good' | tee file1 file2 file3  
+</code></pre>
+<hr>
+<h3 id="5exec命令">5.exec命令</h3>
+<p>调用并执行指定的命令。<br>
+exec命令 用于调用并执行指令的命令。exec命令通常用在shell脚本程序中，可以调用其他的命令。如果在当前终端中使用命令，则当指定的命令执行完毕后会立即退出终端。</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">zsh #进入子shell
+exec 1 &gt; somefile   #使用exec替换当前进程的重定向，将标准输出（1）重定向到文件中
+#后面执行的命令都将重定向到文件中，知道使用exit退出当前子shell
+ls            #ls命令重定向到文件（somefile）中
+ll            #ll命令重定向到文件（somefile）中
+pwd           #pwd命令重定向到文件（somefile）中
+exit          #退出
+cat somefile    #主进程查看文件（somefile）  ls ll  pwd命令会同时执行
+</code></pre>
+<p><a href="https://blog.csdn.net/yanggd1987/article/details/38926901">参考网址</a></p>
+<h3 id="6创建文件描述符">6.创建文件描述符</h3>
+<p>Linux系统将所有设备都当作文件来处理，而Linux用文件描述符来标识每个文件对象。其实我们可以想象我们电脑的显示器和键盘在Linux系统中都被看作是文件，而它们都有相应的文件描述符与之对应。<br>
+shell中有9个文件描述符，上面是用了它提供的默认的0,1,2文件描述符，另外我们还可以使用3—8文件描述符。</p>
+<p><code>cat /dev/fd;ls -Al</code>:查看当前shell进程中打开的文件描述符。<br>
+<code>;</code>:路径的分隔符</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">zsh #进入子shell
+exec 3 &gt; somefile           #将文件描述符3重定向到文件中（somefile）
+cat /dev/fd;ls -Al;cd -     #查看当前shell中打开的文件描述符
+echo &quot;this is test&quot; &gt;&amp;3           #将echo命令的输出重定向到文件描述符3种
+cat somefile           #查看文件（somefile）
+exit           #退出
+</code></pre>
+<p><a href="https://blog.csdn.net/xlinsist/article/details/51147212">参考网址</a></p>
+<hr>
+<h3 id="7关闭文件描述符">7.关闭文件描述符</h3>
+<p><code>exec 3&gt;&amp;-</code>:关闭文件描述符3</p>
+<hr>
+<h3 id="8完全屏蔽命令的输出">8.完全屏蔽命令的输出</h3>
+<h4 id="前置知识">前置知识</h4>
+<p><code>/dev/null</code>空设备，一般用来丢弃不需要的输出流</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">cat directory/file 1&gt;/dev/null 2&gt;&amp;1    
+#将文件标准输出（1）重定向到/dev/null中，将标准错误（2）重定向到标准输出（1）中
+</code></pre>
+<p>补充：<br>
+<code>cat</code>：连接多个文件并打印到标准输出</p>
+<hr>
+<h3 id="9使用xargs分割参数列表">9.使用xargs分割参数列表</h3>
+<p>将列表参数转换成小块分段传递给其他命令，以避免参数列表过长问题。</p>
+<p>实例（1：</p>
+<pre><code class="language-cpp">cut -d: -f1 &lt; /etc/passwd | sort |xargs echo
+ #将/etc/passwd文件按：分割，取第一个字段排序后，使用echo命令生成一个列表。
+</code></pre>
+<p><a href="https://wangchujiang.com/linux-command/c/xargs.html">参考网址</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_简单的文本处理]]></title>
         <id>https://ydPro-G.github.io/post/linux_-jian-dan-de-wen-ben-chu-li/</id>
@@ -514,47 +646,6 @@ Bash的配置命令是<code>.bashrc</code><br>
 <h3 id="6让环境变量立即生效">6.让环境变量立即生效</h3>
 <p>命令<br>
 <code>source [配置的脚本文件]</code>让环境变量立即生效。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_搜索命令]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-sou-suo-ming-ling/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-sou-suo-ming-ling/">
-        </link>
-        <updated>2020-03-17T03:33:11.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="常用命令目录">常用命令目录</h1>
-<p><code>whereis</code><br>
-<code>locat</code><br>
-<code>which</code><br>
-<code>find</code></p>
-<h2 id="whereis-简单快速">whereis 【简单快速】</h2>
-<p><code>whereis [文件名]</code>：直接<strong>从数据库中查询</strong>。whereis 只能<strong>搜索二进制文件(-b)</strong>，man <strong>帮助文件(-m)<strong>和</strong>源代码文件(-s)</strong>。</p>
-<h2 id="locate-快而全">locate 【快而全】</h2>
-<p><code>locate /[目录]/[文件]</code>：用来查找<strong>指定目录</strong>下的<strong>不同文件类型</strong>。<br>
-提示;<code>locate</code>通过数据库查找，不过这个数据库也<strong>不是实时更新</strong>的，系统会<strong>使用定时任务每天自动执行 updatedb 命令更新一次</strong>，所以有时候你刚添加的文件，它可能会找不到，需要<strong>手动执行一次 updatedb 命令.</strong><br>
-<code>sudo apt-get update</code><br>
-<code>sudo apt-get install locate</code><br>
-<code>locate /[目录]/[文件]</code></p>
-<p>查找<code>/usr/share/</code>下的所有.jpg文件<br>
-<code>locate /usr/share/\*.jpg</code><br>
-注意：<strong>添加 * 号前面的反斜杠转义</strong></p>
-<h2 id="which-小而精">which 【小而精】</h2>
-<p><code>which</code>：是 <strong>Shell 内建的一个命令</strong>，我们通常使用 which 来<strong>确定是否安装了某个指定的软件</strong>，因为它<strong>只从 PATH 环境变量指定的路径中去搜索命令。</strong><br>
-<code>which [软件]</code></p>
-<h2 id="find精而细">find【精而细】</h2>
-<p><code>find</code>:可以通过文件类型、文件名进行查找而且可以根据文件的属性（如文件的时间戳，文件的权限等）进行搜索.<br>
-用法：<code>sudo find [目录] [命令] [文件名]</code></p>
-<p>查找<code>/etc/</code>目录下的名字叫做interfaces文件<br>
-<code>sudo find /etc/ -name interfaces</code><br>
-参数：<br>
-<code>-atime</code>：最后访问时间<br>
-<code>-ctime</code>:最后修改文件内容的时间<br>
-<code>-mtime</code>:最后修改文件属性的时间</p>
-<p>列出 home 目录中，当天（24 小时之内）有改动的文件<br>
-<code>find ~ -mtime 0</code></p>
-<p>列出用户home目录下比 Code 文件夹新的文件<br>
-<code>find ~ -newer /home/shiyanlou/Code</code><br>
-<code>-newer file</code>：file 为一个已存在的文件，列出比 file 还要新的文件名</p>
 ]]></content>
     </entry>
 </feed>
