@@ -1,63 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://ydPro-G.github.io/</id>
-    <title>ydPro Blog</title>
-    <updated>2020-03-17T03:35:01.150Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://ydPro-G.github.io/"/>
-    <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
-    <subtitle>Life &amp; Work</subtitle>
-    <logo>https://ydPro-G.github.io/images/avatar.png</logo>
-    <icon>https://ydPro-G.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, ydPro Blog</rights>
-    <entry>
-        <title type="html"><![CDATA[Linux_搜索命令]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-sou-suo-ming-ling/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-sou-suo-ming-ling/">
-        </link>
-        <updated>2020-03-17T03:33:11.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="常用命令目录">常用命令目录</h1>
-<p><code>whereis</code><br>
-<code>locat</code><br>
-<code>which</code><br>
-<code>find</code></p>
-<h2 id="whereis-简单快速">whereis 【简单快速】</h2>
-<p><code>whereis [文件名]</code>：直接<strong>从数据库中查询</strong>。whereis 只能<strong>搜索二进制文件(-b)</strong>，man <strong>帮助文件(-m)<strong>和</strong>源代码文件(-s)</strong>。</p>
-<h2 id="locate-快而全">locate 【快而全】</h2>
-<p><code>locate /[目录]/[文件]</code>：用来查找<strong>指定目录</strong>下的<strong>不同文件类型</strong>。<br>
-提示;<code>locate</code>通过数据库查找，不过这个数据库也<strong>不是实时更新</strong>的，系统会<strong>使用定时任务每天自动执行 updatedb 命令更新一次</strong>，所以有时候你刚添加的文件，它可能会找不到，需要<strong>手动执行一次 updatedb 命令.</strong><br>
-<code>sudo apt-get update</code><br>
-<code>sudo apt-get install locate</code><br>
-<code>locate /[目录]/[文件]</code></p>
-<p>查找<code>/usr/share/</code>下的所有.jpg文件<br>
-<code>locate /usr/share/\*.jpg</code><br>
-注意：<strong>添加 * 号前面的反斜杠转义</strong></p>
-<h2 id="which-小而精">which 【小而精】</h2>
-<p><code>which</code>：是 <strong>Shell 内建的一个命令</strong>，我们通常使用 which 来<strong>确定是否安装了某个指定的软件</strong>，因为它<strong>只从 PATH 环境变量指定的路径中去搜索命令。</strong><br>
-<code>which [软件]</code></p>
-<h2 id="find精而细">find【精而细】</h2>
-<p><code>find</code>:可以通过文件类型、文件名进行查找而且可以根据文件的属性（如文件的时间戳，文件的权限等）进行搜索.<br>
-用法：<code>sudo find [目录] [命令] [文件名]</code></p>
-<p>查找<code>/etc/</code>目录下的名字叫做interfaces文件<br>
-<code>sudo find /etc/ -name interfaces</code><br>
-参数：<br>
-<code>-atime</code>：最后访问时间<br>
-<code>-ctime</code>:最后修改文件内容的时间<br>
-<code>-mtime</code>:最后修改文件属性的时间</p>
-<p>列出 home 目录中，当天（24 小时之内）有改动的文件<br>
-<code>find ~ -mtime 0</code></p>
-<p>列出用户home目录下比 Code 文件夹新的文件<br>
-<code>find ~ -newer /home/shiyanlou/Code</code><br>
-<code>-newer file</code>：file 为一个已存在的文件，列出比 file 还要新的文件名</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[TCP/IP协议]]></title>
-        <id>https://ydPro-G.github.io/post/tcpip-xie-yi/</id>
-        <link href="https://ydPro-G.github.io/post/tcpip-xie-yi/">
-        </link>
-        <updated>2020-03-17T03:11:04.000Z</updated>
-        <content type="html"><![CDATA[<p>1.互联网分成若干层<br>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ydPro Blog</title>
+<meta name="description" content="Life & Work" />
+<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1584416098501">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://ydPro-G.github.io//styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://ydPro-G.github.io/">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1584416098501" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">ydPro Blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E7%89%A9%E7%90%86%E5%B1%82">1.物理层</a></li>
+<li><a href="#2%E9%93%BE%E8%B7%AF%E5%B1%82">2.链路层</a>
+<ul>
+<li><a href="#21%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%8D%8F%E8%AE%AE">2.1以太网协议</a></li>
+<li><a href="#22mac%E5%9C%B0%E5%9D%80">2.2MAC地址</a></li>
+<li><a href="#23%E5%B9%BF%E6%92%AD">2.3广播</a></li>
+</ul>
+</li>
+<li><a href="#3%E7%BD%91%E7%BB%9C%E5%B1%82">3.网络层</a>
+<ul>
+<li><a href="#31-ip%E5%8D%8F%E8%AE%AE">3.1 IP协议</a></li>
+<li><a href="#32-ip%E6%95%B0%E6%8D%AE%E5%8C%85">3.2 IP数据包</a></li>
+<li><a href="#33-arp%E5%8D%8F%E8%AE%AE">3.3 ARP协议</a></li>
+</ul>
+</li>
+<li><a href="#4%E4%BC%A0%E8%BE%93%E5%B1%82">4.传输层</a>
+<ul>
+<li><a href="#41%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E7%94%B1%E6%9D%A5">4.1传输层的由来</a></li>
+<li><a href="#42udp%E5%8D%8F%E8%AE%AE">4.2UDP协议</a></li>
+<li><a href="#43tcp%E5%8D%8F%E8%AE%AE">4.3TCP协议</a></li>
+</ul>
+</li>
+<li><a href="#5%E5%BA%94%E7%94%A8%E5%B1%82">5.应用层</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.2s">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://ydPro-G.github.io/post/friends" class="menu" style="animation-delay: 0.4s">
+          关于我
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://ydPro-G.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">TCP/IP协议</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-17 / 12 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>1.互联网分成若干层<br>
 2.为了实现功能，大家需要遵循相关的规则，这就是协议。</p>
 <h2 id="1物理层">1.物理层</h2>
 <p>定义：用光缆，电缆，双绞线，无线电波等方式将电脑连起来。<br>
@@ -153,135 +203,142 @@ TCP数据包的长度和UDP数据包一样，都是内嵌在IP数据包的“数
 <p>因此，现在的以太网的数据包就变成下面这样：<br>
 <img src="https://img-blog.csdnimg.cn/20191123183823808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1lkUHJvXw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" loading="lazy"><br>
 OVER。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_文件系统]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-wen-jian-xi-tong/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-wen-jian-xi-tong/">
-        </link>
-        <updated>2020-03-17T03:01:03.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="学习目录">学习目录</h1>
-<ol>
-<li>新建文件</li>
-<li>复制</li>
-<li>删除</li>
-<li>移动文件与文件重命名</li>
-<li>查看文件</li>
-<li>查看文件类型</li>
-<li>编辑文件</li>
-</ol>
-<h3 id="1新建文件目录">1.新建文件/目录</h3>
-<p>命令：<br>
-<code>touch</code>创建空白文件，主要作用更改已有文件时间戳<br>
-<code>mkdir</code>新建空目录<br>
-<code>mkdir -p</code>新建多级目录，例：<code>mkdir -p father/son/grandson</code></p>
-<h3 id="2复制文件目录">2.复制文件/目录</h3>
-<p>命令：<br>
-<code>cp</code>复制一个文件到指定目录<br>
-<code>cp -r</code>复制目录到指定目录，表示递归复制</p>
-<h3 id="3删除文件目录">3.删除文件/目录</h3>
-<p>命令：<br>
-<code>rm</code>删除一个文件<br>
-<code>rm -f</code>强制删除<br>
-<code>rm -r</code>删除目录 例：<code>rm -r father</code></p>
-<h3 id="4移动文件与文件重命名">4.移动文件与文件重命名</h3>
-<p>命令：<br>
-<code>mv</code>移动文件 例：<code>mv 源目录文件 目的目录</code><br>
-<code>mv</code>重命名文件 例：<code>mv 旧的文件名 新的文件名</code><br>
-<code>rename</code>批量重命名<br>
-例”<code>touch flie{1..5}.txt</code>使用通配符批量创建5个文件<br>
-<code>rename 's/\.txt/\.c/ *.txt</code>批量将这5个后缀为.txt的文件重命名为.c为后缀的文件<br>
-<code>rename 'y /a-z/A-Z/' *.c</code>批量将这5个文件，文件名和后缀名改为大写</p>
-<h3 id="5查看文件">5.查看文件</h3>
-<p>命令：<br>
-<code>cat</code>查看文件<br>
-<code>cat -n</code>查看文件显示行数<br>
-<code>nl</code>添加行号并打印<br>
-<code>nl -b a</code>表示无论是否为空行，同样列出行数<br>
-<code>nl -b t</code>只列出非空行的编号并列出<br>
-<code>nl -n ln</code>在行号字段最左端显示<br>
-<code>nl -n rn</code>在行号字段最右端显示，切不加0<br>
-<code>nl -n rz</code>在行号字段最右端显示，加0<br>
-<code>nl -w</code>：行号字段占用的位数（默认6位）<br>
-<code>more</code>分页查看文件<br>
-<code>head/tail</code>只差看文件头几行（默认10行）<br>
-<code>rail -n 1</code>只显示第1行</p>
-<h3 id="6查看文件类型">6.查看文件类型</h3>
-<p>命令：<br>
-<code>file</code>查看文件类型<br>
-<code>sudo chown 【用户名]】【文件名】</code>变更文件所有者<br>
-命令：<br>
-<code>ls</code>显示目标列表（<a href="https://man.linuxde.net/ls">ls具体命令</a>）<br>
-<code>ls -l</code>所有输出信息单列格式输出，不输出为多列<br>
-<code>ls -AsSh</code>显示所有文件大小 小s显示文件大小，大S显示按文件大小排序</p>
-<h2 id="补充关于chmod的用法">补充：关于chmod的用法</h2>
-<p>chmod命令用于改变linux系统文件或目录的访问权限。用它控制文件或目录的访问权限。该命令有两种用法。一种是包含字母和操作符表达式的文字设定法；另一种是包含数字的数字设定法。<br>
-<strong>1 [001] 执行权限 x<br>
-2 [010] 只写权限 w<br>
-4 [100] 只读权限 r<br>
-若要rwx属性则4+2+1=7；<br>
-若要rw-属性则4+2=6；<br>
-若要r-x属性则4+1=5。</strong></p>
-<p><strong>sudo chmod -（代表类型）×××（所有者）×××（组用户）×××（其他用户）</strong></p>
-<p><strong>例子：</strong><br>
-sudo chmod 600 ××× （只有所有者有读和写的权限）</p>
-<p>sudo chmod 644 ××× （所有者有读和写的权限，组用户只有读的权限）</p>
-<p>sudo chmod 700 ××× （只有所有者有读和写以及执行的权限）</p>
-<p>sudo chmod 666 ××× （每个人都有读和写的权限）</p>
-<p>sudo chmod 777 ××× （每个人都有读和写以及执行的权限）</p>
-<h2 id="图示">图示：</h2>
-<p><img src="https://ydPro-G.github.io//post-images/1583994819019.jpg" alt="" loading="lazy"><br>
-<img src="https://ydPro-G.github.io//post-images/1583994825917.jpg" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_目录路径]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-mu-lu-lu-jing/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-mu-lu-lu-jing/">
-        </link>
-        <updated>2020-03-17T02:53:53.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="学习目录">学习目录</h2>
-<ol>
-<li>路径</li>
-<li>绝对路径</li>
-<li>相对路径</li>
-</ol>
-<h3 id="1路径进入目录的路径">1.路径：进入目录的路径</h3>
-<p>命令：<br>
-<code>cd ..</code>：进入上一级目录<br>
-<code>cd ~</code>：进入你的home目录<br>
-<code>cd /home/你的用户名</code>：进入你的home目录<br>
-<code>pwd</code>：获取当前路径</p>
-<h3 id="2绝对路径">2.绝对路径</h3>
-<p>命令：<br>
-<code>cd 用户/用户名/系统文件</code>：绝对路径是指文件在硬盘上真正存在的路径。<br>
-事实上，在网页编程时，很少会使用绝对路径，如果使用“E:\book\网页布\代码\第2章\bg.jpg”来指定背景图片的位置，在自己的计算机上 浏览可能会一切正常，但是上传到Web服务器上浏览就很有可能不会显示图片了。<br>
-因为上传到Web服务器上时，可能整个网站并没有放在Web服务器的E盘， 有可能是D盘或H盘。即使放在Web服务器的E盘里，Web服务器的E盘里也不一定会存在“E:\book\网页布局\代码\第2章”这个目录，因此在浏 览网页时是不会显示图片的。</p>
-<h3 id="3相对路径">3.相对路径</h3>
-<p>命令：<br>
-<code>cd ../../用户/用户名/系统文件</code>：为了避免这种隋况发生，通常在网页里指定文件时，都会选择使用相对路径。<br>
-所谓相对路径，就是相对于自己的目标文件位置。<br>
-例如上面的例子，“s1.htm” 文件里引用了“bg.jpg”图片，由于“bg.jpg”图片相对于“s1.htm”来说，是在同一个目录的，那么要在“s1.htm”文件里使用以下代 码后，只要这两个文件的相对位置没有变(也就是说还是在同一个目录内)，那么无论上传到Web服务器的哪个位置，在浏览器里都能正确地显示图片。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[My Blogs]]></title>
-        <id>https://ydPro-G.github.io/post/friends/</id>
-        <link href="https://ydPro-G.github.io/post/friends/">
-        </link>
-        <updated>2019-01-25T11:09:48.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>记录学习 &amp; 编程 &amp; 黑科技&amp;有趣&amp;好玩🕶</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>致力于学习技术 &amp; 提高收入的社畜😇</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>读书，编程，跑步，做视频，睡觉🙌</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>15806906223@163.com📧</p>
-]]></content>
-    </entry>
-</feed>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/G-9rlSimO/">
+            <span class="flex-auto">TCP/IP</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://ydPro-G.github.io/post/linux_-sou-suo-ming-ling/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  Linux_搜索命令
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://ydPro-G.github.io/post/linux_-wen-jian-xi-tong/">
+                <h3 class="post-title">
+                  Linux_文件系统
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <script src="https://ydPro-G.github.io//media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

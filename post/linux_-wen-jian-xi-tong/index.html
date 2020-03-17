@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ydPro Blog</title>
 <meta name="description" content="Life & Work" />
-<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1584414578956">
+<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1584416098501">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://ydPro-G.github.io/">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1584414578956" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1584416098501" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">ydPro Blog</h1>
       </div>
@@ -44,6 +44,7 @@
 <li><a href="#5%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6">5.查看文件</a></li>
 <li><a href="#6%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B">6.查看文件类型</a></li>
 <li><a href="#%E8%A1%A5%E5%85%85%E5%85%B3%E4%BA%8Echmod%E7%9A%84%E7%94%A8%E6%B3%95">补充：关于chmod的用法</a></li>
+<li><a href="#%E5%9B%BE%E7%A4%BA">图示：</a></li>
 </ul>
 </li>
 </ul>
@@ -90,8 +91,6 @@
         <div class="text-sm text-gray-700 lg:my-8">
           2020-03-17 / 3 min read
         </div>
-        
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://ydPro-G.github.io//post-images/linux_-wen-jian-xi-tong.png" alt="">
         
         <div class="post-content yue">
           <h1 id="学习目录">学习目录</h1>
@@ -143,7 +142,11 @@
 <h3 id="6查看文件类型">6.查看文件类型</h3>
 <p>命令：<br>
 <code>file</code>查看文件类型<br>
-<code>sudo chown 【用户名]】【文件名】</code>变更文件所有者</p>
+<code>sudo chown 【用户名]】【文件名】</code>变更文件所有者<br>
+命令：<br>
+<code>ls</code>显示目标列表（<a href="https://man.linuxde.net/ls">ls具体命令</a>）<br>
+<code>ls -l</code>所有输出信息单列格式输出，不输出为多列<br>
+<code>ls -AsSh</code>显示所有文件大小 小s显示文件大小，大S显示按文件大小排序</p>
 <h2 id="补充关于chmod的用法">补充：关于chmod的用法</h2>
 <p>chmod命令用于改变linux系统文件或目录的访问权限。用它控制文件或目录的访问权限。该命令有两种用法。一种是包含字母和操作符表达式的文字设定法；另一种是包含数字的数字设定法。<br>
 <strong>1 [001] 执行权限 x<br>
@@ -159,6 +162,9 @@ sudo chmod 600 ××× （只有所有者有读和写的权限）</p>
 <p>sudo chmod 700 ××× （只有所有者有读和写以及执行的权限）</p>
 <p>sudo chmod 666 ××× （每个人都有读和写的权限）</p>
 <p>sudo chmod 777 ××× （每个人都有读和写以及执行的权限）</p>
+<h2 id="图示">图示：</h2>
+<p><img src="https://ydPro-G.github.io//post-images/1583994819019.jpg" alt="" loading="lazy"><br>
+<img src="https://ydPro-G.github.io//post-images/1583994825917.jpg" alt="" loading="lazy"></p>
 
         </div>
 
@@ -170,6 +176,15 @@ sudo chmod 600 ××× （只有所有者有读和写的权限）</p>
 
 
         <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://ydPro-G.github.io/post/tcpip-xie-yi/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  TCP/IP协议
+                </h3>
+              </a>
+            </div>
           
 
           
