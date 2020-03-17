@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T03:47:01.695Z</updated>
+    <updated>2020-03-17T04:08:27.754Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,35 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_备份日志]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-bei-fen-ri-zhi/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-bei-fen-ri-zhi/">
+        </link>
+        <updated>2020-03-17T04:07:55.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="备份日志">备份日志</h1>
+<p>要求:<br>
+他需要每天备份论坛数据（这里我们用 alternatives.log 日志），备份当天的日志并删除之前的日志。而且备份之后文件名是 年-月-日 的格式。alternatives.log 在 /var/log/ 下面。<br>
+1.为 shiyanlou 用户添加计划任务<br>
+2.每天凌晨 3 点的时候定时备份 alternatives.log 到 /home/world/tmp/ 目录<br>
+3.命名格式为 年-月-日，比如今天是2017年4月1日，那么文件名为 2017-04-01</p>
+<p>解答：<br>
+1.进入crontab -e 添加<br>
+2.在3点将/home/world/tmp/所有文件清零<br>
+3.在3点将在/var/log目录下的alternatives.log文件<code>CP</code>到 /home/world/tmp文件中,然后以年-月-日命名文件</p>
+<pre><code>1.
+crontab -e
+choose vim
+# 添加例行性工作排程
+2.
+0 3 * * * sudo rm /home/world/tmp/*
+#清零
+3.
+0 3 * * * sudo cp /var/log/alternatives.log /home/wrold/tmp/$(date +$/%Y-/%m-/%d)
+cp文件并重命名
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_例行性工作排程]]></title>
         <id>https://ydPro-G.github.io/post/linux_-li-xing-xing-gong-zuo-pai-cheng/</id>
