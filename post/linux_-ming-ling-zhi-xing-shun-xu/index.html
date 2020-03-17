@@ -34,12 +34,29 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%9B%AE%E5%BD%95">常用命令目录</a>
+<li><a href="#%E5%89%8D%E6%8F%90">前提：</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
 <ul>
-<li><a href="#whereis-%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F">whereis 【简单快速】</a></li>
-<li><a href="#locate-%E5%BF%AB%E8%80%8C%E5%85%A8">locate 【快而全】</a></li>
-<li><a href="#which-%E5%B0%8F%E8%80%8C%E7%B2%BE">which 【小而精】</a></li>
-<li><a href="#find%E7%B2%BE%E8%80%8C%E7%BB%86">find【精而细】</a></li>
+<li><a href="#%E5%91%BD%E4%BB%A4%E5%8F%8A%E5%AE%9E%E4%BE%8B">命令及实例</a>
+<ul>
+<li><a href="#1%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%E5%A4%9A%E6%9D%A1%E5%91%BD%E4%BB%A4">1顺序执行多条命令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2%E6%9C%89%E9%80%89%E6%8B%A9%E7%9A%84%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4">2.有选择的执行命令</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95-2">学习目录</a><br>
+*<br>
+*<br>
+* <a href="#%E5%AE%9E%E4%BE%8B">实例：</a><br>
+* <a href="#%E8%A1%A5%E5%85%85">补充</a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%BE%97%E7%9F%A5%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%E6%98%AF%E5%90%A6%E4%B8%BA0%E6%88%961">如何得知命令执行状态的返回结果是否为0或1？</a></li>
+<li><a href="#%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%BB%93%E5%90%88%E7%9D%80%E5%92%8C%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%BA%9B%E6%93%8D%E4%BD%9C">也可以结合着&amp;&amp;和||来实现一些操作</a>
+<ul>
+<li><a href="#%E5%B0%86%E5%92%8C%E5%8F%8D%E8%BF%87%E6%9D%A5%E8%A1%8C%E4%B8%8D%E8%A1%8C">将<code>&amp;&amp;</code>和<code>||</code>反过来行不行？</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -82,45 +99,60 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">Linux_搜索命令</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_命令执行顺序</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-17 / 2 min read
+          2020-03-17 / 3 min read
         </div>
         
         <div class="post-content yue">
-          <h1 id="常用命令目录">常用命令目录</h1>
-<p><code>whereis</code><br>
-<code>locat</code><br>
-<code>which</code><br>
-<code>find</code></p>
-<h2 id="whereis-简单快速">whereis 【简单快速】</h2>
-<p><code>whereis [文件名]</code>：直接<strong>从数据库中查询</strong>。whereis 只能<strong>搜索二进制文件(-b)</strong>，man <strong>帮助文件(-m)<strong>和</strong>源代码文件(-s)</strong>。</p>
-<h2 id="locate-快而全">locate 【快而全】</h2>
-<p><code>locate /[目录]/[文件]</code>：用来查找<strong>指定目录</strong>下的<strong>不同文件类型</strong>。<br>
-提示;<code>locate</code>通过数据库查找，不过这个数据库也<strong>不是实时更新</strong>的，系统会<strong>使用定时任务每天自动执行 updatedb 命令更新一次</strong>，所以有时候你刚添加的文件，它可能会找不到，需要<strong>手动执行一次 updatedb 命令.</strong><br>
-<code>sudo apt-get update</code><br>
-<code>sudo apt-get install locate</code><br>
-<code>locate /[目录]/[文件]</code></p>
-<p>查找<code>/usr/share/</code>下的所有.jpg文件<br>
-<code>locate /usr/share/\*.jpg</code><br>
-注意：<strong>添加 * 号前面的反斜杠转义</strong></p>
-<h2 id="which-小而精">which 【小而精】</h2>
-<p><code>which</code>：是 <strong>Shell 内建的一个命令</strong>，我们通常使用 which 来<strong>确定是否安装了某个指定的软件</strong>，因为它<strong>只从 PATH 环境变量指定的路径中去搜索命令。</strong><br>
-<code>which [软件]</code></p>
-<h2 id="find精而细">find【精而细】</h2>
-<p><code>find</code>:可以通过文件类型、文件名进行查找而且可以根据文件的属性（如文件的时间戳，文件的权限等）进行搜索.<br>
-用法：<code>sudo find [目录] [命令] [文件名]</code></p>
-<p>查找<code>/etc/</code>目录下的名字叫做interfaces文件<br>
-<code>sudo find /etc/ -name interfaces</code><br>
-参数：<br>
-<code>-atime</code>：最后访问时间<br>
-<code>-ctime</code>:最后修改文件内容的时间<br>
-<code>-mtime</code>:最后修改文件属性的时间</p>
-<p>列出 home 目录中，当天（24 小时之内）有改动的文件<br>
-<code>find ~ -mtime 0</code></p>
-<p>列出用户home目录下比 Code 文件夹新的文件<br>
-<code>find ~ -newer /home/shiyanlou/Code</code><br>
-<code>-newer file</code>：file 为一个已存在的文件，列出比 file 还要新的文件名</p>
+          <h1 id="前提">前提：</h1>
+<p>通常情况下，我们会在终端输入一条命令再输入下一条命令，可是如果我们想要一次性输入多个命令呢？</p>
+<h1 id="学习目录">学习目录</h1>
+<ol>
+<li>顺序执行多条命令</li>
+<li>有选择的执行命令<br>
+<code>&amp;&amp;</code><br>
+<code>||</code></li>
+</ol>
+<h2 id="命令及实例">命令及实例</h2>
+<h3 id="1顺序执行多条命令">1顺序执行多条命令</h3>
+<p><code>sudo apt-get update</code>:更新源<br>
+<code>sudo apt-get install [软件]</code>:下载具体的软件<br>
+<code>[运行软件]</code>：运行具体的软件</p>
+<p>如果想要<strong>一次性输完所有命令</strong>，让他们<strong>依次去执行</strong>可以用<code>;</code>来完成。</p>
+<pre><code>sudo apt-get update;sudo apt-get install [软件];[软件]
+</code></pre>
+<hr>
+<h1 id="2有选择的执行命令">2.有选择的执行命令</h1>
+<h1 id="学习目录-2">学习目录</h1>
+<p><code>&amp;&amp;</code><br>
+<code>||</code></p>
+<p>如果自动执行命令时，前面的命令不能执行，而后面的命令又依赖于上一条命令的结果，那么就会造成错误，这种情况下我们就<strong>需要有一个判断公式</strong>来判断上一条命令执行成功后再执行下一条命令，或者不成功我们又该做出其他的处理。</p>
+<h4 id="实例">实例：</h4>
+<pre><code>which cowsay&gt;/dev/null &amp;&amp; coway -f head-in ohch~
+</code></pre>
+<p>程序含义：<br>
+<code>whoch cowsay&gt;/dev/null</code>:查询<code>cowsay[文件]</code>是否在目录<code>/dev/null</code>中。<br>
+<code>&amp;&amp;</code>：用来实现选择性执行，如果前面的命令执行状态的结果返回0（即查询到）就执行后面，否则就不执行。<br>
+<code>cowsay -f head-in ohch~</code>：<code>cowsay</code>【牛】在<code>-f head-in</code>头部聊天框中显示ohch~</p>
+<h5 id="补充">补充</h5>
+<p><code>||</code>在这里就是与&amp;&amp;相反的控制效果，当上一条命令执行结果为≠0($?≠0)时则执行它后面的命令。</p>
+<h3 id="如何得知命令执行状态的返回结果是否为0或1">如何得知命令执行状态的返回结果是否为0或1？</h3>
+<p>先查询这个文件<br>
+<code>which [文件]</code><br>
+然后可以从<code>&amp;</code>环境变量中获取上一次命令的返回结果<br>
+<code>echo $?</code></p>
+<h3 id="也可以结合着和来实现一些操作">也可以结合着&amp;&amp;和||来实现一些操作</h3>
+<p>实例：<br>
+<code>which cowsay&gt;/dev/null &amp;&amp; echo &quot;exist || echo &quot;not exist&quot;</code><br>
+流程图<br>
+<img src="https://img-blog.csdnimg.cn/20191214112718759.png" alt="l流程图" loading="lazy"></p>
+<h4 id="将和反过来行不行">将<code>&amp;&amp;</code>和<code>||</code>反过来行不行？</h4>
+<p>将<code>&amp;&amp;</code>和<code>||</code>反过来结果不一样<br>
+<code>which cowsay&gt;/dev/null || echo &quot;exist &amp;&amp; echo &quot;not exist&quot;</code><br>
+输出<code>not exist</code> <code>exist</code>两个都输出<br>
+为什么？<br>
+<code>which cowsay&gt;/dev/null</code>的结果不是0,所以<code>||</code>后面的语句会被执行,而且,<code>||</code>之后的语句成功执行之后,<code>#?</code>的值因为成功执行了<code>||</code>后面的语句变成了0,所以<code>&amp;&amp;</code>后面的语句执行了。</p>
 
         </div>
 
@@ -133,21 +165,12 @@
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://ydPro-G.github.io/post/linux_-huan-jing-bian-liang/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  Linux_环境变量
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://ydPro-G.github.io/post/tcpip-xie-yi/">
+              <a href="https://ydPro-G.github.io/post/linux_-bei-fen-ri-zhi/">
                 <h3 class="post-title">
-                  TCP/IP协议
+                  Linux_备份日志
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>

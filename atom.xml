@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T04:08:27.754Z</updated>
+    <updated>2020-03-17T04:10:27.277Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,62 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_命令执行顺序]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-ming-ling-zhi-xing-shun-xu/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-ming-ling-zhi-xing-shun-xu/">
+        </link>
+        <updated>2020-03-17T04:08:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="前提">前提：</h1>
+<p>通常情况下，我们会在终端输入一条命令再输入下一条命令，可是如果我们想要一次性输入多个命令呢？</p>
+<h1 id="学习目录">学习目录</h1>
+<ol>
+<li>顺序执行多条命令</li>
+<li>有选择的执行命令<br>
+<code>&amp;&amp;</code><br>
+<code>||</code></li>
+</ol>
+<h2 id="命令及实例">命令及实例</h2>
+<h3 id="1顺序执行多条命令">1顺序执行多条命令</h3>
+<p><code>sudo apt-get update</code>:更新源<br>
+<code>sudo apt-get install [软件]</code>:下载具体的软件<br>
+<code>[运行软件]</code>：运行具体的软件</p>
+<p>如果想要<strong>一次性输完所有命令</strong>，让他们<strong>依次去执行</strong>可以用<code>;</code>来完成。</p>
+<pre><code>sudo apt-get update;sudo apt-get install [软件];[软件]
+</code></pre>
+<hr>
+<h1 id="2有选择的执行命令">2.有选择的执行命令</h1>
+<h1 id="学习目录-2">学习目录</h1>
+<p><code>&amp;&amp;</code><br>
+<code>||</code></p>
+<p>如果自动执行命令时，前面的命令不能执行，而后面的命令又依赖于上一条命令的结果，那么就会造成错误，这种情况下我们就<strong>需要有一个判断公式</strong>来判断上一条命令执行成功后再执行下一条命令，或者不成功我们又该做出其他的处理。</p>
+<h4 id="实例">实例：</h4>
+<pre><code>which cowsay&gt;/dev/null &amp;&amp; coway -f head-in ohch~
+</code></pre>
+<p>程序含义：<br>
+<code>whoch cowsay&gt;/dev/null</code>:查询<code>cowsay[文件]</code>是否在目录<code>/dev/null</code>中。<br>
+<code>&amp;&amp;</code>：用来实现选择性执行，如果前面的命令执行状态的结果返回0（即查询到）就执行后面，否则就不执行。<br>
+<code>cowsay -f head-in ohch~</code>：<code>cowsay</code>【牛】在<code>-f head-in</code>头部聊天框中显示ohch~</p>
+<h5 id="补充">补充</h5>
+<p><code>||</code>在这里就是与&amp;&amp;相反的控制效果，当上一条命令执行结果为≠0($?≠0)时则执行它后面的命令。</p>
+<h3 id="如何得知命令执行状态的返回结果是否为0或1">如何得知命令执行状态的返回结果是否为0或1？</h3>
+<p>先查询这个文件<br>
+<code>which [文件]</code><br>
+然后可以从<code>&amp;</code>环境变量中获取上一次命令的返回结果<br>
+<code>echo $?</code></p>
+<h3 id="也可以结合着和来实现一些操作">也可以结合着&amp;&amp;和||来实现一些操作</h3>
+<p>实例：<br>
+<code>which cowsay&gt;/dev/null &amp;&amp; echo &quot;exist || echo &quot;not exist&quot;</code><br>
+流程图<br>
+<img src="https://img-blog.csdnimg.cn/20191214112718759.png" alt="l流程图" loading="lazy"></p>
+<h4 id="将和反过来行不行">将<code>&amp;&amp;</code>和<code>||</code>反过来行不行？</h4>
+<p>将<code>&amp;&amp;</code>和<code>||</code>反过来结果不一样<br>
+<code>which cowsay&gt;/dev/null || echo &quot;exist &amp;&amp; echo &quot;not exist&quot;</code><br>
+输出<code>not exist</code> <code>exist</code>两个都输出<br>
+为什么？<br>
+<code>which cowsay&gt;/dev/null</code>的结果不是0,所以<code>||</code>后面的语句会被执行,而且,<code>||</code>之后的语句成功执行之后,<code>#?</code>的值因为成功执行了<code>||</code>后面的语句变成了0,所以<code>&amp;&amp;</code>后面的语句执行了。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_备份日志]]></title>
         <id>https://ydPro-G.github.io/post/linux_-bei-fen-ri-zhi/</id>
@@ -541,25 +597,6 @@ sudo chmod 600 ××× （只有所有者有读和写的权限）</p>
 <code>cd ../../用户/用户名/系统文件</code>：为了避免这种隋况发生，通常在网页里指定文件时，都会选择使用相对路径。<br>
 所谓相对路径，就是相对于自己的目标文件位置。<br>
 例如上面的例子，“s1.htm” 文件里引用了“bg.jpg”图片，由于“bg.jpg”图片相对于“s1.htm”来说，是在同一个目录的，那么要在“s1.htm”文件里使用以下代 码后，只要这两个文件的相对位置没有变(也就是说还是在同一个目录内)，那么无论上传到Web服务器的哪个位置，在浏览器里都能正确地显示图片。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[My Blogs]]></title>
-        <id>https://ydPro-G.github.io/post/friends/</id>
-        <link href="https://ydPro-G.github.io/post/friends/">
-        </link>
-        <updated>2019-01-25T11:09:48.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>记录学习 &amp; 编程 &amp; 黑科技&amp;有趣&amp;好玩🕶</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>致力于学习技术 &amp; 提高收入的社畜😇</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>读书，编程，跑步，做视频，睡觉🙌</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>15806906223@163.com📧</p>
 ]]></content>
     </entry>
 </feed>
