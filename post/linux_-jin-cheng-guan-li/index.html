@@ -1,0 +1,402 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ydPro Blog</title>
+<meta name="description" content="Life & Work" />
+<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1584418960840">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://ydPro-G.github.io//styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://ydPro-G.github.io/">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1584418960840" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">ydPro Blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%9B%AE%E7%9A%84">目的</a>
+<ul>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
+<ul>
+<li><a href="#1%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81">1.查看进程的运行状态</a></li>
+<li><a href="#12top%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8">1.2top工具的使用</a></li>
+<li><a href="#13ps%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8">1.3ps工具的使用</a></li>
+<li><a href="#14pstree%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8">1.4pstree工具的使用</a></li>
+<li><a href="#2%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86">2.进程管理</a></li>
+<li><a href="#21kill%E5%91%BD%E4%BB%A4%E7%9A%84%E6%8E%8C%E6%8F%A1%E4%B8%8E%E4%BD%BF%E7%94%A8">2.1kill命令的掌握与使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.2s">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://ydPro-G.github.io/post/friends" class="menu" style="animation-delay: 0.4s">
+          关于我
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://ydPro-G.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_进程管理</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-17 / 7 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h1 id="目的">目的</h1>
+<p>掌握linux提供的工具来进行进程的查看与控制（top,ps,pstree），掌握这些工具能让我们在某些进程出现异常的时候及时查看相关的指标，从而解决问题。</p>
+<hr>
+<h2 id="学习目录">学习目录</h2>
+<p><strong>1.查看进程的运行状态</strong><br>
+1.2top工具的使用<br>
+1.3ps工具的使用<br>
+1.4pstree工具的使用<br>
+<strong>2.进程管理</strong><br>
+2.1kill命令的掌握与使用<br>
+2.2进程的执行顺序查看与修改</p>
+<hr>
+<h3 id="1查看进程的运行状态">1.查看进程的运行状态</h3>
+<p>通过<code>top</code>实时查看进程的状态，以及系统的一些信息。<br>
+通过<code>ps</code>静态查看当前的进程信息。<br>
+通过	<code>pstree</code>查看当前活跃进程的树形结构。</p>
+<hr>
+<h3 id="12top工具的使用">1.2top工具的使用</h3>
+<p>查看一些进程的状态及系统信息。<br>
+输入命令<code>top</code>可以看到以下信息</p>
+<pre><code class="language-cpp">top命令是一个前台程序是可以交互的：
+q    退出程序
+I    切换显示平均负载和启动时间的信息
+P    更具cpu使用百分比大小进行排序
+M    根据驻留内存大小进行排序
+i    忽略闲置和僵死的进程，这是一个开关式的命令
+k    终止一个进程，系统提示输入PID及发送的信号值，一般终止的信号值是15，强制终止的信号值是9    
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20191228142817740.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<pre><code class="language-cpp">第一行：机器情况
+top    表示当前程序的名称
+11:24:08    表示当前的系统时间
+up 34 days,7:10    表示该机器已启动多长时间
+1 user    表示当前只有1个用户
+load average: 0.24 0.14 0.10    分别对应1,5,15分钟内cpu的平均负载
+                       #load average解释：对当前cpu工作量的度量，指运行队列的平均长度。
+                       #load 的4种显示（假设当前是单cpu，单内核）
+                       #1.load = 0    表示cpu没有任务
+                       #2.load &lt; 1    cpu任务不多，资源充足
+                       #3.load = 1    cpu任务已满，所有资源被使用，但还在能力范围之内
+                       #4.load &gt; 1    cpu任务已满，所有资源被使用，还有大量进程在请求）
+</code></pre>
+<pre><code class="language-cpp">第一行补充：
+  查看cpu信息
+cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l    #查看物理cpu个数
+cat /proc/cpuinfo | grep &quot;physical id&quot; | grep &quot;0&quot; | wc -l    #每个cpu的核心数
+  现实运维中会将load的临界值设定为0.7，load超过0.7就需要关注它，超过5就需要加班解决问题了。
+  一般会先看15分钟的大趋势，再对比5分钟看看是否有下降。  
+</code></pre>
+<pre><code class="language-cpp">第二行：进程情况
+Tasks：31 total     进程总数
+1 running    1个正在运行的进程数
+30 sleeping    30个睡眠的进程数
+0 stopped    没有停止的进程数
+0 zombie    没有僵尸进程（不会占用PID）
+</code></pre>
+<pre><code class="language-cpp">第三行：cpu使用情况
+%Cpu(s): 3.8us    用户空间进程占用cpu百分比
+0.8% sy    内核空间运行占用cpu百分比
+0.0# ni    用户进程空间内改变过优先级的进程占用cpu百分比
+95.3 id    空闲cpu百分比
+0.0% wa    等待输入输出的cpu时间的百分比
+0.0% hi    硬中断占用cpu的百分比
+0.1 si    软中断占用cpu时间的百分比
+0.0% st    虚拟cpu等待实际cpu的时间的百分比
+</code></pre>
+<pre><code class="language-cpp">第四行：内存情况
+16425212 total    物理内存总量
+7387528 free    空闲内存总量
+1071400 used    使用的物理内存总量
+7966284 buff/cache    用作内核缓存的内存量
+</code></pre>
+<pre><code class="language-cpp">第五行：交换区情况
+969964 total    交换区总量
+933952 free    空闲的交换区总量
+1071400 used    使用的交换区总量
+14746088 cache Mem    缓冲的交换区总量
+</code></pre>
+<pre><code class="language-cpp">第六行：进程概览
+PID    进程id
+USER    该进程的所属用户
+PR    该进程执行的优先级priority值
+NI    该进程的nice值
+VIRT    该进程任务所使用的虚拟内存的总数
+RES    该进程所使用的物理内存总数 也称为驻留内存总数
+SHR    该进程共享内存的大小
+S     该进程的状态 S=sleep R=running Z=zombie
+%CPU    该进程cpu的利用率
+%MEM    该进程内存的利用率
+TIME+    该进程活跃的总时间
+COMMAND    该进程运行的名字
+</code></pre>
+<pre><code class="language-cpp">第六行补充
+  NICE值叫做静态优先级，是用户空间的一个优先级值。
+  其取值范围是-20——19,这个值越小，表示进程“优先级”越大，值越大，“优先级”越小。 0是默认的值
+  PR值表式Priority值，叫动态优先级。是进程在内核中实际的优先值。
+  进程优先值的取值范围是通过一个宏定义的，这个宏名称是MAX_PRIO,它的值为140。
+  取值范围是0——139,这个值越小优先级越高。这其中0——99是实时进程的值，100——139是给用户的值。
+</code></pre>
+<p><a href="https://wangchujiang.com/linux-command/c/top.html">参考网址</a></p>
+<hr>
+<h3 id="13ps工具的使用">1.3ps工具的使用</h3>
+<p>ps是常用的查看进程的工具之一。<br>
+常用命令：<code>ps -l</code> <code>ps -afxo</code> <code>ps aux</code>  <code>ps axjf</code><br>
+<code>ps -l</code>：显示自己这次登录的bash相关进程信息罗列出来</p>
+<p><code>ps -afxo</code>：自定义所需要的参数显示<br>
+例：<code>ps -afxo user,ppid,pid,pgid,command</code> <code>pgid</code>:进程组ID号</p>
+<p><code>ps aux</code>：罗列出所有进程信息，可搭配grep命令和正则表达式使用<code>ps aux | grep zsh</code><img src="https://img-blog.csdnimg.cn/20191228161057920.png" alt="在这里插入图片描述" loading="lazy"><br>
+<code>ps axjf</code>:查看时将连同部分的进程呈树状显示出来<br>
+<img src="https://img-blog.csdnimg.cn/2019122817172865.png" alt="在这里插入图片描述" loading="lazy"></p>
+<pre><code class="language-cpp">内容含义：
+F    进程的标志（process flags），当flags的值为1时，表示此子程序只是fork但没有执行exec，
+     为4时表示此程序使用root权限
+USER   进程的拥有者
+PID    进程的ID
+PPID    其父进程的ID
+SID    session的ID
+TPGID    前台进程组的ID
+%CPU    进程占用的cpu百分比
+%MEM    占用内存的百分比
+NI    进程的NICE值
+VSZ   进程使用虚拟内存大小
+RSS    驻留内存中页的大小
+TTY    终端ID
+S or STAT   进程状态
+WCHAN    正在等待的进程资源
+START    启动进程的时间
+TIME    进程消耗cpu的时间
+COMMAND    命令的名称和参数
+</code></pre>
+<pre><code class="language-cpp">补充：
+  TPGID显示-1的都是守护进程。
+  STAT表示进程状态，而进程状态又分为：
+    R    Running 运行中
+    S    Interruptible Sleep 等待调用
+    D    Uninterruptible Sleep 不可中断睡眠 无法使用kill命令杀掉D状态的进程，
+         一般是进程I/O的时候出现问题
+    T    Stoped 暂停或跟踪状态
+    X    Dead 即将被撤销
+    Z    Zombie 僵尸进程，占用PID
+    W    Paging 内存交换
+    N    优先级低的内存
+    &lt;    优先级高的内存
+    s    进程的领导者
+    L    锁定状态
+    I    多线程状态
+    +    前台状态
+
+</code></pre>
+<hr>
+<h3 id="14pstree工具的使用">1.4pstree工具的使用</h3>
+<p>通过<code>pstree</code>可以直观的看到相同的进程数量，可以看到进程间的<strong>相关性</strong>。<br>
+<code>pstree</code>：<br>
+<img src="https://img-blog.csdnimg.cn/20191228174117155.png" alt="在这里插入图片描述" loading="lazy"><br>
+<code>pstree -up</code>：</p>
+<pre><code class="language-cpp">-p    同时列出每个process的PID
+-u    同时列出每个process的所属账号
+-A    各程序树之间以ASCII字元来链接
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20191228174505452.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<hr>
+<h3 id="2进程管理">2.进程管理</h3>
+<p>掌握如何去管理进程。</p>
+<hr>
+<h3 id="21kill命令的掌握与使用">2.1kill命令的掌握与使用</h3>
+<p>使用<code>kill</code>命令结束进程。<br>
+<code>kill [信号值] [进程PID]</code></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://ydPro-G.github.io/post/linux_-ri-zhi-xi-tong/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  Linux_日志系统
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://ydPro-G.github.io/post/linux_-jin-cheng-gai-nian/">
+                <h3 class="post-title">
+                  Linux_进程概念
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <script src="https://ydPro-G.github.io//media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

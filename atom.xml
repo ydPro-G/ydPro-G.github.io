@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T04:20:54.614Z</updated>
+    <updated>2020-03-17T04:22:43.997Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,329 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_日志系统]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-ri-zhi-xi-tong/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-ri-zhi-xi-tong/">
+        </link>
+        <updated>2020-03-17T04:21:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="目标">目标</h1>
+<p>对于日志系统有基础的认识，了解【常见的日志】【配置的日志】【轮替的日志】</p>
+<hr>
+<h2 id="学习目录">学习目录</h2>
+<p>1.常见的日志<br>
+2.配置的日志<br>
+3.转储的日志</p>
+<hr>
+<h3 id="1常见的日志">1.常见的日志</h3>
+<p>在Linux大部分发行版都内置使用rsyslog系统日志，常见的日志一般存放在/var/log中。<br>
+根据服务对象一般可以把日志分为两种：</p>
+<ul>
+<li>系统日志</li>
+<li>应用日志<br>
+系统日志主要存放系统内置程序或系统内核之类的日志信息。<br>
+应用日志主要是存放第三方应用所产生的日志。</li>
+</ul>
+<h4 id="常见的系统日志">常见的系统日志</h4>
+<table>
+<thead>
+<tr>
+<th>alternatives.log</th>
+<th>系统的一些更新替代信息记录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>apport.log</td>
+<td>应用程序崩溃信息记录</td>
+</tr>
+<tr>
+<td>apt/history.log</td>
+<td>使用apt-get安装卸载软件的信息记录</td>
+</tr>
+<tr>
+<td>apt/term.log</td>
+<td>使用apt-get时的具体操作</td>
+</tr>
+<tr>
+<td>auth.log</td>
+<td>登录认证的信息记录</td>
+</tr>
+<tr>
+<td>boot.log</td>
+<td>系统启动时的程序服务的日志信息</td>
+</tr>
+<tr>
+<td>btmp</td>
+<td>错误的信息记录</td>
+</tr>
+<tr>
+<td>Consolekit/history</td>
+<td>控制台的信息记录</td>
+</tr>
+<tr>
+<td>dist-upgrade</td>
+<td>dist-upgrade 这种更新方式的信息记录</td>
+</tr>
+<tr>
+<td>dmesg</td>
+<td>启动时，显示屏幕上内核缓冲信息,与硬件有关的信息</td>
+</tr>
+<tr>
+<td>dpkg.log</td>
+<td>dpkg 命令管理包的日志</td>
+</tr>
+<tr>
+<td>faillog</td>
+<td>用户登录失败详细信息记录</td>
+</tr>
+<tr>
+<td>fontconfig.log</td>
+<td>与字体配置有关的信息记录</td>
+</tr>
+<tr>
+<td>kern.log</td>
+<td>内核产生的信息记录，在自己修改内核时很有帮助</td>
+</tr>
+<tr>
+<td>lastlog</td>
+<td>用户的最近信息记录</td>
+</tr>
+<tr>
+<td>wtmp</td>
+<td>登录信息的记录，wtmp可以找出谁正在进入系统</td>
+</tr>
+<tr>
+<td>syslog</td>
+<td>系统信息记录</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2配置的日志">2.配置的日志</h3>
+<h4 id="日志信息是如何实现的">日志信息是如何实现的？</h4>
+<p>通过两种方式：</p>
+<ul>
+<li>一种由软件开发商自己来自定义日志格式然后指定输出日志位置</li>
+<li>一种方式就是Linux提供的日志服务程序，也就是rsyslog<br>
+rsyslog的全称是 rocket-fast system for log，它提供了高性能高安全功能和模块化设计。</li>
+</ul>
+<h4 id="rsyslog的配置文件有什么呢">rsyslog的配置文件有什么呢？</h4>
+<ul>
+<li>一个是/etc/rsyslog.conf<br>
+#配置环境，也就是加载模块，文件所属者</li>
+<li>一个是/etc/rsyslog.d/50-default.conf<br>
+#配置的Filter Conditions</li>
+</ul>
+<h4 id="rsyslog模块构成">rsyslog模块构成：</h4>
+<ul>
+<li>input</li>
+<li>output</li>
+<li>parser</li>
+<li>queue</li>
+</ul>
+<h5 id="模块流程通过input-module收集消息然后将收集的消息传送给parser-module通过分析模块的层层处理将真正需要的消息传送给output-module然后输出至日志文件">模块流程：通过input module收集消息，然后将收集的消息传送给parser module，通过分析模块的层层处理将真正需要的消息传送给output module，然后输出至日志文件。</h5>
+<h5 id="queue模块高并发模块">queue模块：高并发模块。</h5>
+<h4 id="etcrsyslogd50-defaultconf-配置文件">etc/rsyslog.d/50-default.conf 配置文件</h4>
+<p>这个文件中主要是配置的 Filter Conditions，也就是我们在流程图中所看见的 Parser &amp; Filter Engine,它的名字叫 Selectors 是过滤 syslog 的传统方法，他主要由两部分组成，facility 与 priority。</p>
+<h3 id="3转储的日志">3.转储的日志</h3>
+<p>出现原因：每天都有许多的日志信息被写入文件，为了节约空间logratate诞生了。</p>
+<h4 id="logratate日志文件管理工具-将旧的日志文件删除创建新的日志文件根据日志文件的大小或者日志文件的天数来切割日志管理日志这个过程叫做转储">logratate：日志文件管理工具。将旧的日志文件删除，创建新的日志文件，根据日志文件的大小或者日志文件的天数来切割日志，管理日志，这个过程叫做“转储”。</h4>
+<p>logratate是基于CRON来运行，其脚本是/etc/cron.daily/logratate,同时，可以在/etc/logratate中找到其配置文件。</p>
+<h4 id="logratate配置文件信息参数及含义">logratate配置文件信息参数及含义</h4>
+<p>see &quot;man logrotate&quot; for details  //可以查看帮助文档<br>
+rotate log files weekly<br>
+weekly                             //设置每周转储一次(daily、weekly、monthly当然可以使用这些参数每天、星期，月 )<br>
+keep 4 weeks worth of backlogs<br>
+rotate 4                           //最多转储4次<br>
+create new (empty) log files after rotating old ones<br>
+create                             //当转储后文件不存在时创建它<br>
+uncomment this if you want your log files compressed<br>
+compress                          //通过gzip压缩方式转储（nocompress可以不压缩）<br>
+RPM packages drop log rotation information into this directory<br>
+include /etc/logrotate.d           //其他日志文件的转储方式配置文件，包含在该目录下<br>
+no packages own wtmp -- we'll rotate them here<br>
+/var/log/wtmp {                    //设置/var/log/wtmp日志文件的转储参数<br>
+monthly                        //每月转储<br>
+create 0664 root utmp          //转储后文件不存在时创建它，文件所有者为root，所属组为utmp，对应的权限为0664<br>
+rotate 1                       //最多转储一次</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux_进程管理]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-jin-cheng-guan-li/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-jin-cheng-guan-li/">
+        </link>
+        <updated>2020-03-17T04:21:05.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="目的">目的</h1>
+<p>掌握linux提供的工具来进行进程的查看与控制（top,ps,pstree），掌握这些工具能让我们在某些进程出现异常的时候及时查看相关的指标，从而解决问题。</p>
+<hr>
+<h2 id="学习目录">学习目录</h2>
+<p><strong>1.查看进程的运行状态</strong><br>
+1.2top工具的使用<br>
+1.3ps工具的使用<br>
+1.4pstree工具的使用<br>
+<strong>2.进程管理</strong><br>
+2.1kill命令的掌握与使用<br>
+2.2进程的执行顺序查看与修改</p>
+<hr>
+<h3 id="1查看进程的运行状态">1.查看进程的运行状态</h3>
+<p>通过<code>top</code>实时查看进程的状态，以及系统的一些信息。<br>
+通过<code>ps</code>静态查看当前的进程信息。<br>
+通过	<code>pstree</code>查看当前活跃进程的树形结构。</p>
+<hr>
+<h3 id="12top工具的使用">1.2top工具的使用</h3>
+<p>查看一些进程的状态及系统信息。<br>
+输入命令<code>top</code>可以看到以下信息</p>
+<pre><code class="language-cpp">top命令是一个前台程序是可以交互的：
+q    退出程序
+I    切换显示平均负载和启动时间的信息
+P    更具cpu使用百分比大小进行排序
+M    根据驻留内存大小进行排序
+i    忽略闲置和僵死的进程，这是一个开关式的命令
+k    终止一个进程，系统提示输入PID及发送的信号值，一般终止的信号值是15，强制终止的信号值是9    
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20191228142817740.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<pre><code class="language-cpp">第一行：机器情况
+top    表示当前程序的名称
+11:24:08    表示当前的系统时间
+up 34 days,7:10    表示该机器已启动多长时间
+1 user    表示当前只有1个用户
+load average: 0.24 0.14 0.10    分别对应1,5,15分钟内cpu的平均负载
+                       #load average解释：对当前cpu工作量的度量，指运行队列的平均长度。
+                       #load 的4种显示（假设当前是单cpu，单内核）
+                       #1.load = 0    表示cpu没有任务
+                       #2.load &lt; 1    cpu任务不多，资源充足
+                       #3.load = 1    cpu任务已满，所有资源被使用，但还在能力范围之内
+                       #4.load &gt; 1    cpu任务已满，所有资源被使用，还有大量进程在请求）
+</code></pre>
+<pre><code class="language-cpp">第一行补充：
+  查看cpu信息
+cat /proc/cpuinfo | grep &quot;physical id&quot; | sort | uniq | wc -l    #查看物理cpu个数
+cat /proc/cpuinfo | grep &quot;physical id&quot; | grep &quot;0&quot; | wc -l    #每个cpu的核心数
+  现实运维中会将load的临界值设定为0.7，load超过0.7就需要关注它，超过5就需要加班解决问题了。
+  一般会先看15分钟的大趋势，再对比5分钟看看是否有下降。  
+</code></pre>
+<pre><code class="language-cpp">第二行：进程情况
+Tasks：31 total     进程总数
+1 running    1个正在运行的进程数
+30 sleeping    30个睡眠的进程数
+0 stopped    没有停止的进程数
+0 zombie    没有僵尸进程（不会占用PID）
+</code></pre>
+<pre><code class="language-cpp">第三行：cpu使用情况
+%Cpu(s): 3.8us    用户空间进程占用cpu百分比
+0.8% sy    内核空间运行占用cpu百分比
+0.0# ni    用户进程空间内改变过优先级的进程占用cpu百分比
+95.3 id    空闲cpu百分比
+0.0% wa    等待输入输出的cpu时间的百分比
+0.0% hi    硬中断占用cpu的百分比
+0.1 si    软中断占用cpu时间的百分比
+0.0% st    虚拟cpu等待实际cpu的时间的百分比
+</code></pre>
+<pre><code class="language-cpp">第四行：内存情况
+16425212 total    物理内存总量
+7387528 free    空闲内存总量
+1071400 used    使用的物理内存总量
+7966284 buff/cache    用作内核缓存的内存量
+</code></pre>
+<pre><code class="language-cpp">第五行：交换区情况
+969964 total    交换区总量
+933952 free    空闲的交换区总量
+1071400 used    使用的交换区总量
+14746088 cache Mem    缓冲的交换区总量
+</code></pre>
+<pre><code class="language-cpp">第六行：进程概览
+PID    进程id
+USER    该进程的所属用户
+PR    该进程执行的优先级priority值
+NI    该进程的nice值
+VIRT    该进程任务所使用的虚拟内存的总数
+RES    该进程所使用的物理内存总数 也称为驻留内存总数
+SHR    该进程共享内存的大小
+S     该进程的状态 S=sleep R=running Z=zombie
+%CPU    该进程cpu的利用率
+%MEM    该进程内存的利用率
+TIME+    该进程活跃的总时间
+COMMAND    该进程运行的名字
+</code></pre>
+<pre><code class="language-cpp">第六行补充
+  NICE值叫做静态优先级，是用户空间的一个优先级值。
+  其取值范围是-20——19,这个值越小，表示进程“优先级”越大，值越大，“优先级”越小。 0是默认的值
+  PR值表式Priority值，叫动态优先级。是进程在内核中实际的优先值。
+  进程优先值的取值范围是通过一个宏定义的，这个宏名称是MAX_PRIO,它的值为140。
+  取值范围是0——139,这个值越小优先级越高。这其中0——99是实时进程的值，100——139是给用户的值。
+</code></pre>
+<p><a href="https://wangchujiang.com/linux-command/c/top.html">参考网址</a></p>
+<hr>
+<h3 id="13ps工具的使用">1.3ps工具的使用</h3>
+<p>ps是常用的查看进程的工具之一。<br>
+常用命令：<code>ps -l</code> <code>ps -afxo</code> <code>ps aux</code>  <code>ps axjf</code><br>
+<code>ps -l</code>：显示自己这次登录的bash相关进程信息罗列出来</p>
+<p><code>ps -afxo</code>：自定义所需要的参数显示<br>
+例：<code>ps -afxo user,ppid,pid,pgid,command</code> <code>pgid</code>:进程组ID号</p>
+<p><code>ps aux</code>：罗列出所有进程信息，可搭配grep命令和正则表达式使用<code>ps aux | grep zsh</code><img src="https://img-blog.csdnimg.cn/20191228161057920.png" alt="在这里插入图片描述" loading="lazy"><br>
+<code>ps axjf</code>:查看时将连同部分的进程呈树状显示出来<br>
+<img src="https://img-blog.csdnimg.cn/2019122817172865.png" alt="在这里插入图片描述" loading="lazy"></p>
+<pre><code class="language-cpp">内容含义：
+F    进程的标志（process flags），当flags的值为1时，表示此子程序只是fork但没有执行exec，
+     为4时表示此程序使用root权限
+USER   进程的拥有者
+PID    进程的ID
+PPID    其父进程的ID
+SID    session的ID
+TPGID    前台进程组的ID
+%CPU    进程占用的cpu百分比
+%MEM    占用内存的百分比
+NI    进程的NICE值
+VSZ   进程使用虚拟内存大小
+RSS    驻留内存中页的大小
+TTY    终端ID
+S or STAT   进程状态
+WCHAN    正在等待的进程资源
+START    启动进程的时间
+TIME    进程消耗cpu的时间
+COMMAND    命令的名称和参数
+</code></pre>
+<pre><code class="language-cpp">补充：
+  TPGID显示-1的都是守护进程。
+  STAT表示进程状态，而进程状态又分为：
+    R    Running 运行中
+    S    Interruptible Sleep 等待调用
+    D    Uninterruptible Sleep 不可中断睡眠 无法使用kill命令杀掉D状态的进程，
+         一般是进程I/O的时候出现问题
+    T    Stoped 暂停或跟踪状态
+    X    Dead 即将被撤销
+    Z    Zombie 僵尸进程，占用PID
+    W    Paging 内存交换
+    N    优先级低的内存
+    &lt;    优先级高的内存
+    s    进程的领导者
+    L    锁定状态
+    I    多线程状态
+    +    前台状态
+
+</code></pre>
+<hr>
+<h3 id="14pstree工具的使用">1.4pstree工具的使用</h3>
+<p>通过<code>pstree</code>可以直观的看到相同的进程数量，可以看到进程间的<strong>相关性</strong>。<br>
+<code>pstree</code>：<br>
+<img src="https://img-blog.csdnimg.cn/20191228174117155.png" alt="在这里插入图片描述" loading="lazy"><br>
+<code>pstree -up</code>：</p>
+<pre><code class="language-cpp">-p    同时列出每个process的PID
+-u    同时列出每个process的所属账号
+-A    各程序树之间以ASCII字元来链接
+</code></pre>
+<figure data-type="image" tabindex="2"><img src="https://img-blog.csdnimg.cn/20191228174505452.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<hr>
+<h3 id="2进程管理">2.进程管理</h3>
+<p>掌握如何去管理进程。</p>
+<hr>
+<h3 id="21kill命令的掌握与使用">2.1kill命令的掌握与使用</h3>
+<p>使用<code>kill</code>命令结束进程。<br>
+<code>kill [信号值] [进程PID]</code></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_进程概念]]></title>
         <id>https://ydPro-G.github.io/post/linux_-jin-cheng-gai-nian/</id>
@@ -734,81 +1057,6 @@ cat -A file1 |  tr '$' '\r\n' &gt; file2; cat -A file2
 意义：使用<code>history</code>命令查看最近执行过的命令，<code>cut</code>去掉命令后面的参数，然后用<code>sort</code>排序，最后用<code>uniq</code>全文去重。<br>
 <code>uniq -dc</code>：输出重复过的行及重复次数<br>
 <code>uniq -D</code>：输出所有重复的行</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_管道]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-guan-dao/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-guan-dao/">
-        </link>
-        <updated>2020-03-17T04:10:45.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="学习目录">学习目录</h1>
-<p>管道以文件形式存在<br>
-<code>|</code></p>
-<h2 id="命令">命令</h2>
-<h3 id="1匿名管道">1.匿名管道：<code>|</code></h3>
-<p>特点：只能在父子进程中使用，父进程在产生子进程前必须打开一个管道文件，然后fork产生子进程，这样，子进程通过通过拷贝父进程的进程地址空间获得同一个管道文件的描述符，以达到使用同一个管道通信的目的。<br>
-<strong>优点</strong>：保证了传输数据的安全性。<br>
-<strong>缺点</strong>：降低了管道通用性。</p>
-<h3 id="2命名管道mkfifomknod">2.命名管道：<code>mkfifo</code>，<code>mknod</code></h3>
-<p>实例：<code>mkfifo [管道名]</code>：有了这个管道文件，系统就有了对一个管道的全局名称，于是任何两个不相关的进程都可以通过这个管道文件通信了。<br>
-<a href="https://zhuanlan.zhihu.com/p/58489873">参考文章</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_命令执行顺序]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-ming-ling-zhi-xing-shun-xu/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-ming-ling-zhi-xing-shun-xu/">
-        </link>
-        <updated>2020-03-17T04:08:53.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="前提">前提：</h1>
-<p>通常情况下，我们会在终端输入一条命令再输入下一条命令，可是如果我们想要一次性输入多个命令呢？</p>
-<h1 id="学习目录">学习目录</h1>
-<ol>
-<li>顺序执行多条命令</li>
-<li>有选择的执行命令<br>
-<code>&amp;&amp;</code><br>
-<code>||</code></li>
-</ol>
-<h2 id="命令及实例">命令及实例</h2>
-<h3 id="1顺序执行多条命令">1顺序执行多条命令</h3>
-<p><code>sudo apt-get update</code>:更新源<br>
-<code>sudo apt-get install [软件]</code>:下载具体的软件<br>
-<code>[运行软件]</code>：运行具体的软件</p>
-<p>如果想要<strong>一次性输完所有命令</strong>，让他们<strong>依次去执行</strong>可以用<code>;</code>来完成。</p>
-<pre><code>sudo apt-get update;sudo apt-get install [软件];[软件]
-</code></pre>
-<hr>
-<h1 id="2有选择的执行命令">2.有选择的执行命令</h1>
-<h1 id="学习目录-2">学习目录</h1>
-<p><code>&amp;&amp;</code><br>
-<code>||</code></p>
-<p>如果自动执行命令时，前面的命令不能执行，而后面的命令又依赖于上一条命令的结果，那么就会造成错误，这种情况下我们就<strong>需要有一个判断公式</strong>来判断上一条命令执行成功后再执行下一条命令，或者不成功我们又该做出其他的处理。</p>
-<h4 id="实例">实例：</h4>
-<pre><code>which cowsay&gt;/dev/null &amp;&amp; coway -f head-in ohch~
-</code></pre>
-<p>程序含义：<br>
-<code>whoch cowsay&gt;/dev/null</code>:查询<code>cowsay[文件]</code>是否在目录<code>/dev/null</code>中。<br>
-<code>&amp;&amp;</code>：用来实现选择性执行，如果前面的命令执行状态的结果返回0（即查询到）就执行后面，否则就不执行。<br>
-<code>cowsay -f head-in ohch~</code>：<code>cowsay</code>【牛】在<code>-f head-in</code>头部聊天框中显示ohch~</p>
-<h5 id="补充">补充</h5>
-<p><code>||</code>在这里就是与&amp;&amp;相反的控制效果，当上一条命令执行结果为≠0($?≠0)时则执行它后面的命令。</p>
-<h3 id="如何得知命令执行状态的返回结果是否为0或1">如何得知命令执行状态的返回结果是否为0或1？</h3>
-<p>先查询这个文件<br>
-<code>which [文件]</code><br>
-然后可以从<code>&amp;</code>环境变量中获取上一次命令的返回结果<br>
-<code>echo $?</code></p>
-<h3 id="也可以结合着和来实现一些操作">也可以结合着&amp;&amp;和||来实现一些操作</h3>
-<p>实例：<br>
-<code>which cowsay&gt;/dev/null &amp;&amp; echo &quot;exist || echo &quot;not exist&quot;</code><br>
-流程图<br>
-<img src="https://img-blog.csdnimg.cn/20191214112718759.png" alt="l流程图" loading="lazy"></p>
-<h4 id="将和反过来行不行">将<code>&amp;&amp;</code>和<code>||</code>反过来行不行？</h4>
-<p>将<code>&amp;&amp;</code>和<code>||</code>反过来结果不一样<br>
-<code>which cowsay&gt;/dev/null || echo &quot;exist &amp;&amp; echo &quot;not exist&quot;</code><br>
-输出<code>not exist</code> <code>exist</code>两个都输出<br>
-为什么？<br>
-<code>which cowsay&gt;/dev/null</code>的结果不是0,所以<code>||</code>后面的语句会被执行,而且,<code>||</code>之后的语句成功执行之后,<code>#?</code>的值因为成功执行了<code>||</code>后面的语句变成了0,所以<code>&amp;&amp;</code>后面的语句执行了。</p>
 ]]></content>
     </entry>
 </feed>

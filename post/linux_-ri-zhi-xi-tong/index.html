@@ -1,0 +1,384 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ydPro Blog</title>
+<meta name="description" content="Life & Work" />
+<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1584418960840">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://ydPro-G.github.io//styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://ydPro-G.github.io/">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1584418960840" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">ydPro Blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E7%9B%AE%E6%A0%87">目标</a>
+<ul>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
+<ul>
+<li><a href="#1%E5%B8%B8%E8%A7%81%E7%9A%84%E6%97%A5%E5%BF%97">1.常见的日志</a>
+<ul>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97">常见的系统日志</a></li>
+</ul>
+</li>
+<li><a href="#2%E9%85%8D%E7%BD%AE%E7%9A%84%E6%97%A5%E5%BF%97">2.配置的日志</a>
+<ul>
+<li><a href="#%E6%97%A5%E5%BF%97%E4%BF%A1%E6%81%AF%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84">日志信息是如何实现的？</a></li>
+<li><a href="#rsyslog%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9C%89%E4%BB%80%E4%B9%88%E5%91%A2">rsyslog的配置文件有什么呢？</a></li>
+<li><a href="#rsyslog%E6%A8%A1%E5%9D%97%E6%9E%84%E6%88%90">rsyslog模块构成：</a>
+<ul>
+<li><a href="#%E6%A8%A1%E5%9D%97%E6%B5%81%E7%A8%8B%E9%80%9A%E8%BF%87input-module%E6%94%B6%E9%9B%86%E6%B6%88%E6%81%AF%E7%84%B6%E5%90%8E%E5%B0%86%E6%94%B6%E9%9B%86%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%81%E7%BB%99parser-module%E9%80%9A%E8%BF%87%E5%88%86%E6%9E%90%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B1%82%E5%B1%82%E5%A4%84%E7%90%86%E5%B0%86%E7%9C%9F%E6%AD%A3%E9%9C%80%E8%A6%81%E7%9A%84%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%81%E7%BB%99output-module%E7%84%B6%E5%90%8E%E8%BE%93%E5%87%BA%E8%87%B3%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6">模块流程：通过input module收集消息，然后将收集的消息传送给parser module，通过分析模块的层层处理将真正需要的消息传送给output module，然后输出至日志文件。</a></li>
+<li><a href="#queue%E6%A8%A1%E5%9D%97%E9%AB%98%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9D%97">queue模块：高并发模块。</a></li>
+</ul>
+</li>
+<li><a href="#etcrsyslogd50-defaultconf-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">etc/rsyslog.d/50-default.conf 配置文件</a></li>
+</ul>
+</li>
+<li><a href="#3%E8%BD%AC%E5%82%A8%E7%9A%84%E6%97%A5%E5%BF%97">3.转储的日志</a>
+<ul>
+<li><a href="#logratate%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-%E5%B0%86%E6%97%A7%E7%9A%84%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F%E6%88%96%E8%80%85%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A9%E6%95%B0%E6%9D%A5%E5%88%87%E5%89%B2%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E6%97%A5%E5%BF%97%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E5%8F%AB%E5%81%9A%E8%BD%AC%E5%82%A8">logratate：日志文件管理工具。将旧的日志文件删除，创建新的日志文件，根据日志文件的大小或者日志文件的天数来切割日志，管理日志，这个过程叫做“转储”。</a></li>
+<li><a href="#logratate%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF%E5%8F%82%E6%95%B0%E5%8F%8A%E5%90%AB%E4%B9%89">logratate配置文件信息参数及含义</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.2s">
+          标签
+        </a>
+      
+    
+      
+        <a href="https://ydPro-G.github.io/post/friends" class="menu" style="animation-delay: 0.4s">
+          关于我
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://ydPro-G.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_日志系统</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-17 / 5 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h1 id="目标">目标</h1>
+<p>对于日志系统有基础的认识，了解【常见的日志】【配置的日志】【轮替的日志】</p>
+<hr>
+<h2 id="学习目录">学习目录</h2>
+<p>1.常见的日志<br>
+2.配置的日志<br>
+3.转储的日志</p>
+<hr>
+<h3 id="1常见的日志">1.常见的日志</h3>
+<p>在Linux大部分发行版都内置使用rsyslog系统日志，常见的日志一般存放在/var/log中。<br>
+根据服务对象一般可以把日志分为两种：</p>
+<ul>
+<li>系统日志</li>
+<li>应用日志<br>
+系统日志主要存放系统内置程序或系统内核之类的日志信息。<br>
+应用日志主要是存放第三方应用所产生的日志。</li>
+</ul>
+<h4 id="常见的系统日志">常见的系统日志</h4>
+<table>
+<thead>
+<tr>
+<th>alternatives.log</th>
+<th>系统的一些更新替代信息记录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>apport.log</td>
+<td>应用程序崩溃信息记录</td>
+</tr>
+<tr>
+<td>apt/history.log</td>
+<td>使用apt-get安装卸载软件的信息记录</td>
+</tr>
+<tr>
+<td>apt/term.log</td>
+<td>使用apt-get时的具体操作</td>
+</tr>
+<tr>
+<td>auth.log</td>
+<td>登录认证的信息记录</td>
+</tr>
+<tr>
+<td>boot.log</td>
+<td>系统启动时的程序服务的日志信息</td>
+</tr>
+<tr>
+<td>btmp</td>
+<td>错误的信息记录</td>
+</tr>
+<tr>
+<td>Consolekit/history</td>
+<td>控制台的信息记录</td>
+</tr>
+<tr>
+<td>dist-upgrade</td>
+<td>dist-upgrade 这种更新方式的信息记录</td>
+</tr>
+<tr>
+<td>dmesg</td>
+<td>启动时，显示屏幕上内核缓冲信息,与硬件有关的信息</td>
+</tr>
+<tr>
+<td>dpkg.log</td>
+<td>dpkg 命令管理包的日志</td>
+</tr>
+<tr>
+<td>faillog</td>
+<td>用户登录失败详细信息记录</td>
+</tr>
+<tr>
+<td>fontconfig.log</td>
+<td>与字体配置有关的信息记录</td>
+</tr>
+<tr>
+<td>kern.log</td>
+<td>内核产生的信息记录，在自己修改内核时很有帮助</td>
+</tr>
+<tr>
+<td>lastlog</td>
+<td>用户的最近信息记录</td>
+</tr>
+<tr>
+<td>wtmp</td>
+<td>登录信息的记录，wtmp可以找出谁正在进入系统</td>
+</tr>
+<tr>
+<td>syslog</td>
+<td>系统信息记录</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2配置的日志">2.配置的日志</h3>
+<h4 id="日志信息是如何实现的">日志信息是如何实现的？</h4>
+<p>通过两种方式：</p>
+<ul>
+<li>一种由软件开发商自己来自定义日志格式然后指定输出日志位置</li>
+<li>一种方式就是Linux提供的日志服务程序，也就是rsyslog<br>
+rsyslog的全称是 rocket-fast system for log，它提供了高性能高安全功能和模块化设计。</li>
+</ul>
+<h4 id="rsyslog的配置文件有什么呢">rsyslog的配置文件有什么呢？</h4>
+<ul>
+<li>一个是/etc/rsyslog.conf<br>
+#配置环境，也就是加载模块，文件所属者</li>
+<li>一个是/etc/rsyslog.d/50-default.conf<br>
+#配置的Filter Conditions</li>
+</ul>
+<h4 id="rsyslog模块构成">rsyslog模块构成：</h4>
+<ul>
+<li>input</li>
+<li>output</li>
+<li>parser</li>
+<li>queue</li>
+</ul>
+<h5 id="模块流程通过input-module收集消息然后将收集的消息传送给parser-module通过分析模块的层层处理将真正需要的消息传送给output-module然后输出至日志文件">模块流程：通过input module收集消息，然后将收集的消息传送给parser module，通过分析模块的层层处理将真正需要的消息传送给output module，然后输出至日志文件。</h5>
+<h5 id="queue模块高并发模块">queue模块：高并发模块。</h5>
+<h4 id="etcrsyslogd50-defaultconf-配置文件">etc/rsyslog.d/50-default.conf 配置文件</h4>
+<p>这个文件中主要是配置的 Filter Conditions，也就是我们在流程图中所看见的 Parser &amp; Filter Engine,它的名字叫 Selectors 是过滤 syslog 的传统方法，他主要由两部分组成，facility 与 priority。</p>
+<h3 id="3转储的日志">3.转储的日志</h3>
+<p>出现原因：每天都有许多的日志信息被写入文件，为了节约空间logratate诞生了。</p>
+<h4 id="logratate日志文件管理工具-将旧的日志文件删除创建新的日志文件根据日志文件的大小或者日志文件的天数来切割日志管理日志这个过程叫做转储">logratate：日志文件管理工具。将旧的日志文件删除，创建新的日志文件，根据日志文件的大小或者日志文件的天数来切割日志，管理日志，这个过程叫做“转储”。</h4>
+<p>logratate是基于CRON来运行，其脚本是/etc/cron.daily/logratate,同时，可以在/etc/logratate中找到其配置文件。</p>
+<h4 id="logratate配置文件信息参数及含义">logratate配置文件信息参数及含义</h4>
+<p>see &quot;man logrotate&quot; for details  //可以查看帮助文档<br>
+rotate log files weekly<br>
+weekly                             //设置每周转储一次(daily、weekly、monthly当然可以使用这些参数每天、星期，月 )<br>
+keep 4 weeks worth of backlogs<br>
+rotate 4                           //最多转储4次<br>
+create new (empty) log files after rotating old ones<br>
+create                             //当转储后文件不存在时创建它<br>
+uncomment this if you want your log files compressed<br>
+compress                          //通过gzip压缩方式转储（nocompress可以不压缩）<br>
+RPM packages drop log rotation information into this directory<br>
+include /etc/logrotate.d           //其他日志文件的转储方式配置文件，包含在该目录下<br>
+no packages own wtmp -- we'll rotate them here<br>
+/var/log/wtmp {                    //设置/var/log/wtmp日志文件的转储参数<br>
+monthly                        //每月转储<br>
+create 0664 root utmp          //转储后文件不存在时创建它，文件所有者为root，所属组为utmp，对应的权限为0664<br>
+rotate 1                       //最多转储一次</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+
+          
+            <div class="next-post">
+              <a href="https://ydPro-G.github.io/post/linux_-jin-cheng-guan-li/">
+                <h3 class="post-title">
+                  Linux_进程管理
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
+      </div>
+    </div>
+
+    <script src="https://ydPro-G.github.io//media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
