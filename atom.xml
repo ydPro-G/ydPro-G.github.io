@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T03:37:24.215Z</updated>
+    <updated>2020-03-17T03:39:24.341Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,73 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_压缩&打包&解压缩]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-ya-suo-andda-bao-andjie-ya-suo/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-ya-suo-andda-bao-andjie-ya-suo/">
+        </link>
+        <updated>2020-03-17T03:38:04.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="介绍">介绍</h1>
+<p>Linux上常用的压缩/解压工具，主要是zip，tar的使用。</p>
+<h1 id="学习目录">学习目录</h1>
+<ol>
+<li>zip命令</li>
+<li>tar命令</li>
+<li>压缩与解压常用组合</li>
+</ol>
+<h1 id="关键指令">关键指令</h1>
+<p>1.zip：</p>
+<ul>
+<li>打包命令：zip something.zip something (目录加 -r 参数)</li>
+<li>解包命令：unzip something.zip (指定解压路径加 -d 参数)</li>
+</ul>
+<hr>
+<p>2.tar</p>
+<ul>
+<li>打包命令：tar -cf something.tar something</li>
+<li>解压命令：tar -xf something.tar (指定路径 -C 参数)</li>
+</ul>
+<h2 id="1zip命令">1.zip命令</h2>
+<p>命令：<br>
+<code>zip -r -1 -l -e -q -o [文件名].zip [目录/文件]</code>：用zip命令打包文件夹<br>
+<code>zip -r -9 -l -e -q -o [文件名].zip [目录/文件]</code>：用zip命令打包文件夹<br>
+<code>-r</code>表示<strong>递归打包包含子目录的全部内容</strong>（打包目录要用<code>-r</code>）<br>
+<code>-q</code>表示<strong>静默打包</strong>，不向屏幕输出信息<br>
+<code>-o</code>表示输出文件，需要<strong>在后面紧跟打包输出的文件名</strong><br>
+<code>-1</code>表示压缩等级：<strong>最快压缩但体积最大</strong><br>
+<code>-9</code>表示压缩等级，<strong>体积最小但耗时最久</strong><br>
+<code>-e</code>：<strong>创建加密压缩包</strong><br>
+<code>-l</code>在linux中<strong>压缩</strong>可以在windows中<strong>解压</strong></p>
+<p><code>du -h [压缩文件名].zip</code>查看文件打包后大小</p>
+<h3 id="11使用unzip命令解压缩zip文件">1.1使用unzip命令解压缩zip文件</h3>
+<p>命令：<br>
+<code>unzip [文件名].zip</code>将文件解压到<strong>当前目录</strong><br>
+<code>unzip -q [文件名].zip -d [指定目录]</code>将文件<strong>解压到指定目录</strong><br>
+<code>unzip -l [文件名].zip</code><strong>不解压文件</strong>，只查看压缩包<strong>内容</strong>。<br>
+<code>-l</code>不解压文件直接查看<br>
+<strong>注意</strong>：<br>
+在linux上打开中文解压包需要使用<code>-O</code>参数指定编码类型。<br>
+<code>unzip -O GBK [中文名称文件].zip</code></p>
+<h2 id="2tar打包工具">2.tar打包工具</h2>
+<p>命令<br>
+<code>tar -cf [文件名].tar [目录]</code>不进行压缩只进行打包<br>
+<code>-c</code>：创建一个tar包文件<br>
+<code>-f</code>：指定创建文件名，文件名必须紧跟在<code>-f</code>参数后</p>
+<h3 id="21解包">2.1解包</h3>
+<p><code>tar -xf [文件名].tar -C [已存在目录]</code>：解包一个文件到指定路径的<strong>已存在</strong>的目录<br>
+<code>-x</code>解包文件参数<br>
+<code>-C</code>指定路径参数</p>
+<p><code>tar -tf [文件名].tar</code>:只查看不解包文件命令<br>
+<code>-t</code>：只查看不解包参数<br>
+<code>tar -cphf etc.tar /etc</code>:保留文件属性和跟随链接，有时候我们使用 tar 备份文件当你在其他主机还原时希望保留文件的属性（<code>-p</code> 参数）和备份链接指向的源文件而不是链接本身（<code>-h</code> 参数）</p>
+<h3 id="22创建不同的压缩格式文件">2.2创建不同的压缩格式文件</h3>
+<p>命令;<br>
+<code>tar -czf [文件名].tar.gz [目录/文件]</code>：用tar创建.gz压缩格式的文件。<br>
+<code>-z</code>：压缩文件格式：<em>.tar.gz<br>
+<code>-J</code>：压缩文件格式：</em>.tar.xz<br>
+<code>-j</code>：压缩文件格式：*tar.bz2</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_环境变量]]></title>
         <id>https://ydPro-G.github.io/post/linux_-huan-jing-bian-liang/</id>

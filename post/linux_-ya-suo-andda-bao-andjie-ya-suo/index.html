@@ -34,13 +34,19 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li>
+<li><a href="#%E4%BB%8B%E7%BB%8D">介绍</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a></li>
+<li><a href="#%E5%85%B3%E9%94%AE%E6%8C%87%E4%BB%A4">关键指令</a>
 <ul>
-<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
+<li><a href="#1zip%E5%91%BD%E4%BB%A4">1.zip命令</a>
 <ul>
-<li><a href="#1%E8%B7%AF%E5%BE%84%E8%BF%9B%E5%85%A5%E7%9B%AE%E5%BD%95%E7%9A%84%E8%B7%AF%E5%BE%84">1.路径：进入目录的路径</a></li>
-<li><a href="#2%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84">2.绝对路径</a></li>
-<li><a href="#3%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84">3.相对路径</a></li>
+<li><a href="#11%E4%BD%BF%E7%94%A8unzip%E5%91%BD%E4%BB%A4%E8%A7%A3%E5%8E%8B%E7%BC%A9zip%E6%96%87%E4%BB%B6">1.1使用unzip命令解压缩zip文件</a></li>
+</ul>
+</li>
+<li><a href="#2tar%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7">2.tar打包工具</a>
+<ul>
+<li><a href="#21%E8%A7%A3%E5%8C%85">2.1解包</a></li>
+<li><a href="#22%E5%88%9B%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E5%8E%8B%E7%BC%A9%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6">2.2创建不同的压缩格式文件</a></li>
 </ul>
 </li>
 </ul>
@@ -85,34 +91,71 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">Linux_目录路径</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_压缩&amp;打包&amp;解压缩</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-17 / 2 min read
+          2020-03-17 / 3 min read
         </div>
         
         <div class="post-content yue">
-          <h2 id="学习目录">学习目录</h2>
+          <h1 id="介绍">介绍</h1>
+<p>Linux上常用的压缩/解压工具，主要是zip，tar的使用。</p>
+<h1 id="学习目录">学习目录</h1>
 <ol>
-<li>路径</li>
-<li>绝对路径</li>
-<li>相对路径</li>
+<li>zip命令</li>
+<li>tar命令</li>
+<li>压缩与解压常用组合</li>
 </ol>
-<h3 id="1路径进入目录的路径">1.路径：进入目录的路径</h3>
+<h1 id="关键指令">关键指令</h1>
+<p>1.zip：</p>
+<ul>
+<li>打包命令：zip something.zip something (目录加 -r 参数)</li>
+<li>解包命令：unzip something.zip (指定解压路径加 -d 参数)</li>
+</ul>
+<hr>
+<p>2.tar</p>
+<ul>
+<li>打包命令：tar -cf something.tar something</li>
+<li>解压命令：tar -xf something.tar (指定路径 -C 参数)</li>
+</ul>
+<h2 id="1zip命令">1.zip命令</h2>
 <p>命令：<br>
-<code>cd ..</code>：进入上一级目录<br>
-<code>cd ~</code>：进入你的home目录<br>
-<code>cd /home/你的用户名</code>：进入你的home目录<br>
-<code>pwd</code>：获取当前路径</p>
-<h3 id="2绝对路径">2.绝对路径</h3>
+<code>zip -r -1 -l -e -q -o [文件名].zip [目录/文件]</code>：用zip命令打包文件夹<br>
+<code>zip -r -9 -l -e -q -o [文件名].zip [目录/文件]</code>：用zip命令打包文件夹<br>
+<code>-r</code>表示<strong>递归打包包含子目录的全部内容</strong>（打包目录要用<code>-r</code>）<br>
+<code>-q</code>表示<strong>静默打包</strong>，不向屏幕输出信息<br>
+<code>-o</code>表示输出文件，需要<strong>在后面紧跟打包输出的文件名</strong><br>
+<code>-1</code>表示压缩等级：<strong>最快压缩但体积最大</strong><br>
+<code>-9</code>表示压缩等级，<strong>体积最小但耗时最久</strong><br>
+<code>-e</code>：<strong>创建加密压缩包</strong><br>
+<code>-l</code>在linux中<strong>压缩</strong>可以在windows中<strong>解压</strong></p>
+<p><code>du -h [压缩文件名].zip</code>查看文件打包后大小</p>
+<h3 id="11使用unzip命令解压缩zip文件">1.1使用unzip命令解压缩zip文件</h3>
 <p>命令：<br>
-<code>cd 用户/用户名/系统文件</code>：绝对路径是指文件在硬盘上真正存在的路径。<br>
-事实上，在网页编程时，很少会使用绝对路径，如果使用“E:\book\网页布\代码\第2章\bg.jpg”来指定背景图片的位置，在自己的计算机上 浏览可能会一切正常，但是上传到Web服务器上浏览就很有可能不会显示图片了。<br>
-因为上传到Web服务器上时，可能整个网站并没有放在Web服务器的E盘， 有可能是D盘或H盘。即使放在Web服务器的E盘里，Web服务器的E盘里也不一定会存在“E:\book\网页布局\代码\第2章”这个目录，因此在浏 览网页时是不会显示图片的。</p>
-<h3 id="3相对路径">3.相对路径</h3>
-<p>命令：<br>
-<code>cd ../../用户/用户名/系统文件</code>：为了避免这种隋况发生，通常在网页里指定文件时，都会选择使用相对路径。<br>
-所谓相对路径，就是相对于自己的目标文件位置。<br>
-例如上面的例子，“s1.htm” 文件里引用了“bg.jpg”图片，由于“bg.jpg”图片相对于“s1.htm”来说，是在同一个目录的，那么要在“s1.htm”文件里使用以下代 码后，只要这两个文件的相对位置没有变(也就是说还是在同一个目录内)，那么无论上传到Web服务器的哪个位置，在浏览器里都能正确地显示图片。</p>
+<code>unzip [文件名].zip</code>将文件解压到<strong>当前目录</strong><br>
+<code>unzip -q [文件名].zip -d [指定目录]</code>将文件<strong>解压到指定目录</strong><br>
+<code>unzip -l [文件名].zip</code><strong>不解压文件</strong>，只查看压缩包<strong>内容</strong>。<br>
+<code>-l</code>不解压文件直接查看<br>
+<strong>注意</strong>：<br>
+在linux上打开中文解压包需要使用<code>-O</code>参数指定编码类型。<br>
+<code>unzip -O GBK [中文名称文件].zip</code></p>
+<h2 id="2tar打包工具">2.tar打包工具</h2>
+<p>命令<br>
+<code>tar -cf [文件名].tar [目录]</code>不进行压缩只进行打包<br>
+<code>-c</code>：创建一个tar包文件<br>
+<code>-f</code>：指定创建文件名，文件名必须紧跟在<code>-f</code>参数后</p>
+<h3 id="21解包">2.1解包</h3>
+<p><code>tar -xf [文件名].tar -C [已存在目录]</code>：解包一个文件到指定路径的<strong>已存在</strong>的目录<br>
+<code>-x</code>解包文件参数<br>
+<code>-C</code>指定路径参数</p>
+<p><code>tar -tf [文件名].tar</code>:只查看不解包文件命令<br>
+<code>-t</code>：只查看不解包参数<br>
+<code>tar -cphf etc.tar /etc</code>:保留文件属性和跟随链接，有时候我们使用 tar 备份文件当你在其他主机还原时希望保留文件的属性（<code>-p</code> 参数）和备份链接指向的源文件而不是链接本身（<code>-h</code> 参数）</p>
+<h3 id="22创建不同的压缩格式文件">2.2创建不同的压缩格式文件</h3>
+<p>命令;<br>
+<code>tar -czf [文件名].tar.gz [目录/文件]</code>：用tar创建.gz压缩格式的文件。<br>
+<code>-z</code>：压缩文件格式：<em>.tar.gz<br>
+<code>-J</code>：压缩文件格式：</em>.tar.xz<br>
+<code>-j</code>：压缩文件格式：*tar.bz2</p>
 
         </div>
 
@@ -125,21 +168,12 @@
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://ydPro-G.github.io/post/linux_-wen-jian-xi-tong/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  Linux_文件系统
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://ydPro-G.github.io/post/friends/">
+              <a href="https://ydPro-G.github.io/post/linux_-huan-jing-bian-liang/">
                 <h3 class="post-title">
-                  My Blogs
+                  Linux_环境变量
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
