@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T02:57:16.449Z</updated>
+    <updated>2020-03-17T02:58:45.605Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -61,6 +61,25 @@
 <h2 id="详解">详解：</h2>
 <p><img src="https://ydPro-G.github.io//post-images/1583994819019.jpg" alt="" loading="lazy"><br>
 <img src="https://ydPro-G.github.io//post-images/1583994825917.jpg" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Blog]]></title>
+        <id>https://ydPro-G.github.io/post/friends/</id>
+        <link href="https://ydPro-G.github.io/post/friends/">
+        </link>
+        <updated>2019-01-25T11:09:48.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+</blockquote>
+<h2 id="关于本站">🏠 关于本站</h2>
+<p>记录学习 &amp; 编程 &amp; 黑科技🕶</p>
+<h2 id="博主是谁">👨‍💻 博主是谁</h2>
+<p>致力于学习技术 &amp; 提高收入的社畜😇</p>
+<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
+<p>读书，编程，跑步，做视频，睡觉🙌</p>
+<h2 id="联系我呀">📬 联系我呀</h2>
+<p>15806906223@163.com📧</p>
 ]]></content>
     </entry>
 </feed>
