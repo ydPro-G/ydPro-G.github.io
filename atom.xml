@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-03-17T03:43:02.570Z</updated>
+    <updated>2020-03-17T03:47:01.695Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,35 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux_例行性工作排程]]></title>
+        <id>https://ydPro-G.github.io/post/linux_-li-xing-xing-gong-zuo-pai-cheng/</id>
+        <link href="https://ydPro-G.github.io/post/linux_-li-xing-xing-gong-zuo-pai-cheng/">
+        </link>
+        <updated>2020-03-17T03:43:57.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="什么是例行性工作排程">什么是例行性工作排程？</h1>
+<p>1.有的工作是例行性的，比如吃饭<br>
+2.有的工作是临时发生的，比如请别人吃饭<br>
+<code>at</code>：at是个可以处理仅执行一次就结束排程的指令，不过要执行at时，必须要有atd这个服务的支援才行。<br>
+<code>crontab</code>：crontab这个指令所设定的工作将会循环的一直进行下去！可循环的时间为分钟、小时、每周、每月或每年等。crontab除了可以使用指令执行外，亦可编辑/etc/crontab来支援。</p>
+<h1 id="学习目录">学习目录</h1>
+<p><code>crontab</code>的使用</p>
+<h2 id="语法">语法</h2>
+<p><code>corntab</code>(选项)（参数）<br>
+<img src="https://ydPro-G.github.io//post-images/1584416805307.png" alt="" loading="lazy"></p>
+<h2 id="选项">选项</h2>
+<pre><code>-e：编辑该用户的计时器设置；
+-l：列出该用户的计时器设置；
+-r：删除该用户的计时器设置；
+-u&lt;用户名称&gt;：指定要设定计时器的用户名称。
+</code></pre>
+<h2 id="命令">命令</h2>
+<p><code>crontab -e</code>:编辑用户的计时器设置</p>
+<h2 id="系统级别的定时任务">系统级别的定时任务</h2>
+<p>用<code>sudo</code>的权限编辑<code>/etc/crontab</code></p>
+<p>参考：<a href="http://linux.vbird.org/linux_basic/0430cron.php">Linux例行性工作排程——Linux鸟哥的私房菜</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_磁盘管理]]></title>
         <id>https://ydPro-G.github.io/post/linux_-ci-pan-guan-li/</id>

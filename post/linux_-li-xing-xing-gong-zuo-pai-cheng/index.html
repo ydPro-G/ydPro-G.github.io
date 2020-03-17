@@ -34,12 +34,13 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%9B%AE%E5%BD%95">常用命令目录</a>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BE%8B%E8%A1%8C%E6%80%A7%E5%B7%A5%E4%BD%9C%E6%8E%92%E7%A8%8B">什么是例行性工作排程？</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95">学习目录</a>
 <ul>
-<li><a href="#whereis-%E7%AE%80%E5%8D%95%E5%BF%AB%E9%80%9F">whereis 【简单快速】</a></li>
-<li><a href="#locate-%E5%BF%AB%E8%80%8C%E5%85%A8">locate 【快而全】</a></li>
-<li><a href="#which-%E5%B0%8F%E8%80%8C%E7%B2%BE">which 【小而精】</a></li>
-<li><a href="#find%E7%B2%BE%E8%80%8C%E7%BB%86">find【精而细】</a></li>
+<li><a href="#%E8%AF%AD%E6%B3%95">语法</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项</a></li>
+<li><a href="#%E5%91%BD%E4%BB%A4">命令</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">系统级别的定时任务</a></li>
 </ul>
 </li>
 </ul>
@@ -82,72 +83,47 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">Linux_搜索命令</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_例行性工作排程</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-17 / 2 min read
+          2020-03-17 / 1 min read
         </div>
         
         <div class="post-content yue">
-          <h1 id="常用命令目录">常用命令目录</h1>
-<p><code>whereis</code><br>
-<code>locat</code><br>
-<code>which</code><br>
-<code>find</code></p>
-<h2 id="whereis-简单快速">whereis 【简单快速】</h2>
-<p><code>whereis [文件名]</code>：直接<strong>从数据库中查询</strong>。whereis 只能<strong>搜索二进制文件(-b)</strong>，man <strong>帮助文件(-m)<strong>和</strong>源代码文件(-s)</strong>。</p>
-<h2 id="locate-快而全">locate 【快而全】</h2>
-<p><code>locate /[目录]/[文件]</code>：用来查找<strong>指定目录</strong>下的<strong>不同文件类型</strong>。<br>
-提示;<code>locate</code>通过数据库查找，不过这个数据库也<strong>不是实时更新</strong>的，系统会<strong>使用定时任务每天自动执行 updatedb 命令更新一次</strong>，所以有时候你刚添加的文件，它可能会找不到，需要<strong>手动执行一次 updatedb 命令.</strong><br>
-<code>sudo apt-get update</code><br>
-<code>sudo apt-get install locate</code><br>
-<code>locate /[目录]/[文件]</code></p>
-<p>查找<code>/usr/share/</code>下的所有.jpg文件<br>
-<code>locate /usr/share/\*.jpg</code><br>
-注意：<strong>添加 * 号前面的反斜杠转义</strong></p>
-<h2 id="which-小而精">which 【小而精】</h2>
-<p><code>which</code>：是 <strong>Shell 内建的一个命令</strong>，我们通常使用 which 来<strong>确定是否安装了某个指定的软件</strong>，因为它<strong>只从 PATH 环境变量指定的路径中去搜索命令。</strong><br>
-<code>which [软件]</code></p>
-<h2 id="find精而细">find【精而细】</h2>
-<p><code>find</code>:可以通过文件类型、文件名进行查找而且可以根据文件的属性（如文件的时间戳，文件的权限等）进行搜索.<br>
-用法：<code>sudo find [目录] [命令] [文件名]</code></p>
-<p>查找<code>/etc/</code>目录下的名字叫做interfaces文件<br>
-<code>sudo find /etc/ -name interfaces</code><br>
-参数：<br>
-<code>-atime</code>：最后访问时间<br>
-<code>-ctime</code>:最后修改文件内容的时间<br>
-<code>-mtime</code>:最后修改文件属性的时间</p>
-<p>列出 home 目录中，当天（24 小时之内）有改动的文件<br>
-<code>find ~ -mtime 0</code></p>
-<p>列出用户home目录下比 Code 文件夹新的文件<br>
-<code>find ~ -newer /home/shiyanlou/Code</code><br>
-<code>-newer file</code>：file 为一个已存在的文件，列出比 file 还要新的文件名</p>
+          <h1 id="什么是例行性工作排程">什么是例行性工作排程？</h1>
+<p>1.有的工作是例行性的，比如吃饭<br>
+2.有的工作是临时发生的，比如请别人吃饭<br>
+<code>at</code>：at是个可以处理仅执行一次就结束排程的指令，不过要执行at时，必须要有atd这个服务的支援才行。<br>
+<code>crontab</code>：crontab这个指令所设定的工作将会循环的一直进行下去！可循环的时间为分钟、小时、每周、每月或每年等。crontab除了可以使用指令执行外，亦可编辑/etc/crontab来支援。</p>
+<h1 id="学习目录">学习目录</h1>
+<p><code>crontab</code>的使用</p>
+<h2 id="语法">语法</h2>
+<p><code>corntab</code>(选项)（参数）<br>
+<img src="https://ydPro-G.github.io//post-images/1584416805307.png" alt="" loading="lazy"></p>
+<h2 id="选项">选项</h2>
+<pre><code>-e：编辑该用户的计时器设置；
+-l：列出该用户的计时器设置；
+-r：删除该用户的计时器设置；
+-u&lt;用户名称&gt;：指定要设定计时器的用户名称。
+</code></pre>
+<h2 id="命令">命令</h2>
+<p><code>crontab -e</code>:编辑用户的计时器设置</p>
+<h2 id="系统级别的定时任务">系统级别的定时任务</h2>
+<p>用<code>sudo</code>的权限编辑<code>/etc/crontab</code></p>
+<p>参考：<a href="http://linux.vbird.org/linux_basic/0430cron.php">Linux例行性工作排程——Linux鸟哥的私房菜</a></p>
 
         </div>
 
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
-            <span class="flex-auto">Linux</span>
-          </a>
         
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://ydPro-G.github.io/post/linux_-huan-jing-bian-liang/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  Linux_环境变量
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://ydPro-G.github.io/post/tcpip-xie-yi/">
+              <a href="https://ydPro-G.github.io/post/linux_-ci-pan-guan-li/">
                 <h3 class="post-title">
-                  TCP/IP协议
+                  Linux_磁盘管理
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
