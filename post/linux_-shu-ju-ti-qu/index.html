@@ -1,96 +1,95 @@
-
-<!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
-
-<title>Linux_数据提取 | ydPro Blog</title>
-<meta name="description" content="Life &amp; Work">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1588858188481">
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ydPro Blog</title>
+<meta name="description" content="Life & Work" />
+<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1588858249301">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
 <link rel="stylesheet" href="https://ydPro-G.github.io//styles/main.css">
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://ydPro-G.github.io/">
-        <img class="avatar" src="https://ydPro-G.github.io//images/avatar.png?v=1588858188481" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://ydPro-G.github.io/">
-        <h1 class="site-title">ydPro Blog</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://ydPro-G.github.io/">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1588858249301" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">ydPro Blog</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E6%8F%90">前提</a></li>
+<li><a href="#%E7%9B%AE%E6%A0%87">目标</a></li>
+<li><a href="#%E5%AE%9E%E4%BE%8B">实例</a><br>
+*<br>
+*<br>
+*<br>
+* <a href="#%E6%89%A9%E5%B1%95%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%B8%8D%E5%90%8C%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%85%E4%BB%85%E6%98%AF%E5%85%83%E5%AD%97%E7%AC%A6%E4%B8%8D%E5%90%8C">扩展正则表达式与正则表达式的不同：它们之间的区别仅仅是元字符不同。</a><br>
+* <a href="#%E5%9F%BA%E7%A1%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fbre%E5%85%83%E5%AD%97%E7%AC%A6">基础正则表达式（BRE）元字符：<code>^</code>,<code>$</code>,<code>.</code>,<code>[]</code>,<code>*</code>。</a><br>
+* <a href="#%E6%89%A9%E5%B1%95%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8Fere%E5%85%83%E5%AD%97%E7%AC%A6%E6%B7%BB%E5%8A%A0%E4%BA%86">扩展正则表达式（ERE）元字符:添加了<code>+</code>，<code>?</code>,<code>|</code>,<code>()</code>,<code>{}</code>。</a></li>
+</ul>
+
+          </div>
+        </div>
+      
     </div>
   </div>
 </div>
 
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
       
-        
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
       
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
+    
       
-        
-          <a href="https://ydPro-G.github.io/post/friends" class="menu purple-link">
-            关于我
-          </a>
-        
+        <a href="/tags" class="menu" style="animation-delay: 0.2s">
+          标签
+        </a>
       
-    </div>
+    
+      
+        <a href="https://ydPro-G.github.io/post/friends" class="menu" style="animation-delay: 0.4s">
+          关于我
+        </a>
+      
+    
   </div>
-</transition>
-
-
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">Linux_数据提取</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-03-17</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
-                    Linux
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <h1 id="前提">前提</h1>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://ydPro-G.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">Linux_数据提取</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-17 / 2 min read
+        </div>
+        
+        <div class="post-content yue">
+          <h1 id="前提">前提</h1>
 <p>有时候我们需要从文件里提取数据，当然也可能是老板甩过来一个文件让你把里面的电话和邮箱全部提取，这时候一条一条的复制粘贴总是太麻烦，这个时候我们就需要利用一些命令和正则表达式在linux系统中自动提取出来。</p>
 <hr>
 <h1 id="目标">目标</h1>
@@ -114,57 +113,141 @@ grep -E '*@*\.com' /home/root/data2 &gt; /home/root/mail    # -E:扩展正则表
 <h5 id="扩展正则表达式ere元字符添加了">扩展正则表达式（ERE）元字符:添加了<code>+</code>，<code>?</code>,<code>|</code>,<code>()</code>,<code>{}</code>。</h5>
 <p>元字符作用详细信息：<a href="https://www.cnblogs.com/linyfeng/p/7353693.html">参考网址</a></p>
 
-          </div>
         </div>
 
         
-          <div class="next-post">
-            <a class="purple-link" href="https://ydPro-G.github.io/post/linux_-zheng-ze-biao-da-shi/">
-              <h3 class="post-title">
-                下一篇：Linux_正则表达式
-              </h3>
-            </a>
-          </div>
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://ydPro-G.github.io/tag/c-x4QDjnk/">
+            <span class="flex-auto">Linux</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
           
+            <div class="prev-post">
+              <a href="https://ydPro-G.github.io/post/linux_-ruan-jian-an-zhuang/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  Linux_软件安装
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://ydPro-G.github.io/post/linux_-zheng-ze-biao-da-shi/">
+                <h3 class="post-title">
+                  Linux_正则表达式
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+
       </div>
-
-      
-
-      <div class="site-footer">
-  <div class="slogan">Life & Work</div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ydPro-G.github.io//atom.xml" target="_blank">RSS</a>
-</div>
-
-
     </div>
-    <script type="application/javascript">
 
-hljs.initHighlightingOnLoad()
+    <script src="https://ydPro-G.github.io//media/prism.js"></script>  
+<script>
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
 </script>
-
-
-
-
+  
   </body>
 </html>
