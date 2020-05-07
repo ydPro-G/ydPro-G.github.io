@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-04-28T13:03:36.539Z</updated>
+    <updated>2020-05-07T13:16:36.329Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,30 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Python_配置Python编程环境]]></title>
+        <id>https://ydPro-G.github.io/post/python_-ji-chu-yu-fa/</id>
+        <link href="https://ydPro-G.github.io/post/python_-ji-chu-yu-fa/">
+        </link>
+        <updated>2020-05-07T11:34:49.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>提示：基于Python3的基础语法</strong></p>
+<h1 id="1搭建python编程环境">1.搭建Python编程环境</h1>
+<ol>
+<li>安装Python</li>
+</ol>
+<ul>
+<li>[下载链接] (http://python.org/downloads/)</li>
+<li>打开页面后将会看到下载选项，单击下载Python3。</li>
+<li>选中复选框Add Python to PATH，配置Python环境变量。</li>
+<li>打开命令窗口，输入python，如果出现Python提示符就说明Python已经安装成功。👌</li>
+</ul>
+<ol start="2">
+<li>配置编辑器<br>
+我使用的是Visual Studio Code编辑器，下载链接在这里👉<a href="https://code.visualstudio.com/">链接</a><br>
+打开后找到<strong>扩展</strong>搜索Python下载即可。</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Linux_日志系统]]></title>
         <id>https://ydPro-G.github.io/post/linux_-ri-zhi-xi-tong/</id>
@@ -979,84 +1003,6 @@ cat -A file1 |  tr '$' '\r\n' &gt; file2; cat -A file2
 <pre><code class="language-bash">cat -A file2 | tr -d '^M$' &gt; file3; cat -A file3
 </code></pre>
 <p>将dos文本转换成unix文本</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_常用命令]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-chang-yong-ming-ling/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-chang-yong-ming-ling/">
-        </link>
-        <updated>2020-03-17T04:13:03.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="介绍">介绍</h1>
-<p>学习linux系统上的常用命令。</p>
-<h1 id="学习目录">学习目录</h1>
-<ol>
-<li>cut</li>
-<li>grep</li>
-<li>wc</li>
-<li>sort</li>
-<li>uniq</li>
-</ol>
-<h2 id="1cut命令">1.cut命令</h2>
-<p>连接文件并打印到标准输出设备上</p>
-<p>实例： <code>cut /etc/passwd -d '：' -f 1,6</code>:<br>
-意义： 打印<code>/etc/passwd</code>文件中以<code>:</code>为分隔符的第1字段和第6字段。</p>
-<p>实例：打印<code>etc/passwd</code>中指定的字段<br>
-<code>cut /etc/passwd -c -7</code>:打印前七个字段（包含第七个）<br>
-<code>cut /etc/passwd -c 7-</code>:打印前七个字段之后的字段（包含第七个）<br>
-<code>cut /etc/passwd -c 7</code>:打印第七个字段<br>
-<code>cut /etc/passwd -c 1-7</code>:打印1-7字段（包含第七个）<br>
-<a href="https://wangchujiang.com/linux-command/c/cut.html">参考文章</a></p>
-<hr>
-<h3 id="2grep命令">2.grep命令</h3>
-<p>强大的文本搜索工具，能够使用正则表达式搜索文本，并把匹配的行打印出来。用于过滤搜索的特定字符。<br>
-命令的一般形式：<code>grep [命令选项] &quot;[文件&quot;] 目录</code></p>
-<p>实例：<code>grep -rnI &quot;vim&quot; ~（目录）</code>:<br>
-意义：搜索当前目录下所有带有<code>vim</code> 的文本文件。并显示出现在文本中的行号。<br>
-<code>r</code>:表示递归搜索子目录中的文件<br>
-<code>n</code>：表示打印匹配行项行号<br>
-<code>I</code>：表示忽略二进制文件</p>
-<p>实例：<code>export | grep “.*a$”</code>:<br>
-意义：查看环境变量中以<code>“a”</code>结尾的字符串<br>
-<code>export</code>：为shell变量或函数设置导出属性<br>
-<code>|</code>:管道<br>
-<code>*</code>:所有<br>
-<code>$</code>:表示一行的末尾，去掉就是搜索所有<br>
-<a href="https://wangchujiang.com/linux-command/c/grep.html#!kw=export">参考文章</a></p>
-<hr>
-<h3 id="3wc命令">3.wc命令</h3>
-<p>统计文件的字节数、字数、行数。</p>
-<p>实例：<br>
-<code>wc /etc/passwd</code>：输出<code>passwd</code>文件统计信息<br>
-<code>wc -l /etc/passwd</code>:输出<code>passwd</code>文件行数<br>
-<code>wc -w /etc/passwd</code>:输出<code>passwd</code>文件单词数<br>
-<code>wc -c /etc/passwd</code>:输出<code>passwd</code>文件字节数<br>
-<code>wc -m /etc/passwd</code>:输出<code>passwd</code>文件字符数<br>
-<code>wc -L /etc/passwd</code>:输出<code>passwd</code>文件最长行字节数</p>
-<p>结合<strong>管道</strong>文件实际运用：<br>
-任务：统计<code>/etc</code>目录下面所有的目录数<br>
-<code>ls -dl /etc/*/ | wc -l</code><br>
-<a href="https://wangchujiang.com/linux-command/c/wc.html">参考文章</a></p>
-<hr>
-<h3 id="4sort命令">4.sort命令</h3>
-<p>将文件进行排序并输出。</p>
-<p><code>cat /etc/passwd | sort</code>:默认字典排序<br>
-<code>cat /etc/passwd | sort -r</code>:反转排序</p>
-<pre><code>cat /etc/passwd | sort -t `:` -k 3 -n
-</code></pre>
-<p>按特定字段排序<br>
-<code>-t</code>：指定字段的分隔符<br>
-<code>-k 3</code>：用于对哪一个字段进行排序<br>
-<code>-n</code>：按照数字排序就要加上<code>-n</code> 参数<br>
-<a href="https://wangchujiang.com/linux-command/c/sort.html">参考文章</a></p>
-<hr>
-<h3 id="uniq命令">uniq命令</h3>
-<p>报告或忽略文件中的重复行</p>
-<p>实例：<br>
-<code>history | cut -c 8- | cut -d ' ' -f 1 | sort | uniq</code><br>
-意义：使用<code>history</code>命令查看最近执行过的命令，<code>cut</code>去掉命令后面的参数，然后用<code>sort</code>排序，最后用<code>uniq</code>全文去重。<br>
-<code>uniq -dc</code>：输出重复过的行及重复次数<br>
-<code>uniq -D</code>：输出所有重复的行</p>
 ]]></content>
     </entry>
 </feed>
