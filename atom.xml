@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-05-08T13:08:54.404Z</updated>
+    <updated>2020-05-08T13:20:39.829Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -75,67 +75,63 @@ print(&quot;\tPython&quot;)
 <li><code>\t</code>：制表符</li>
 </ul>
 <ol start="5">
-<li>删除空白<pre><code></code></pre>
-</li>
+<li>删除空白</li>
 </ol>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>favorite_language = ' python '<br>
-favorite_language.rstrip()<br>
-' python'</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>favorite_language.lstrip()<br>
-'python '</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>favorite_language.strip()<br>
-'python'</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>+ `.rstrip()`：删除开头空白
-+ `lstrip()`：删除末尾空白
-+ `strip()`：删除两端空白
-________
-# 3.数字
-1. 整数：
-+ 2 + 3
-+ 3 - 2
-+ 2 * 3
-+ 3 / 2
-+ 2 ** 3：使用两个乘号表示乘方运算
-2. 浮点数
-+ 0.1+ 0.1
-+ 0.2 + 0.2
-+ 2 * 0.1
-+ 2 * 0.2
-+ 其结果包含的小数位数可能是不确定的。
-
-3. 使用函数str()避免类型错误
+<pre><code>favorite_language = ' python '
+ favorite_language.rstrip()
+' python'
+ favorite_language.lstrip()
+'python '
+ favorite_language.strip()
+'python' 
 </code></pre>
-<p>age = 18<br>
-message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;<br>
-print(message)</p>
-<pre><code>+ 使用函数str()将值为整数的变量用作字符串(将非字符串值表示为字符串)🤙
-4. 注释
+<ul>
+<li><code>.rstrip()</code>：删除末尾空白</li>
+<li><code>lstrip()</code>：删除开头空白</li>
+<li><code>strip()</code>：删除两端空白</li>
+</ul>
+<hr>
+<h1 id="3数字">3.数字</h1>
+<ol>
+<li>整数：</li>
+</ol>
+<ul>
+<li>2 + 3</li>
+<li>3 - 2</li>
+<li>2 * 3</li>
+<li>3 / 2</li>
+<li>2 ** 3：使用两个乘号表示乘方运算</li>
+</ul>
+<ol start="2">
+<li>浮点数</li>
+</ol>
+<ul>
+<li>0.1+ 0.1</li>
+<li>0.2 + 0.2</li>
+<li>2 * 0.1</li>
+<li>2 * 0.2</li>
+<li>其结果包含的小数位数可能是不确定的。</li>
+</ul>
+<ol start="3">
+<li>使用函数str()避免类型错误</li>
+</ol>
+<pre><code>age = 18
+message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;
+print(message) 
 </code></pre>
-<h1 id="打招呼">打招呼</h1>
-<p>print(&quot;Hello!&quot;)</p>
-<pre><code>+ 注释使用`#`号表示，井号后面的内容会被Python解释器忽略
-+ 编写注释主要目的是阐述代码要做什么，如何做
-
-
-
-
-  
-   
+<ul>
+<li>使用函数str()将值为整数的变量用作字符串(将非字符串值表示为字符串)🤙</li>
+</ul>
+<ol start="4">
+<li>注释</li>
+</ol>
+<pre><code># 打招呼
+print(&quot;Hello!&quot;)
 </code></pre>
+<ul>
+<li>注释使用<code>#</code>号表示，井号后面的内容会被Python解释器忽略</li>
+<li>编写注释主要目的是阐述代码要做什么，如何做</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
