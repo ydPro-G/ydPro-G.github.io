@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-05-08T12:22:24.478Z</updated>
+    <updated>2020-05-08T13:03:21.715Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,134 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Python_变量和简单数据类型]]></title>
+        <id>https://ydPro-G.github.io/post/python_-bian-liang-he-jian-dan-shu-ju-lei-xing/</id>
+        <link href="https://ydPro-G.github.io/post/python_-bian-liang-he-jian-dan-shu-ju-lei-xing/">
+        </link>
+        <updated>2020-05-08T12:22:48.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="1认识变量">1.认识变量</h1>
+<ol>
+<li>什么是变量？<pre><code> message = &quot;Hello World!&quot;
+print(message)
+</code></pre>
+message就是一个变量，每个变量都能储存一个值。值——与变量相关联的信息。<br>
+<strong>提醒</strong>：在程序中可随时修改变量的值，而Python会始终记录最新值🙌</li>
+</ol>
+<hr>
+<ol start="2">
+<li>变量命名规则
+<ul>
+<li>变量名只能包含字母，数字，下划线。</li>
+<li>不能用数字开头。</li>
+<li>变量名不能包含空格。</li>
+<li>不要用Python关键字和函数名做变量名</li>
+<li>变量名要简单而又具有描述性，易懂。😀</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="2字符串">2.字符串</h1>
+<ol>
+<li>什么是字符串？</li>
+</ol>
+<p>字符串就是一系列的字符。如下所示👇<br>
+<code>“This is a string.&quot;</code><br>
+<code>'This is also string.'</code><br>
+2. 修改字符串的大小写</p>
+<pre><code>name = &quot;angel&quot;
+print(name.title())
+</code></pre>
+<ul>
+<li>方法：<code>title()</code>  字符串首字母大写</li>
+<li>方法：<code>upper()</code> 字符串全部大写</li>
+<li>方法：<code>lower()</code>  字符串全部小写</li>
+</ul>
+<ol start="3">
+<li>合并字符串</li>
+</ol>
+<pre><code>first_string = &quot;A&quot;
+last_string = &quot;B&quot;
+full_string = first_string + last_string + &quot;.&quot;
+print(full_string)
+</code></pre>
+<ul>
+<li>使用<code>+</code>号来合并字符串</li>
+</ul>
+<ol start="4">
+<li>添加换行符或制表符</li>
+</ol>
+<pre><code>print(&quot;\nPython&quot;) 
+print(&quot;\tPython&quot;) 
+</code></pre>
+<ul>
+<li><code>\n</code>:换行符</li>
+<li><code>\t</code>：制表符</li>
+</ul>
+<ol start="5">
+<li>删除空白<pre><code></code></pre>
+</li>
+</ol>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>favorite_language = ' python '<br>
+favorite_language.rstrip()<br>
+' python'</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>favorite_language.lstrip()<br>
+'python '</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>favorite_language.strip()<br>
+'python'</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre><code>+ `.rstrip()`：删除开头空白
++ `lstrip()`：删除末尾空白
++ `strip()`：删除两端空白
+________
+# 3.数字
+1. 整数：
++ 2 + 3
++ 3 - 2
++ 2 * 3
++ 3 / 2
++ 2 ** 3：使用两个乘号表示乘方运算
+2. 浮点数
++ 0.1+ 0.1
++ 0.2 + 0.2
++ 2 * 0.1
++ 2 * 0.2
++ 其结果包含的小数位数可能是不确定的。
+
+3. 使用函数str()避免类型错误
+</code></pre>
+<p>age = 18<br>
+message = &quot;Happy &quot; + str(age) + &quot;rd Birthday!&quot;<br>
+print(message)</p>
+<pre><code>+ 使用函数str()将值为整数的变量用作字符串(将非字符串值表示为字符串)🤙
+4. 注释
+</code></pre>
+<h1 id="打招呼">打招呼</h1>
+<p>print(&quot;Hello!&quot;)</p>
+<pre><code>+ 注释使用`#`号表示，井号后面的内容会被Python解释器忽略
++ 编写注释主要目的是阐述代码要做什么，如何做
+
+
+
+
+  
+   
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python_配置Python编程环境]]></title>
         <id>https://ydPro-G.github.io/post/python_-ji-chu-yu-fa/</id>
@@ -928,81 +1056,6 @@ exit           #退出
  #将/etc/passwd文件按：分割，取第一个字段排序后，使用echo命令生成一个列表。
 </code></pre>
 <p><a href="https://wangchujiang.com/linux-command/c/xargs.html">参考网址</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_简单的文本处理]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-jian-dan-de-wen-ben-chu-li/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-jian-dan-de-wen-ben-chu-li/">
-        </link>
-        <updated>2020-03-17T04:14:23.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="目的">目的</h1>
-<p>1.常见文本处理命令<br>
-2.如何简单处理文本</p>
-<h3 id="学习目录">学习目录</h3>
-<ol>
-<li>tr</li>
-<li>col</li>
-<li>join</li>
-<li>paste</li>
-</ol>
-<hr>
-<h3 id="1tr命令">1.tr命令</h3>
-<p>将字符进行替换压缩和删除<br>
-tr命令 可以对来自标准输入的字符进行替换、压缩和删除。它可以将一组字符变成另一组字符，经常用来编写优美的单行命令，作用很强大。</p>
-<p>实例：<code>echo 'hello world' | tr -d 'ol'</code><br>
-意义：删除<strong>hello world</strong>中所有的<strong>ol</strong></p>
-<p>实例：<code>echo 'hello world' | tr -s &quot;l&quot;</code><br>
-将<strong>hello world</strong>中的<strong>l</strong>去重为一个<strong>l</strong></p>
-<p>实例：<code>echo 'hello' | tr '[a-z]' '[A-Z]'</code><br>
-：<code>echo 'HELLO | tr '[A-Z] '[a-z]'</code><br>
-意义：将hello转换成HELLO<br>
-将HELLO转换成hello<br>
-<strong>大小写转换</strong><br>
-<a href="https://wangchujiang.com/linux-command/c/tr.html">参考网址</a></p>
-<hr>
-<h3 id="2col命令">2.col命令</h3>
-<p>过滤控制字符，<strong>col 命令可以将Tab换成对等数量的空格键，或反转这个操作。</strong><br>
-col命令 是一个标准输入文本过滤器，它从标注输入设备读取文本内容，并把内容显示到标注输出设备。在许多UNIX说明文件里，都有RLF控制字符。当我们运用shell特殊字符&gt;和&gt;&gt;，把说明文件的内容输出成纯文本文件时，控制字符会变成乱码，col命令则能有效滤除这些控制字符。</p>
-<p>实例：<code>cat [目录/文件] | col -x | cat -A</code>:<br>
-意义：使用<code>col -x</code>将相应目录的相关文件中的<code>tab</code>字符转换成<code>空格</code>，然后使用<code>cat -A</code>查看<br>
-<code>cat -A</code>查看不可见字符<br>
-<a href="https://wangchujiang.com/linux-command/c/col.html">参考网址</a></p>
-<hr>
-<h3 id="3join命令">3.join命令</h3>
-<p>两个文件中<strong>指定栏位内容相同的行连接</strong>起来<br>
-join命令 用来将<strong>两个文件</strong>中，<strong>指定栏位内容相同的行连接起来</strong>。找出两个文件中，指定栏位内容相同的行，并加以合并，再<strong>输出到标准输出设备</strong>。</p>
-<p>实例：<br>
-<code>&gt;</code>:覆盖文件内容并写入<br>
-<code>&gt;&gt;</code>:在文件后面追加，不覆盖<br>
-<code>echo '1 hello' &gt; file1</code>:输入1 hello并覆盖文件内容写入file1文件中<br>
-<code>echo '1 world' &gt; file2</code>:输入1 world并覆盖文件内容写入到file2文件中<br>
-<code>join file1 file2</code>:输出<code>1 hello world</code>将<code>file1</code>和<code>file2</code>文件中包含相同内容（<code>1</code>）的那一行合并在一起。</p>
-<p>实例：<code>sudo join -t':' /etc/passwd[目录/文件] /etc/shadow[目录/文件]</code>:<br>
-意义：将两个文件合并，并指定以<code>':'</code>为分隔符<br>
-<code>-t</code>：指定分隔符，默认为空格</p>
-<p>实例：<code>sudo join -t':' -1 1 [目录/文件] -2 1 [目录/文件]</code><br>
-意义：将2个文件合并，指定以<code>':'</code>作为分隔符，并对比第一字段和第二字段<br>
-<code>-1</code>:指明第一个文件要用哪个字段来对比，默认是第一个字段<br>
-<code>-2</code>:指明第二个文件要用哪个字段来对比，默认是第一个字段<br>
-<a href="https://wangchujiang.com/linux-command/c/join.html">参考网址</a></p>
-<h3 id="4paste命令">4.paste命令</h3>
-<p>将多个文件按列队列合并<br>
-paste命令 用于将多个文件按照列队列进行合并。</p>
-<p>实例：<code>paste -d ':' [文件] [文件] [文件]</code><br>
-意义：将三个文件合并在一起，<code>-d</code>指定分隔符为<code>':'</code>,默认为TAB</p>
-<p>实例<code>paste -s [文件] [文件] [文件]</code><br>
-意义：将三个文件合并在一起，<code>-s</code>不合并到一行，每个文件为一行。<br>
-<a href="https://wangchujiang.com/linux-command/c/paste.html">参考网址</a></p>
-<h2 id="复习">复习</h2>
-<p>手动完成 dos 文本格式到 UNIX 文本格式的转换。</p>
-<pre><code class="language-bash">echo hello &gt; file1
-cat -A file1 |  tr '$' '\r\n' &gt; file2; cat -A file2
-</code></pre>
-<p>将unix文本转换成dos文本</p>
-<pre><code class="language-bash">cat -A file2 | tr -d '^M$' &gt; file3; cat -A file3
-</code></pre>
-<p>将dos文本转换成unix文本</p>
 ]]></content>
     </entry>
 </feed>
