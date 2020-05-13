@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-05-08T13:28:39.801Z</updated>
+    <updated>2020-05-13T12:59:34.484Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -10,6 +10,135 @@
     <logo>https://ydPro-G.github.io/images/avatar.png</logo>
     <icon>https://ydPro-G.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, ydPro Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Python_列表]]></title>
+        <id>https://ydPro-G.github.io/post/python_-lie-biao/</id>
+        <link href="https://ydPro-G.github.io/post/python_-lie-biao/">
+        </link>
+        <updated>2020-05-13T12:15:03.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="1什么是列表">1.什么是列表？</h1>
+<ol>
+<li>列表是有一系列按特定顺序排序排列的元素组成。
+<ul>
+<li>在Python中用（<code>[]</code>）来表示列表，用<code>,</code>分隔其中的元素。</li>
+</ul>
+</li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(names)
+
+['Zhao','Qian','Sun','Li']
+</code></pre>
+<hr>
+<h1 id="2如何使用列表">2.如何使用列表？</h1>
+<ol>
+<li>访问列表元素
+<ul>
+<li>列表元素是有序集合，要访问列表元素只需要将该元素的<strong>位置</strong>或<strong>索引</strong>告诉Python即可。</li>
+</ul>
+</li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(names[0]) # 访问列表元素
+
+Zhao
+</code></pre>
+<p><strong>小提示：索引从0而不是1开始</strong></p>
+<ol start="2">
+<li>使用列表中的各个值
+<ul>
+<li>使用<code>names[0]</code>的值生成一个句子，将其储存在变量中。</li>
+</ul>
+</li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+message = &quot;My name is &quot; + names[0].title() + &quot;.&quot;
+
+print(message)
+
+My name is Zhao.
+</code></pre>
+<ol start="3">
+<li>修改元素
+<ul>
+<li>修改元素需要指定列表名，要修改的元素的索引，再指定该元素的新值。</li>
+</ul>
+</li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+
+names[0] = 'Wang'  #修改元素
+
+print(nams[0])
+
+Wang
+</code></pre>
+<ol start="4">
+<li>添加元素</li>
+</ol>
+<ul>
+<li>在列表末尾添加元素,使用方法<code>append()</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+
+names.append('Wang') # 在列表末尾添加元素
+print(names)
+
+['Zhao','Qian','Sun','Li','Wang']
+</code></pre>
+<ul>
+<li>在列表中插入元素，使用方法<code>insert()</code>指定新元素的索引和值</li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+
+names.insert(0,'Wang')
+print(names)
+
+['Wang','Zhao','Qian','Sun','Li']
+</code></pre>
+<ol start="5">
+<li>删除元素
+<ul>
+<li>如果知道要删除的元素在列表中的位置，可使用del语句</li>
+</ul>
+</li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+
+del names[0]  # 删除元素
+print(names)
+
+['Qian','Sun','Li']
+</code></pre>
+<ul>
+<li>将元素从列表中删除并接着使用它的值，可使用<code>pop()</code>方法，<code>pop()</code>可删除任意位置的元素的元素，默认为列表末尾的元素，并让你接着使用它，其实我更愿意把它称为弹出，将列表末尾的元素弹出到变量中，并接着使用它。</li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+
+names_pop = names.pop(0) # 弹出元素
+print(&quot;My name is &quot; + names_pop + &quot;.&quot;)
+
+My names is Zhao.
+</code></pre>
+<ul>
+<li>根据值删除元素，使用方法<code>remove()</code>，如果只知道要删除元素的值可以使用方法<code>remove()</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+
+remove_Zhao = 'Zhao' # 将值Zhao储存在变量中
+names.remove(remove_Zhao) #  使用方法和变量告诉Python将那个值从列表中删除
+print(names) # 值从列表中删除，储存在变量中
+print(&quot;My name is &quot; + remove_Zhao + &quot;.&quot;)
+
+
+['Qian','Sun','Li']
+My name is Zhao.
+</code></pre>
+<ol start="6">
+<li>组织列表</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python_变量和简单数据类型]]></title>
         <id>https://ydPro-G.github.io/post/python_-bian-liang-he-jian-dan-shu-ju-lei-xing/</id>
@@ -920,138 +1049,6 @@ print $1,$2,$3
 <h3 id="命令">命令</h3>
 <pre><code class="language-cpp">cat file1 | cut -c 8- | sort | uniq -dc | sort -nr -k1 | head -3 &gt; /home/directory
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux_数据流重定向]]></title>
-        <id>https://ydPro-G.github.io/post/linux_-shu-ju-liu-chong-ding-xiang/</id>
-        <link href="https://ydPro-G.github.io/post/linux_-shu-ju-liu-chong-ding-xiang/">
-        </link>
-        <updated>2020-03-17T04:15:48.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="目的">目的</h1>
-<p>1.重定向怎么用<br>
-2.文件描述符(0,1,2)</p>
-<h2 id="学习目录">学习目录</h2>
-<ol>
-<li>数据流重定向</li>
-<li>简单的重定向</li>
-<li>标准错误的重定向</li>
-<li>使用<code>tee</code>命令重定向到多个文件</li>
-<li>exec命令</li>
-<li>创建文件描述符</li>
-<li>关闭文件描述符</li>
-<li>完全屏蔽命令的输出</li>
-<li>使用xargs分割参数列表</li>
-</ol>
-<hr>
-<h3 id="1数据流重定向">1.数据流重定向</h3>
-<h4 id="命令">命令</h4>
-<p><code>&gt;</code> : 覆盖文件内容并写入<br>
-<code>&gt;&gt;</code>：在文件后面追加，不覆盖文件内容<br>
-<code>&lt;</code>：和<code>&gt;</code>作用一样，表示从右到左<br>
-<code>&lt;&lt;</code>:和<code>&gt;&gt;</code>作用一样，表示从右到左</p>
-<hr>
-<h3 id="2简单的重定向">2.简单的重定向</h3>
-<h4 id="前置知识文件描述符">前置知识：文件描述符</h4>
-<pre><code class="language-bash"> 1.  文件描述符：0   设备文件：/dev/stdin    缩写：stdin    说明：标准输入
- 2.  文件描述符：1   设备文件：/dev/stdout   缩写：stdout   说明：标准输出
- 3.  文件描述符：2   设备文件：/dev/stderr   缩写：stderr   说明：标准错误
-</code></pre>
-<p><a href="https://blog.csdn.net/xlinsist/article/details/51147212">参考网址</a></p>
-<p>实例（1：</p>
-<pre><code class="language-bash">mkdir Documents #创建目录
-cat &gt; Documents/test.c &lt;&lt; EOF   #将cat的连续输出重定向到一个文件中
-#include &lt;stdio.h&gt;
-int main()
-{
-    printf(&quot;hello world/n&quot;);
-    return 0;
-}
-EOF
-</code></pre>
-<p>补充<code>EOF</code>：<br>
-是END Of File的缩写,表示自定义终止符.既然自定义,那么EOF就不是固定的,可以随意设置别名,在linux按ctrl-d就代表EOF.<br>
-EOF一般会配合cat能够多行文本输出.<br>
-其用法如下:<br>
-&lt;&lt;EOF        //开始<br>
-....<br>
-EOF            //结束<br>
-<a href="https://www.cnblogs.com/xiaojianblogs/p/6486902.html">参考网址</a></p>
-<p><code>cat Documents/test.c</code></p>
-<p>意义：将一个文件作为命令的输入（cat），标准输出作为命令的输出</p>
-<p>实例（2：</p>
-<pre><code class="language-cpp"> #将echo命令的输出从默认的标准输出重定向到一个普通文件
-echo 'hello world' &gt; file 
-#查看文件
-cat file  
-</code></pre>
-<hr>
-<h3 id="3标准错误的重定向">3.标准错误的重定向</h3>
-<p>实例（1：</p>
-<pre><code class="language-cpp"> #用bash提供的特殊的重定向符号“&amp;”将标准错误和标准输出同时重定向到文件
- cat [目录]/[标准输出文件] [标准错误文件] &amp;&gt; [文件] 
-</code></pre>
-<p>实例（2：</p>
-<pre><code class="language-cpp">#将标准错误重定向到标准输出，将标准输出重定向到文件中，注意要将标准输出重定向到文件写在前面
-cat [目录]/[标准输出文件] [标准错误文件] &gt; [文件] 2&gt;&amp;1 
-</code></pre>
-<p>补充：在输出重定向文件描述符前加上<code>&amp;</code>，否则shell会当作重定向到一个文件名为1的文件中</p>
-<hr>
-<h3 id="4使用tee命令同时重定向到多个文件">4.使用tee命令同时重定向到多个文件</h3>
-<p>实例（1：</p>
-<pre><code class="language-cpp">#将echo命令输出通过tee命令同时重定向到file1 file2 file3
-echo 'git is good' | tee file1 file2 file3  
-</code></pre>
-<hr>
-<h3 id="5exec命令">5.exec命令</h3>
-<p>调用并执行指定的命令。<br>
-exec命令 用于调用并执行指令的命令。exec命令通常用在shell脚本程序中，可以调用其他的命令。如果在当前终端中使用命令，则当指定的命令执行完毕后会立即退出终端。</p>
-<p>实例（1：</p>
-<pre><code class="language-cpp">zsh #进入子shell
-exec 1 &gt; somefile   #使用exec替换当前进程的重定向，将标准输出（1）重定向到文件中
-#后面执行的命令都将重定向到文件中，知道使用exit退出当前子shell
-ls            #ls命令重定向到文件（somefile）中
-ll            #ll命令重定向到文件（somefile）中
-pwd           #pwd命令重定向到文件（somefile）中
-exit          #退出
-cat somefile    #主进程查看文件（somefile）  ls ll  pwd命令会同时执行
-</code></pre>
-<p><a href="https://blog.csdn.net/yanggd1987/article/details/38926901">参考网址</a></p>
-<h3 id="6创建文件描述符">6.创建文件描述符</h3>
-<p>Linux系统将所有设备都当作文件来处理，而Linux用文件描述符来标识每个文件对象。其实我们可以想象我们电脑的显示器和键盘在Linux系统中都被看作是文件，而它们都有相应的文件描述符与之对应。<br>
-shell中有9个文件描述符，上面是用了它提供的默认的0,1,2文件描述符，另外我们还可以使用3—8文件描述符。</p>
-<p><code>cat /dev/fd;ls -Al</code>:查看当前shell进程中打开的文件描述符。<br>
-<code>;</code>:路径的分隔符</p>
-<p>实例（1：</p>
-<pre><code class="language-cpp">zsh #进入子shell
-exec 3 &gt; somefile           #将文件描述符3重定向到文件中（somefile）
-cat /dev/fd;ls -Al;cd -     #查看当前shell中打开的文件描述符
-echo &quot;this is test&quot; &gt;&amp;3           #将echo命令的输出重定向到文件描述符3种
-cat somefile           #查看文件（somefile）
-exit           #退出
-</code></pre>
-<p><a href="https://blog.csdn.net/xlinsist/article/details/51147212">参考网址</a></p>
-<hr>
-<h3 id="7关闭文件描述符">7.关闭文件描述符</h3>
-<p><code>exec 3&gt;&amp;-</code>:关闭文件描述符3</p>
-<hr>
-<h3 id="8完全屏蔽命令的输出">8.完全屏蔽命令的输出</h3>
-<h4 id="前置知识">前置知识</h4>
-<p><code>/dev/null</code>空设备，一般用来丢弃不需要的输出流</p>
-<p>实例（1：</p>
-<pre><code class="language-cpp">cat directory/file 1&gt;/dev/null 2&gt;&amp;1    
-#将文件标准输出（1）重定向到/dev/null中，将标准错误（2）重定向到标准输出（1）中
-</code></pre>
-<p>补充：<br>
-<code>cat</code>：连接多个文件并打印到标准输出</p>
-<hr>
-<h3 id="9使用xargs分割参数列表">9.使用xargs分割参数列表</h3>
-<p>将列表参数转换成小块分段传递给其他命令，以避免参数列表过长问题。</p>
-<p>实例（1：</p>
-<pre><code class="language-cpp">cut -d: -f1 &lt; /etc/passwd | sort |xargs echo
- #将/etc/passwd文件按：分割，取第一个字段排序后，使用echo命令生成一个列表。
-</code></pre>
-<p><a href="https://wangchujiang.com/linux-command/c/xargs.html">参考网址</a></p>
 ]]></content>
     </entry>
 </feed>
