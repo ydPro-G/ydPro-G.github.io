@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ydPro-G.github.io/</id>
     <title>ydPro Blog</title>
-    <updated>2020-05-13T13:16:31.545Z</updated>
+    <updated>2020-05-14T13:20:55.919Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ydPro-G.github.io/"/>
     <link rel="self" href="https://ydPro-G.github.io/atom.xml"/>
@@ -134,8 +134,66 @@ print(&quot;My name is &quot; + remove_Zhao + &quot;.&quot;)
 My name is Zhao.
 </code></pre>
 <ol start="6">
-<li>组织列表</li>
+<li>组织列表（按字母<strong>顺序/相反的顺序</strong>永久性排序）</li>
 </ol>
+<ul>
+<li>按字母顺序进行永久性排序，使用方法<code>sort()</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+names.sort()
+
+print(names)
+
+
+['Li', 'Qian', 'Sun', 'Zhao']
+</code></pre>
+<ul>
+<li>按字母顺序相反的顺序排列列表，向<code>sort()</code>方法传递参数<code>reverse=True</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+names.sort(reverse=True)
+
+print(names)
+
+['Zhao', 'Sun', 'Qian', 'Li']
+</code></pre>
+<ol start="7">
+<li>对列表元素按照字母顺序临时性排序，使用<strong>函数</strong><code>sorted()</code></li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(sorted(names))
+
+['Li', 'Qian', 'Sun', 'Zhao']
+</code></pre>
+<ul>
+<li>对列表元素按照字母顺序的相反顺序临时性排序，向函数<code>sortedz()</code>传递参数<code>reverse=True</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(sorted(names,reverse=True))
+
+
+['Zhao', 'Sun', 'Qian', 'Li']
+</code></pre>
+<ol start="8">
+<li>永久性反转列表元素的排列顺序,使用方法<code>reverse()</code></li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+names.reverse()
+
+print(names)
+
+
+['Li', 'Sun', 'Qian', 'Zhao']
+</code></pre>
+<p><strong>提示：</strong> 如果想要恢复到原来的排序，只需要再执行一遍<code>reverse()</code>即可。</p>
+<ol start="9">
+<li>确认列表长度，使用<code>len()</code>函数</li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(len(names))
+
+4
+</code></pre>
 ]]></content>
     </entry>
     <entry>

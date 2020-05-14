@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ydPro Blog</title>
 <meta name="description" content="Life & Work" />
-<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1589375776946">
+<link rel="shortcut icon" href="https://ydPro-G.github.io//favicon.ico?v=1589462444008">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://ydPro-G.github.io/">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1589375776946" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://ydPro-G.github.io//images/avatar.png?v=1589462444008" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">ydPro Blog</h1>
       </div>
@@ -78,7 +78,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">Python_列表</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-05-13 / 3 min read
+          2020-05-13 / 4 min read
         </div>
         
         <div class="post-content yue">
@@ -200,8 +200,66 @@ print(&quot;My name is &quot; + remove_Zhao + &quot;.&quot;)
 My name is Zhao.
 </code></pre>
 <ol start="6">
-<li>组织列表</li>
+<li>组织列表（按字母<strong>顺序/相反的顺序</strong>永久性排序）</li>
 </ol>
+<ul>
+<li>按字母顺序进行永久性排序，使用方法<code>sort()</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+names.sort()
+
+print(names)
+
+
+['Li', 'Qian', 'Sun', 'Zhao']
+</code></pre>
+<ul>
+<li>按字母顺序相反的顺序排列列表，向<code>sort()</code>方法传递参数<code>reverse=True</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+names.sort(reverse=True)
+
+print(names)
+
+['Zhao', 'Sun', 'Qian', 'Li']
+</code></pre>
+<ol start="7">
+<li>对列表元素按照字母顺序临时性排序，使用<strong>函数</strong><code>sorted()</code></li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(sorted(names))
+
+['Li', 'Qian', 'Sun', 'Zhao']
+</code></pre>
+<ul>
+<li>对列表元素按照字母顺序的相反顺序临时性排序，向函数<code>sortedz()</code>传递参数<code>reverse=True</code></li>
+</ul>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(sorted(names,reverse=True))
+
+
+['Zhao', 'Sun', 'Qian', 'Li']
+</code></pre>
+<ol start="8">
+<li>永久性反转列表元素的排列顺序,使用方法<code>reverse()</code></li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+names.reverse()
+
+print(names)
+
+
+['Li', 'Sun', 'Qian', 'Zhao']
+</code></pre>
+<p><strong>提示：</strong> 如果想要恢复到原来的排序，只需要再执行一遍<code>reverse()</code>即可。</p>
+<ol start="9">
+<li>确认列表长度，使用<code>len()</code>函数</li>
+</ol>
+<pre><code>names = ['Zhao','Qian','Sun','Li']
+print(len(names))
+
+4
+</code></pre>
 
         </div>
 
